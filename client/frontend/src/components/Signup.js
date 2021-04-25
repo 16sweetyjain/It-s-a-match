@@ -1,16 +1,16 @@
 import { React,Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route,withRouter } from "react-router-dom";
 import {TextInput, Button} from 'react-materialize';
 import axios from 'axios';
 
-export default class Signup extends Component {
+ class Signup extends Component {
     constructor(props){
         super(props);
         this.state={
-            email:"kihar99@gmail.com",
-            password:"123456",
-            password_confirmation:"123456",
-            name:"kush jain"
+            email:"",
+            password:"",
+            password_confirmation:"",
+            name:""
         }
         this.onChangeConfirmPassword=this.onChangeConfirmPassword.bind(this);
         this.onChangeName=this.onChangeName.bind(this);
@@ -33,19 +33,22 @@ export default class Signup extends Component {
             console.log(error);
                 });
 
+
+            this.props.history.push('/signin');
+
     }
     onChangeConfirmPassword=(e)=>{
-        //this.setState({ this.state.confirm_password : e.target.value});
+        this.setState({ password_confirmation : e.target.value});
     }
     onChangeEmail=e=>{
-        //this.setState({this.state.email:e.target.value});
+        this.setState({email:e.target.value});
     }
     onChangeName=e=>{
       
-        //this.setState({this.state.name:e.target.value});
+        this.setState({name:e.target.value});
     }
     onChangePassword=e=>{
-        //this.setState({this.state.password:e.target.value});
+        this.setState({password:e.target.value});
     }
     render(){
   return (
@@ -55,7 +58,7 @@ export default class Signup extends Component {
         <TextInput  email id="TextInput-2" label="Type your email" value={this.state.email} onChange={(e)=>this.onChangeEmail(e)}/>
         <TextInput id="TextInput-3" label="Password" password value={this.state.password} onChange={(e)=>this.onChangePassword(e)}/>
         <TextInput id="TextInput-4" label=" Confirm Password" password value={this.state.password_confirmation} onChange={(e)=>this.onChangeConfirmPassword(e)}/>
-        <Button href="http://localhost:3000/signin" node="a" waves="light" onClick={(e)=>this.onSubmit(e)}>
+        <Button  node="a" waves="light" onClick={(e)=>this.onSubmit(e)}>
             Register
         </Button>
       
@@ -64,5 +67,7 @@ export default class Signup extends Component {
   );
     }
 }
+
+export default withRouter(Signup);
 
 
