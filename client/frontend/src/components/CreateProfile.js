@@ -11,7 +11,7 @@ export default class CreateProfile extends Component {
         <TextInput id="TextInput-7" label="Type name of your pet"/>
         <TextInput id="TextInput-8" label="Hobbies"/>
         <TextInput id="TextInput-9" label="Dislikes"/>
-        <TextInput id="TextInput-10" label="Likes"/>
+        <TextInput id="TextInput-10" label="Likes( e.g. favourite food)"/>
         <Button href="http://localhost:3000/upload" node="a" waves="light">
             Create Profile
         </Button>
