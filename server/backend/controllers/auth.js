@@ -97,10 +97,12 @@ exports.signin = (req, res) => {
           user._id,
           3600
        );
-       jwt.verify(access_token, process.env.TOKEN_SECRET, (err,
+       
+       jwt.verify(access_token,process.env.token, (err,
 decoded) => {
          if (err) {
             res.status(500).json({ erros: err });
+            console.log('not able to verify');
          }
          if (decoded) {
              return res.status(200).json({
