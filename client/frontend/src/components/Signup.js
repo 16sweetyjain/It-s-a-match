@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route,withRouter } from "react-router-dom";
 import {TextInput, Button} from 'react-materialize';
 import axios from 'axios';
 
- class Signup extends Component {
+ export default class Signup extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -34,7 +34,7 @@ import axios from 'axios';
                 });
 
 
-            this.props.history.push('/signin');
+            //this.props.history.push('/signin');
 
     }
     onChangeConfirmPassword=(e)=>{
@@ -68,6 +68,6 @@ import axios from 'axios';
     }
 }
 
-export default withRouter(Signup);
+//export default withRouter(Signup);
 
 
