@@ -1,14 +1,18 @@
 import { Component } from "react";
 import { BrowserRouter as Router, Route,withRouter ,Link} from "react-router-dom";
-import {TextInput, Button} from 'react-materialize';
+import {TextInput} from 'react-materialize';
 import axios from 'axios';
+import { connect } from "react-redux";
+import setUserEmail from '../actions/setUserEmail';
+import CreateProfile from "./CreateProfile";
 
- export default class SignIn extends Component {
+export default class SignIn extends Component {
   constructor(props){
     super(props);
     this.state={
       email:"",
-      password:""
+      password:"",
+      isLogged:false
   }
   this.onChangePassword=this.onChangePassword.bind(this);
   this.onChangeEmail=this.onChangeEmail.bind(this);
@@ -17,6 +21,7 @@ import axios from 'axios';
   }
   onSubmit=e=>{
     e.preventDefault();
+    this.setState({isLogged:true});
     const user={
       email:this.state.email,
       password:this.state.password
@@ -28,6 +33,14 @@ import axios from 'axios';
     },(error)=>{
         console.log(error);
     });
+    console.log('user:',user);
+    console.log('login success');
+
+    /*console.log(this.props.email);
+    const {setUserEmail}=this.props;
+    console.log(this.props)
+    setUserEmail(this.state.email);
+    console.log(this.props.email);*/
 }
   onChangeEmail=e=>{
     this.setState({email:e.target.value});
@@ -38,6 +51,8 @@ import axios from 'axios';
     render(){
   return (
     <div>
+      {this.state.isLogged==false?
+      <div>
         <div>Login</div>
         <TextInput id="TextInput-5" label="Type your email" value={this.state.email} onChange={e=>this.onChangeEmail(e)}/>
         <TextInput id="TextInput-6" label="Password" password value={this.state.password} onChange={e=>this.onChangePassword(e)}/>
@@ -46,11 +61,30 @@ import axios from 'axios';
             Login
           </button>
         </Link>
+        </div>
+        :<div>
+          <CreateProfile email={this.state.email}/>
+          </div>
+      }
       
     </div>
 
   );
     }
 }
+/*const mapStateToProps=({email})=>{
+  return{
+   email
+  }
+};*/
+
+/*const mapDispatchToProps=(dispatch)=>{
+  return{
+     setUserEmail: (email) =>{
+       dispatch(setUserEmail(email))
+     }
+  }
+};*/
+
 
 

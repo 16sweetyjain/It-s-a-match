@@ -7,11 +7,12 @@ import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
 import CreateProfile from './components/CreateProfile';
 import UploadPicture from './components/UploadPicture';
+import ShowAllPets from './components/ShowAllPets';
 
 
 export  class App extends Component{
   render(){
-    const notLogged=true;
+   // const notLogged=true;
   return (
     <div>
       <div>
@@ -21,8 +22,9 @@ export  class App extends Component{
     <Route  path='/signin' component={SignIn}/>
     <Route  path='/signup' component={Signup}/>
     <Route path='/create' component={CreateProfile}/>
-    <Route path='/upload' component={UploadPicture}/>
+    <Route path='/showAllPets' component={ShowAllPets}/>
     <Route exact path='/' component={HomePage}/>
+
     </Switch>
     </div>
   );
