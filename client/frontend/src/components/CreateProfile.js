@@ -13,7 +13,8 @@ export default class CreateProfile extends Component {
       interests:"",
       dislikes:"",
       short_description:"",
-      image_of_pet:null
+      image_of_pet_preview:null,
+      image_of_pet_file:null
     }
     this.handleDescriptionChange=this.handleDescriptionChange.bind(this);
     this.handleDislikesChange=this.handleDislikesChange.bind(this);
@@ -38,10 +39,10 @@ export default class CreateProfile extends Component {
   }
   imageFileChangedHandler=e=>{
     const file = e.target.files[0];
-    this.setState({ image_of_pet: URL.createObjectURL(e.target.files[0]) })
+    this.setState({ image_of_pet_preview: URL.createObjectURL(file) , image_of_pet_file:file })
   }
   imageUploadHandler=e=>{
-    console.log(this.state.image_of_pet);
+    console.log(this.state.image_of_pet_preview);
   }
   handleClick=e=>{
     console.log('email:',this.props.email);
@@ -53,9 +54,17 @@ export default class CreateProfile extends Component {
         interests:this.state.interests,
         dislikes:this.state.dislikes,
         short_description:this.state.short_description,
-        image_of_pet:this.state.image_of_pet
+        image_of_pet:this.state.image_of_pet_preview
       }
     }
+    const formData = () => {
+      const formData = new FormData();
+      formData.append("file",this.state.image_of_pet_file);
+    }
+    console.log(formData)
+    /*for(var key of formData.entries()){
+      console.log(key[0]+ ','+key[1]);
+    }*/
     console.log('pet_profile:',pet_profile);
     axios.put('http://localhost:8000/api/create',pet_profile)
     .then((response)=>{
@@ -78,7 +87,7 @@ export default class CreateProfile extends Component {
         <div>
          <input type="file" left="200" onChange={this.imageFileChangedHandler}/>
         <button onClick={this.imageUploadHandler} left="200">Upload!</button>
-        <img alt="" src={this.state.image_of_pet} width="400" left="1000"/>
+        <img alt="" src={this.state.image_of_pet_preview} width="400" left="1000"/>
         </div>
         <Link to='/showAllPets'>
           <button    onClick = {(e)=>this.handleClick(e)}>

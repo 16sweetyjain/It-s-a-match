@@ -19,6 +19,7 @@ mongoose
 //middlewares
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('uploads'));
 //routes middleware
 app.use('/api', authRoutes);
 const port = process.env.PORT || 8000;
