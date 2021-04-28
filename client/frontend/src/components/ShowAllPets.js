@@ -42,7 +42,7 @@ export default class ShowAllPets extends Component{
                     <Row>
                         <Col m={6} s={12}>
                             <Card actions={[ <a key="1" href="#">View Profile</a> ]} closeIcon={<Icon>close</Icon>}
-                            header={<CardTitle image="https://materializecss.com/images/sample-1.jpg">{profile.profile.pet_name}</CardTitle>} 
+                            header={<CardTitle image={`http://localhost:8000/${profile.profile.image_of_pet}`}>{profile.profile.pet_name}</CardTitle>} 
                             revealIcon={<Icon>more_vert</Icon>}
                             >
                                 {profile.profile.short_description}

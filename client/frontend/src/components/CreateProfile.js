@@ -14,14 +14,14 @@ export default class CreateProfile extends Component {
       dislikes:"",
       short_description:"",
       image_of_pet_preview:null,
-      image_of_pet_file:null
+      image_of_pet_file:null,
+      email:"kittu@gmail.com"
     }
     this.handleDescriptionChange=this.handleDescriptionChange.bind(this);
     this.handleDislikesChange=this.handleDislikesChange.bind(this);
     this.handleInterestsChange=this.handleInterestsChange.bind(this);
     this.handlePetNameChange=this.handlePetNameChange.bind(this);
     this.handleClick=this.handleClick.bind(this);
-    this.imageFileChangedHandler=this.imageFileChangedHandler.bind(this);
     this.imageUploadHandler=this.imageUploadHandler.bind(this);
   }
 
@@ -37,15 +37,19 @@ export default class CreateProfile extends Component {
   handlePetNameChange=e=>{
     this.setState({pet_name:e.target.value});
   }
-  imageFileChangedHandler=e=>{
-    const file = e.target.files[0];
-    this.setState({ image_of_pet_preview: URL.createObjectURL(file) , image_of_pet_file:file })
-  }
   imageUploadHandler=e=>{
-    console.log(this.state.image_of_pet_preview);
+     const file = e.target.files[0];
+    this.setState({ image_of_pet_preview: URL.createObjectURL(file) , image_of_pet_file:file })
   }
   handleClick=e=>{
     console.log('email:',this.props.email);
+    const formData = new FormData();
+    formData.append('image_of_pet',this.state.image_of_pet_file);
+    formData.append('pet_name',this.state.pet_name);
+    formData.append('email',this.state.email);
+    formData.append('dislikes',this.state.dislikes);
+    formData.append('interests',this.state.interests);
+    formData.append('short_description',this.state.short_description);
 
     const pet_profile = {
       email:this.props.email,
@@ -57,16 +61,8 @@ export default class CreateProfile extends Component {
         image_of_pet:this.state.image_of_pet_preview
       }
     }
-    const formData = () => {
-      const formData = new FormData();
-      formData.append("file",this.state.image_of_pet_file);
-    }
-    console.log(formData)
-    /*for(var key of formData.entries()){
-      console.log(key[0]+ ','+key[1]);
-    }*/
     console.log('pet_profile:',pet_profile);
-    axios.put('http://localhost:8000/api/create',pet_profile)
+    axios.put('http://localhost:8000/api/create',formData,{ headers: {'content-type': 'multipart/form-data'}})
     .then((response)=>{
         console.log(response);
     },(error)=>{
@@ -85,8 +81,7 @@ export default class CreateProfile extends Component {
         <TextInput id="TextInput-9" label="Dislikes" value={this.state.dislikes} onChange={e=>this.handleDislikesChange(e)}/>
         <Textarea id="Textarea-12" l={12} m={2} s={3} xl={12} placeholder="write a short intro of your pet" value={this.state.short_description} onChange={e=>this.handleDescriptionChange(e)}/>
         <div>
-         <input type="file" left="200" onChange={this.imageFileChangedHandler}/>
-        <button onClick={this.imageUploadHandler} left="200">Upload!</button>
+         <input type="file" left="200" onChange={this.imageUploadHandler}/>
         <img alt="" src={this.state.image_of_pet_preview} width="400" left="1000"/>
         </div>
         <Link to='/showAllPets'>
