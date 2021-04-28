@@ -1,6 +1,7 @@
 import {React,Component} from 'react';
 import axios from 'axios';
 import {Row,Col,Card,Icon,CardTitle} from 'react-materialize';
+import {Link} from "react-router-dom";
 
 export default class ShowAllPets extends Component{
     constructor(props){
@@ -27,6 +28,11 @@ export default class ShowAllPets extends Component{
  
         return(
           <div>
+              <div>
+                  <Link to='/showMatches'>
+                      <button>Show Matches</button>
+                  </Link>
+              </div>
               <div>
                   <h1>List of pets</h1>
               </div>

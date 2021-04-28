@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import CreateProfile from './components/CreateProfile';
 import UploadPicture from './components/UploadPicture';
 import ShowAllPets from './components/ShowAllPets';
+import ShowMatches from './components/ShowMatches';
 
 
 export  class App extends Component{
@@ -23,6 +24,7 @@ export  class App extends Component{
     <Route  path='/signup' component={Signup}/>
     <Route path='/create' component={CreateProfile}/>
     <Route path='/showAllPets' component={ShowAllPets}/>
+    <Route path='/showMatches' component={ShowMatches}/>
     <Route exact path='/' component={HomePage}/>
 
     </Switch>

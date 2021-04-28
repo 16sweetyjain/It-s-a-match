@@ -1,7 +1,7 @@
 const User = require('../models/User');
 
 exports.profile=(req,res)=>{
-    console.log('create')
+    //console.log('create')
     let {email,profile}=req.body;
   //profile.push(pet);
     //console.log(pet);
