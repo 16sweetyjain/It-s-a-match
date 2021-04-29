@@ -1,30 +1,31 @@
 import {React,Component} from 'react';
 import axios from 'axios';
+import { connect } from "react-redux";
 import {Row,Col,Card,Icon,CardTitle} from 'react-materialize';
 import {Link} from "react-router-dom";
 
-export default class ShowAllPets extends Component{
+class ShowAllPets extends Component{
     constructor(props){
         super(props);
       
-            this.state={
-                profile:[],
-              }
-
-       
+        this.state = {
+            users: [],
+        }
     }
     componentDidMount(){
         //console.log('start')
-        axios.get('http://localhost:8000/api/getAllPets')
+        axios.get('http://localhost:8000/api/getAllUsers')
         .then((response)=>{
-            console.log(response.data.result);
-            this.setState({profile:response.data.result});
+            //console.log(response.data);
+            this.setState({users:response.data.result});
         },(error)=>{
             console.log(error);
         });
        // console.log(this.state.profile)
     }
     render(){
+        let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
+        let other_users=this.state.users.filter(user=>user.email!==this.props.email);
  
         return(
           <div>
@@ -36,7 +37,7 @@ export default class ShowAllPets extends Component{
               <div>
                   <h1>List of pets</h1>
               </div>
-                {this.state.profile.map((profile)=>{
+                {other_users.map((profile)=>{
                     return(
                 <div>
                     <Row>
@@ -57,3 +58,10 @@ export default class ShowAllPets extends Component{
         );
     }
 }
+
+const mapStateToProps= (state) => {
+    const { userEmail } = state;
+    return userEmail
+};
+
+export default connect(mapStateToProps)(ShowAllPets);

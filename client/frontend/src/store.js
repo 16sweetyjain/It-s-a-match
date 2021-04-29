@@ -1,12 +1,10 @@
-import { createStore } from "redux";
+import { combineReducers, applyMiddleware, createStore} from "redux";
 import setUserEmailReducer from './reducers/setUserEmail';
+import logger from 'redux-logger';
+const rootReducer = combineReducers({
+  userEmail: setUserEmailReducer
+});
+const middleware = [logger];
+const store =  createStore(rootReducer, applyMiddleware(...middleware));
 
-function configureStore() {
-  //const initialState={};
-  const initialState={
-    email:null
-  }
-  return createStore(setUserEmailReducer,initialState);
-}
-
-export default configureStore;
+export default store;

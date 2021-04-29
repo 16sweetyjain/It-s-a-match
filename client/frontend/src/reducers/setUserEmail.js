@@ -1,12 +1,18 @@
-const setUserEmailReducer = (state={email:null}, action) => {
+const initialState = {
+  email:''
+}
+
+const setUserEmailReducer = (state = initialState , action) => {
+  //let newState = {...state, ...action.payload}
+ // console.log(newState)
     switch (action.type) {
       case 'SET_USER_EMAIL':
         return {
-          email: action.payload
-        };
+          ...state, email:action.payload
+        }
       default:
         return state;
     }
   };
 
-  module.exports=setUserEmailReducer;
+  module.exports = setUserEmailReducer;

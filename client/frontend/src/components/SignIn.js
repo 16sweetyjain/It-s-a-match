@@ -5,8 +5,9 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import setUserEmail from '../actions/setUserEmail';
 import CreateProfile from "./CreateProfile";
+import setUserEmailReducer from "../reducers/setUserEmail";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -19,10 +20,10 @@ export default class SignIn extends Component {
   this.onSubmit=this.onSubmit.bind(this);
 
   }
-  onSubmit=e=>{
+  onSubmit = e =>{
     e.preventDefault();
     this.setState({isLogged:true});
-    const user={
+    const user = { 
       email:this.state.email,
       password:this.state.password
     }
@@ -35,12 +36,9 @@ export default class SignIn extends Component {
     });
     console.log('user:',user);
     console.log('login success');
-
-    /*console.log(this.props.email);
-    const {setUserEmail}=this.props;
-    console.log(this.props)
-    setUserEmail(this.state.email);
-    console.log(this.props.email);*/
+    
+   this.props.setUserEmail(this.state.email)
+  
 }
   onChangeEmail=e=>{
     this.setState({email:e.target.value});
@@ -49,6 +47,7 @@ export default class SignIn extends Component {
   this.setState({password:e.target.value});
 }
     render(){
+     
   return (
     <div>
       {this.state.isLogged==false?
@@ -72,19 +71,18 @@ export default class SignIn extends Component {
   );
     }
 }
-/*const mapStateToProps=({email})=>{
-  return{
-   email
-  }
-};*/
+const mapStateToProps= (state) => {
+    const { userEmail } = state;
+    return userEmail
+};
 
-/*const mapDispatchToProps=(dispatch)=>{
+const mapDispatchToProps = (dispatch) => {
   return{
-     setUserEmail: (email) =>{
-       dispatch(setUserEmail(email))
-     }
+    setUserEmail: email => dispatch(setUserEmail(email))
   }
-};*/
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 
 
 
