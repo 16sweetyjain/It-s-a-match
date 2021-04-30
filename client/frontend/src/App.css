@@ -27,6 +27,10 @@
 .App-link {
   color: #61dafb;
 }
+.signup {
+  align-items: center;
+  color: aqua;
+}
 
 @keyframes App-logo-spin {
   from {

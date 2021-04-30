@@ -1,7 +1,7 @@
 import { React,Component } from "react";
-import { BrowserRouter as Router, Route,withRouter } from "react-router-dom";
-import {TextInput, Button} from 'react-materialize';
 import axios from 'axios';
+import { Link } from "react-router-dom";
+
 
  export default class Signup extends Component {
     constructor(props){
@@ -20,7 +20,7 @@ import axios from 'axios';
     }
     onSubmit=e=>{
         e.preventDefault();
-        const new_user={
+        const new_user = {
         name:this.state.name,
         email:this.state.email,
         password:this.state.password,
@@ -33,9 +33,6 @@ import axios from 'axios';
             console.log(error);
                 });
 
-
-            //this.props.history.push('/signin');
-
     }
     onChangeConfirmPassword=(e)=>{
         this.setState({ password_confirmation : e.target.value});
@@ -44,30 +41,67 @@ import axios from 'axios';
         this.setState({email:e.target.value});
     }
     onChangeName=e=>{
-      
         this.setState({name:e.target.value});
     }
     onChangePassword=e=>{
         this.setState({password:e.target.value});
     }
     render(){
-  return (
-    <div>
-        <div>Register here </div>
-        <TextInput id="TextInput-1" label="Type your name" value={this.state.name} onChange={(e)=>this.onChangeName(e)}/>
-        <TextInput  email id="TextInput-2" label="Type your email" value={this.state.email} onChange={(e)=>this.onChangeEmail(e)}/>
-        <TextInput id="TextInput-3" label="Password" password value={this.state.password} onChange={(e)=>this.onChangePassword(e)}/>
-        <TextInput id="TextInput-4" label=" Confirm Password" password value={this.state.password_confirmation} onChange={(e)=>this.onChangeConfirmPassword(e)}/>
-        <Button  node="a" waves="light" onClick={(e)=>this.onSubmit(e)}>
-            Register
-        </Button>
-      
-    </div>
-
-  );
+        return(
+            <div className="row"   style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}>
+            <form class="col s6">
+              <div className="row">
+                <div className="input-field col s12">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="name" type="text" className="validate" value={this.state.name} onChange={e=>this.onChangeName(e)}/>
+                  <label for="name">Name</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                  <input id="email" type="email" className="validate" value={this.state.email} onChange={e=>this.onChangeEmail(e)}/>
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                  <input id="password" type="password" className="validate" value={this.state.password} onChange={e=>this.onChangePassword(e)}/>
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                  <input id="password" type="password" className="validate" value={this.state.password_confirmation} onChangeName={e=>this.onChangeConfirmPassword(e)}/>
+                  <label for="password">Confirm Password</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                <Link
+                to="/signin"
+                style={{
+                  width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px"
+                }}
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Register
+              </Link>
+                </div>
+              </div>
+              </form>
+          </div>
+          );
     }
 }
 
-//export default withRouter(Signup);
 
 

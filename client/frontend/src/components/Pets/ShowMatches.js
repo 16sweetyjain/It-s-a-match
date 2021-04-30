@@ -26,14 +26,13 @@ class ShowMatches extends Component {
     let number_of_interests = 0;
     let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
     let other_users = this.state.users.filter(user=>user.email!==this.props.email);
-       const my_pet_name = my_logged_in_user.map(user=>user.profile.pet_name);
-      const my_pet_interests =  my_logged_in_user.map(user=>user.profile.interests.split(','));
-        my_pet_interests.map(i=>{
+    const my_pet_name = my_logged_in_user.map(user=>user.profile.pet_name);
+    const my_pet_interests =  my_logged_in_user.map(user=>user.profile.interests.split(','));
+    my_pet_interests.map(i=>{
             number_of_interests=i.length;
         })      
       other_users.map((user)=>{
          const check_interests= user.profile.interests.split(',');
-         console.log(check_interests)
          const pet=user.profile.pet_name;
          my_pet_interests.map(i=>{
             common_interests=i.filter(x=>check_interests.indexOf(x)!=-1)

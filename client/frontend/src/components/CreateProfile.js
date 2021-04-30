@@ -2,9 +2,6 @@ import { React, Component } from "react";
 import { BrowserRouter as Router, Route,Link } from "react-router-dom";
 import {TextInput, Button, Textarea} from 'react-materialize';
 import axios from 'axios';
-import { connect } from "react-redux";
-import UploadPicture from './UploadPicture';
-
 export default class CreateProfile extends Component {
   constructor(props){
     super(props);
@@ -58,7 +55,7 @@ export default class CreateProfile extends Component {
         interests:this.state.interests,
         dislikes:this.state.dislikes,
         short_description:this.state.short_description,
-        image_of_pet:this.state.image_of_pet_preview
+        image_of_pet:this.state.image_of_pet_file
       }
     }
     console.log('pet_profile:',pet_profile);
@@ -74,21 +71,63 @@ export default class CreateProfile extends Component {
   render(){
 
   return (
-    <div>
-        <div>Create profile of your pet</div>
-        <TextInput id="TextInput-7" label="Type name of your pet" value={this.state.pet_name} onChange={e=>this.handlePetNameChange(e)}/>
-        <TextInput id="TextInput-8" label="Interests"value={this.state.interests} onChange={e=>this.handleInterestsChange(e)}/>
-        <TextInput id="TextInput-9" label="Dislikes" value={this.state.dislikes} onChange={e=>this.handleDislikesChange(e)}/>
-        <Textarea id="Textarea-12" l={12} m={2} s={3} xl={12} placeholder="write a short intro of your pet" value={this.state.short_description} onChange={e=>this.handleDescriptionChange(e)}/>
-        <div>
-         <input type="file" left="200" onChange={this.imageUploadHandler}/>
-        <img alt="" src={this.state.image_of_pet_preview} width="400" left="1000"/>
+    <div className="row"   style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <form class="col s6">
+      <div className="row">
+                <div className="input-field col s12">
+          <h3>Create your pet's profile</h3>
+                </div>
         </div>
-        <Link to='/showAllPets'>
-          <button    onClick = {(e)=>this.handleClick(e)}>
-            Create Profile
-          </button>
-        </Link>
+        <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">pets</i>
+                  <input id="name" type="text" className="validate" value={this.state.pet_name} onChange={e=>this.handlePetNameChange(e)}/>
+                  <label for="name"> Name of your pet</label>
+                </div>
+        </div>
+        <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">thumb_up</i>
+                  <input id="name" type="text" className="validate" value={this.state.interests} onChange={e=>this.handleInterestsChange(e)}/>
+                  <label for="name"> Interests</label>
+                </div>
+        </div>
+        <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">thumb_down</i>
+                  <input id="name" type="text" className="validate" value={this.state.dislikes} onChange={e=>this.handleDislikesChange(e)}/>
+                  <label for="name"> Dislikes</label>
+                </div>
+        </div>
+        <div class="row">
+           <div class="input-field col s12">
+           <i class="material-icons prefix">mode_edit</i>
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Write short info of your pet</label>
+           </div>
+        </div>
+        <div class="row">
+           <div class="input-field col s12">
+           <i class="material-icons prefix">upload</i>
+           <input type="file" left="200" onChange={this.imageUploadHandler}/>
+           <img alt="" src={this.state.image_of_pet_preview} width="400" left="1000"/>
+           </div>
+        </div>
+        <div className="row">
+                <div className="input-field col s12">
+                <Link
+                to="/main"
+                style={{width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px"
+                }}
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Create Profile
+              </Link>
+                </div>
+              </div>
+        </form>
     </div>
 
   );

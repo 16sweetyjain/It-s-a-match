@@ -6,8 +6,10 @@ import Signup from './components/Signup.js';
 import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
 import CreateProfile from './components/CreateProfile';
-import ShowAllPets from './components/ShowAllPets';
-import ShowMatches from './components/ShowMatches';
+import ShowAllPets from './components/Pets/ShowAllPets';
+import ShowMatches from './components/Pets/ShowMatches';
+import SendRequest from './components/Notifications/SendRequest';
+import MainPage from './components/MainPage';
 
 export default class App extends Component {
   render() {
@@ -22,6 +24,8 @@ export default class App extends Component {
     <Route path='/create' component={CreateProfile}/>
     <Route path='/showAllPets' component={ShowAllPets}/>
     <Route path='/showMatches' component={ShowMatches}/>
+    <Route path = '/sendRequest' component = {SendRequest}/>
+    <Route path='/main' component={MainPage}/>
     <Route exact path='/' component={HomePage}/>
 
     </Switch>

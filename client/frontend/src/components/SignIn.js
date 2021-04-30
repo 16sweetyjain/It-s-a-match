@@ -1,11 +1,11 @@
 import { Component } from "react";
-import { BrowserRouter as Router, Route,withRouter ,Link} from "react-router-dom";
+import { BrowserRouter as Router, Route,withRouter,Link} from "react-router-dom";
 import {TextInput} from 'react-materialize';
 import axios from 'axios';
 import { connect } from "react-redux";
 import setUserEmail from '../actions/setUserEmail';
 import CreateProfile from "./CreateProfile";
-import setUserEmailReducer from "../reducers/setUserEmail";
+//import {useStyles} from '../css/useStyles';
 
 class SignIn extends Component {
   constructor(props){
@@ -27,7 +27,6 @@ class SignIn extends Component {
       email:this.state.email,
       password:this.state.password
     }
-
     axios.post('http://localhost:8000/api/signin',user)
     .then((response)=>{
         console.log(response);
@@ -36,7 +35,6 @@ class SignIn extends Component {
     });
     console.log('user:',user);
     console.log('login success');
-    
    this.props.setUserEmail(this.state.email)
   
 }
@@ -47,28 +45,46 @@ class SignIn extends Component {
   this.setState({password:e.target.value});
 }
     render(){
+      return(
+        <div className="row"   style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+        <form class="col s6">
+        <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                  <input id="email" type="email" className="validate" value={this.state.email} onChange={e=>this.onChangeEmail(e)}/>
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                  <input id="password" type="password" className="validate" value={this.state.password} onChange={e=>this.onChangePassword(e)}/>
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                <Link
+                to="/create"
+                style={{
+                  width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px"
+                }}
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Login
+              </Link>
+                </div>
+              </div>
+        </form>
+      </div>
+      );
      
-  return (
-    <div>
-      {this.state.isLogged==false?
-      <div>
-        <div>Login</div>
-        <TextInput id="TextInput-5" label="Type your email" value={this.state.email} onChange={e=>this.onChangeEmail(e)}/>
-        <TextInput id="TextInput-6" label="Password" password value={this.state.password} onChange={e=>this.onChangePassword(e)}/>
-        <Link to='/create'>
-          <button    onClick = {(e)=>this.onSubmit(e)}>
-            Login
-          </button>
-        </Link>
-        </div>
-        :<div>
-          <CreateProfile email={this.state.email}/>
-          </div>
-      }
-      
-    </div>
-
-  );
     }
 }
 const mapStateToProps= (state) => {

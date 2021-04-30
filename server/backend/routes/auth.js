@@ -15,10 +15,15 @@ const {profile}=require('../controllers/profile');
 const{getAllUsers}= require('../controllers/getAll');
 const {getPet} = require('../controllers/getPet');
 const {getAllPets} = require('../controllers/getAllPets');
+const { sendNotifications } = require('../controllers/sendNotifications');
+const { acceptNotifications } = require('../controllers/acceptNotifications');
 router.post('/signup', signup);
 router.post('/signin', signin);
 router.put('/create',upload.single('image_of_pet'),profile), 
 router.get('/getAllUsers',getAllUsers);
 router.get('/getAllPets',getAllPets);
 router.get('/getPet',getPet);
+router.put('/sendNotifications',sendNotifications);
+router.put('/acceptNotifications',acceptNotifications);
+
 module.exports = router;

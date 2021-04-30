@@ -4,7 +4,7 @@ exports.profile = (req,res,next) => {
     
     let {email, pet_name, interests, dislikes, short_description} = req.body;
     let image_of_pet = req.file.originalname
-    console.log(image_of_pet)
+    //console.log(image_of_pet)
     const profile={
         pet_name: pet_name,
         interests: interests,

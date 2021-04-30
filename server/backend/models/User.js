@@ -14,7 +14,8 @@ let userSchema = new Schema({
       type: String,
       required: true
    },
-   profile:{}
+   profile:{},
+   notifications: {}
 },{
    timestamps: true,
    collection: 'users'

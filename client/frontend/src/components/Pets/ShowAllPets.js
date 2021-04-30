@@ -21,21 +21,16 @@ class ShowAllPets extends Component{
         },(error)=>{
             console.log(error);
         });
-       // console.log(this.state.profile)
+       
     }
     render(){
         let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
-        let other_users=this.state.users.filter(user=>user.email!==this.props.email);
+        let other_users=this.state.users.filter(user=>user.email !== this.props.email);
  
         return(
           <div>
               <div>
-                  <Link to='/showMatches'>
-                      <button>Show Matches</button>
-                  </Link>
-              </div>
-              <div>
-                  <h1>List of pets</h1>
+                  <h1>List of  all pets</h1>
               </div>
                 {other_users.map((profile)=>{
                     return(
