@@ -25,7 +25,8 @@ class SignIn extends Component {
     this.setState({isLogged:true});
     const user = { 
       email:this.state.email,
-      password:this.state.password
+      password:this.state.password,
+    
     }
     axios.post('http://localhost:8000/api/signin',user)
     .then((response)=>{
@@ -36,7 +37,6 @@ class SignIn extends Component {
     console.log('user:',user);
     console.log('login success');
    this.props.setUserEmail(this.state.email)
-  
 }
   onChangeEmail=e=>{
     this.setState({email:e.target.value});
@@ -77,7 +77,7 @@ class SignIn extends Component {
                 }}
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
               >
-                Login
+                <button>Login</button>
               </Link>
                 </div>
               </div>

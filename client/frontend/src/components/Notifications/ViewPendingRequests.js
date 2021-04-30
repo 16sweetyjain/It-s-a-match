@@ -1,27 +1,11 @@
 import { Component } from 'react';
-import { connect } from "react-redux";
-import axios from 'axios';
 
 export default class ViewPendingRequests extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            notification_status: "pending",
-            users:[]  
-        }
     }
-    componentDidMount() {
-        axios.get('http://localhost:8000/api/getAllUsers')
-          .then((response) => {
-            this.setState({ users: response.data.result });
-          }, (error) => {
-            console.log(error);
-          });
-      }
     render(){
-        let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
-        let other_users = this.state.users.filter(user=>user.email!==this.props.email);
-        let pending_requests_users = other_users.filter(user => user.notifications.notification_status === this.state.notification_status);
+        let pending_requests_users = this.props.pending_requests_users;
 
         return(
             <div>
@@ -46,9 +30,3 @@ export default class ViewPendingRequests extends Component {
     );
     }
 }
-const mapStateToProps= (state) => {
-    const { userEmail } = state;
-    return userEmail;
-  };
-  
-export default connect(mapStateToProps)(ViewPendingRequests);

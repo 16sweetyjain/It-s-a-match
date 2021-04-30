@@ -1,31 +1,17 @@
 import {React,Component} from 'react';
-import { connect } from "react-redux";
 import axios from 'axios';
 import {Row,Col,Card,Icon,CardTitle} from 'react-materialize';
 
-class ShowMatches extends Component {
+export default class ShowMatches extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      users: [],
-    };
   }
-
-  componentDidMount() {
-    axios.get('http://localhost:8000/api/getAllUsers')
-      .then((response) => {
-        this.setState({ users: response.data.result });
-      }, (error) => {
-        console.log(error);
-      });
-  }
-
   render() {
     let common_interests = [];
     let show_matches = [];
     let number_of_interests = 0;
-    let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
-    let other_users = this.state.users.filter(user=>user.email!==this.props.email);
+    let my_logged_in_user = this.props.my_logged_in_user;
+    let other_users = this.props.other_users;
     const my_pet_name = my_logged_in_user.map(user=>user.profile.pet_name);
     const my_pet_interests =  my_logged_in_user.map(user=>user.profile.interests.split(','));
     my_pet_interests.map(i=>{
@@ -77,10 +63,3 @@ class ShowMatches extends Component {
         );
 }
 }
-
-const mapStateToProps= (state) => {
-  const { userEmail } = state;
-  return userEmail;
-};
-
-export default connect(mapStateToProps)(ShowMatches);

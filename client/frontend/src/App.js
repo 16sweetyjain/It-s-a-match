@@ -10,6 +10,7 @@ import ShowAllPets from './components/Pets/ShowAllPets';
 import ShowMatches from './components/Pets/ShowMatches';
 import SendRequest from './components/Notifications/SendRequest';
 import MainPage from './components/MainPage';
+import NotificationsHomePage from './components/Notifications/NotificationsHomePage';
 
 export default class App extends Component {
   render() {
@@ -26,6 +27,7 @@ export default class App extends Component {
     <Route path='/showMatches' component={ShowMatches}/>
     <Route path = '/sendRequest' component = {SendRequest}/>
     <Route path='/main' component={MainPage}/>
+    <Route path= '/notifications' component={NotificationsHomePage}/>
     <Route exact path='/' component={HomePage}/>
 
     </Switch>

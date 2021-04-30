@@ -8,26 +8,13 @@ class SendRequest extends Component {
         super(props);
         this.state = {
             notification_status: "pending",
-            users:[],
             sender_email:"",
             receiver_email:""
         }
         this.onSendRequestHandler = this.onSendRequestHandler.bind(this);
     }
-
-    componentDidMount() {
-        axios.get('http://localhost:8000/api/getAllUsers')
-          .then((response) => {
-            this.setState({ users: response.data.result });
-          }, (error) => {
-            console.log(error);
-          });
-      }
-
     onSendRequestHandler = userEmail =>{
-        console.log(userEmail)
-       // console.log(this.props.email)
-          //e.preventDefault();
+        console.log(userEmail);
           this.setState({receiver_email: userEmail});
          
           this.setState({sender_email: this.props.email});
@@ -38,17 +25,16 @@ class SendRequest extends Component {
         }
         console.log(request)
           
-          axios.put('http://localhost:8000/api/sendNotifications', request)
-          .then((response)=>{
+        axios.put('http://localhost:8000/api/sendNotifications', request)
+        .then((response)=>{
               console.log(response);
-          },(error)=>{
+        },(error)=>{
               console.log(error);
-          });
+        });
 
       }
     render(){
-        let other_users = this.state.users.filter(user=>user.email !== this.props.email);
-       // console.log(other_users)
+        let other_users = this.props.other_users;
         return(
             <div>
             {other_users.map((user) => {

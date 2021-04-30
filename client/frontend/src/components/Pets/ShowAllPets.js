@@ -1,31 +1,15 @@
 import {React,Component} from 'react';
 import axios from 'axios';
-import { connect } from "react-redux";
 import {Row,Col,Card,Icon,CardTitle} from 'react-materialize';
 import {Link} from "react-router-dom";
 
-class ShowAllPets extends Component{
+export default class ShowAllPets extends Component{
     constructor(props){
         super(props);
-      
-        this.state = {
-            users: [],
-        }
-    }
-    componentDidMount(){
-        //console.log('start')
-        axios.get('http://localhost:8000/api/getAllUsers')
-        .then((response)=>{
-            //console.log(response.data);
-            this.setState({users:response.data.result});
-        },(error)=>{
-            console.log(error);
-        });
-       
     }
     render(){
-        let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
-        let other_users=this.state.users.filter(user=>user.email !== this.props.email);
+        let my_logged_in_user = this.props.my_logged_in_user;
+        let other_users=this.props.other_users;
  
         return(
           <div>
@@ -53,10 +37,3 @@ class ShowAllPets extends Component{
         );
     }
 }
-
-const mapStateToProps= (state) => {
-    const { userEmail } = state;
-    return userEmail
-};
-
-export default connect(mapStateToProps)(ShowAllPets);

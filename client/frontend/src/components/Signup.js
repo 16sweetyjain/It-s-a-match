@@ -91,6 +91,7 @@ import { Link } from "react-router-dom";
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
+                onClick={e=>this.onSubmit(e)}
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
               >
                 Register
