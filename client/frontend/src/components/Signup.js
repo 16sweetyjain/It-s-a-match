@@ -1,9 +1,8 @@
 import { React,Component } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 
-
- export default class Signup extends Component {
+class Signup extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -31,7 +30,8 @@ import { Link } from "react-router-dom";
             console.log(response);
         },(error)=>{
             console.log(error);
-                });
+        });
+        this.props.history.push('/signin');
 
     }
     onChangeConfirmPassword=(e)=>{
@@ -84,18 +84,12 @@ import { Link } from "react-router-dom";
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                <Link
-                to="/signin"
-                style={{
+                <button style={{
                   width: "140px",
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
-                onClick={e=>this.onSubmit(e)}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-              >
-                Register
-              </Link>
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={e => this.onSubmit(e)}>Register</button>
                 </div>
               </div>
               </form>
@@ -103,6 +97,6 @@ import { Link } from "react-router-dom";
           );
     }
 }
-
+export default withRouter(Signup);
 
 

@@ -1,11 +1,8 @@
 import { Component } from "react";
-import { BrowserRouter as Router, Route,withRouter,Link} from "react-router-dom";
-import {TextInput} from 'react-materialize';
+import { withRouter} from "react-router-dom";
 import axios from 'axios';
 import { connect } from "react-redux";
 import setUserEmail from '../actions/setUserEmail';
-import CreateProfile from "./CreateProfile";
-//import {useStyles} from '../css/useStyles';
 
 class SignIn extends Component {
   constructor(props){
@@ -36,7 +33,8 @@ class SignIn extends Component {
     });
     console.log('user:',user);
     console.log('login success');
-   this.props.setUserEmail(this.state.email)
+   this.props.setUserEmail(this.state.email);
+   this.props.history.push('/create');
 }
   onChangeEmail=e=>{
     this.setState({email:e.target.value});
@@ -68,17 +66,12 @@ class SignIn extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                <Link
-                to="/create"
-                style={{
+                <button style={{
                   width: "140px",
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-              >
-                <button>Login</button>
-              </Link>
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={e => this.onSubmit(e)}>Login</button>
                 </div>
               </div>
         </form>
@@ -98,7 +91,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn));
 
 
 
