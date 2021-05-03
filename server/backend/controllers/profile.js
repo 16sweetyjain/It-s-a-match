@@ -3,8 +3,8 @@ const User = require('../models/User');
 exports.profile = (req,res,next) => {
     
     let {email, pet_name, interests, dislikes, short_description} = req.body;
-    let image_of_pet = req.file.originalname
-    //console.log(image_of_pet)
+    let image_of_pet = req.file.path;
+   console.log(req.file)
     const profile={
         pet_name: pet_name,
         interests: interests,

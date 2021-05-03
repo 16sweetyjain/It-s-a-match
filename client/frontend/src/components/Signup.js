@@ -78,7 +78,7 @@ class Signup extends Component {
               <div className="row">
                 <div className="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                  <input id="password" type="password" className="validate" value={this.state.password_confirmation} onChangeName={e=>this.onChangeConfirmPassword(e)}/>
+                  <input id="password" type="password" className="validate" value={this.state.password_confirmation} onChange={e=>this.onChangeConfirmPassword(e)}/>
                   <label for="password">Confirm Password</label>
                 </div>
               </div>

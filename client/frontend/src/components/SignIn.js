@@ -18,6 +18,7 @@ class SignIn extends Component {
 
   }
   onSubmit = e =>{
+    //console.log(this.props)
     e.preventDefault();
     this.setState({isLogged:true});
     const user = { 
@@ -34,6 +35,7 @@ class SignIn extends Component {
     console.log('user:',user);
     console.log('login success');
    this.props.setUserEmail(this.state.email);
+   console.log(this.props)
    this.props.history.push('/create');
 }
   onChangeEmail=e=>{
@@ -43,6 +45,8 @@ class SignIn extends Component {
   this.setState({password:e.target.value});
 }
     render(){
+     
+     
       return(
         <div className="row"   style={{
           display: "flex",
@@ -91,7 +95,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
 
 
 

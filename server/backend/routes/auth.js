@@ -10,6 +10,7 @@ var storage = multer.diskStorage({
     }
 });
 const upload = multer({storage: storage});
+
 const { signup, signin } = require('../controllers/auth');
 const {profile}=require('../controllers/profile');
 const{getAllUsers}= require('../controllers/getAll');

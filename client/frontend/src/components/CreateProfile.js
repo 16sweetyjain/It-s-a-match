@@ -1,8 +1,9 @@
 import { React, Component } from "react";
-import { BrowserRouter as Router, Route,Link } from "react-router-dom";
-import {TextInput, Button, Textarea} from 'react-materialize';
+import { BrowserRouter as Router, Route,Link,withRouter } from "react-router-dom";
 import axios from 'axios';
-export default class CreateProfile extends Component {
+import { connect } from "react-redux";
+
+class CreateProfile extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -12,7 +13,7 @@ export default class CreateProfile extends Component {
       short_description:"",
       image_of_pet_preview:null,
       image_of_pet_file:null,
-      email:"kittu@gmail.com"
+      email:""
     }
     this.handleDescriptionChange=this.handleDescriptionChange.bind(this);
     this.handleDislikesChange=this.handleDislikesChange.bind(this);
@@ -39,7 +40,7 @@ export default class CreateProfile extends Component {
     this.setState({ image_of_pet_preview: URL.createObjectURL(file) , image_of_pet_file:file })
   }
   handleClick=e=>{
-    console.log('email:',this.props.email);
+    this.setState({email: this.props.email})
     const formData = new FormData();
     formData.append('image_of_pet',this.state.image_of_pet_file);
     formData.append('pet_name',this.state.pet_name);
@@ -59,16 +60,18 @@ export default class CreateProfile extends Component {
       }
     }
     console.log('pet_profile:',pet_profile);
-    axios.put('http://localhost:8000/api/create',formData,{ headers: {'content-type': 'multipart/form-data'}})
+    axios.put('http://localhost:8000/api/create',formData,{ headers: {'Content-type': 'multipart/form-data'}})
     .then((response)=>{
         console.log(response);
     },(error)=>{
         console.log(error);
     });
     console.log('profile created');
+    this.props.history.push('/showAllPets');
   }
 
   render(){
+    console.log(this.props.email)
 
   return (
     <div className="row"   style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -115,16 +118,14 @@ export default class CreateProfile extends Component {
         </div>
         <div className="row">
                 <div className="input-field col s12">
-                <Link
-                to="/main"
-                style={{width: "140px",
+                <button style={{
+                  width: "140px",
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-              >
-                Create Profile
-              </Link>
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={e => this.handleClick(e)}>
+                  Create Profile
+                  </button>
                 </div>
               </div>
         </form>
@@ -133,6 +134,12 @@ export default class CreateProfile extends Component {
   );
     }
 }
+const mapStateToProps= (state) => {
+  const { userEmail } = state;
+  return userEmail
+};
+
+export default withRouter(connect(mapStateToProps)(CreateProfile));
 
 
 
