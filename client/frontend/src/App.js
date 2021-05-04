@@ -12,6 +12,7 @@ import SendRequest from './components/Notifications/SendRequest';
 import MainPage from './components/MainPage';
 import NotificationsHomePage from './components/Notifications/NotificationsHomePage';
 import ViewProfile from './components/ViewProfile';
+import ViewRequests from './components/ViewRequests';
 
 export default class App extends Component {
   render() {
@@ -30,6 +31,7 @@ export default class App extends Component {
     <Route path='/main' component={MainPage}/>
     <Route path= '/notifications' component={NotificationsHomePage}/>
     <Route path = '/viewProfile' component = {ViewProfile}/>
+    <Route path = '/viewRequests' component={ViewRequests}/>
     <Route exact path='/' component={HomePage}/>
 
     </Switch>

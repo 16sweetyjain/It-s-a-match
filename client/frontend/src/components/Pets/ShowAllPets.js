@@ -25,19 +25,21 @@ import { NavLink, withRouter} from "react-router-dom";
         },(error)=>{
             console.log(error);
         });  
-        this.setState({receiver_email: this.props.email});
+        this.setState({sender_email: this.props.email});
     }
-    onSendRequestHandler = (e, userEmail) =>{
+    onSendRequestHandler = (e, userEmail, pet_name, image) =>{
       e.preventDefault();
       console.log(userEmail);
-        this.setState({sender_email: userEmail});
-        this.sendRequest();
+        this.setState({receiver_email: userEmail});
+        this.sendRequest(pet_name, image);
     }
-    sendRequest =() => {
+    sendRequest =(pet_name, image) => {
       const request = {
         sender_email: this.state.sender_email,
         receiver_email: this.state.receiver_email,
-        notification_status: this.state.notification_status
+        notification_status: this.state.notification_status,
+        pet_name:pet_name,
+        image:image
     };
     console.log(request);
     axios.put('http://localhost:8000/api/sendNotifications', request)
@@ -130,7 +132,7 @@ import { NavLink, withRouter} from "react-router-dom";
                   borderRadius: "3px",
                   letterSpacing: "1.5px"
                 }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"onClick={ (e) =>this.onSendRequestHandler(e, userEmail)}>Send Request</button>
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"onClick={ (e) =>this.onSendRequestHandler(e, userEmail, pet_name, image)}>Send Request</button>
 
                       </div>
                     </div>
