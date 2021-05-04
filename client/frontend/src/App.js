@@ -13,6 +13,7 @@ import MainPage from './components/MainPage';
 import NotificationsHomePage from './components/Notifications/NotificationsHomePage';
 import ViewProfile from './components/ViewProfile';
 import ViewRequests from './components/ViewRequests';
+import ViewFriends from './components/ViewFriends';
 
 export default class App extends Component {
   render() {
@@ -32,6 +33,7 @@ export default class App extends Component {
     <Route path= '/notifications' component={NotificationsHomePage}/>
     <Route path = '/viewProfile' component = {ViewProfile}/>
     <Route path = '/viewRequests' component={ViewRequests}/>
+    <Route path='/viewFriends' component={ViewFriends}/>
     <Route exact path='/' component={HomePage}/>
 
     </Switch>

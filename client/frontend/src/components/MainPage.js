@@ -23,23 +23,17 @@ class MainPage extends Component {
    
  render(){
     let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
-   /* const name = my_logged_in_user.map(user=>user.name);
-   console.log(my_logged_in_user)
-    let names=name.split(' ');
-    let initials=names[0].substring(0,1).toUpperCase();
-     if(names.length>1){
-         initials+= names[names.length-1].substring(0,1).toUpperCase();
-     }*/
-
+    const name = my_logged_in_user.map(user=>user.profile.pet_name);
+   
      return(
         <nav>
         <div class="nav-wrapper">
             
-        <a href="/" class="brand-logo right"><i class="material-icons prefix">account_circle</i>AJ</a>
+        <a href="/" class="brand-logo right"><i class="material-icons prefix">account_circle</i>Welcome,{name}</a>
           <ul id="nav-mobile" class="left hide-on-med-and-down" >
-            <li  value="1"><NavLink to='/showAllPets'>List of all Pets</NavLink></li>
+            <li  value="1"><NavLink to='/showAllPets'>List of Pets</NavLink></li>
             <li  value="2" ><NavLink to='/viewRequests'>View Requests</NavLink></li>
-            <li  value="3"><NavLink to='/notifications'>Notifications</NavLink></li>
+            <li  value="3"><NavLink to='/viewFriends'>Friends</NavLink></li>
           </ul>
           
         </div>

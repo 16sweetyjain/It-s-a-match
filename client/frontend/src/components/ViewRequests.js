@@ -9,10 +9,12 @@ class ViewRequests extends Component{
             users:[],
             notification_status:"accepted",
             sender_of_accept_email:"",
-            receiver_of_accept_email:""
+            receiver_of_accept_email:"",
+            rejected:'false'
         }
         this.onAcceptRequestHandler=this.onAcceptRequestHandler.bind(this);
         this.acceptRequest=this.acceptRequest.bind(this);
+        this.handleReject=this.handleReject.bind(this);
     }
     componentDidMount(){
         axios.get('http://localhost:8000/api/getAllUsers')
@@ -22,6 +24,10 @@ class ViewRequests extends Component{
             console.log(error);
         });  
         this.setState({sender_of_accept_email:this.props.email});
+    }
+    handleReject=(e)=>{
+        e.preventDefault();
+        this.setState({rejected:true});
     }
     onAcceptRequestHandler=(e,userEmail)=>{
         e.preventDefault();
@@ -91,7 +97,7 @@ class ViewRequests extends Component{
                   
                   marginTop:'100'
                 }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3">Reject</button>
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={(e)=>this.handleReject(e)}>Reject</button>
             </div>
             </div>
           </div>
