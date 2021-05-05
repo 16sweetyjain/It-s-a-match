@@ -2,6 +2,7 @@ import { React, Component } from "react";
 import { BrowserRouter as Router, Route,Link,withRouter } from "react-router-dom";
 import axios from 'axios';
 import { connect } from "react-redux";
+import auth from './Auth';
 
 class CreateProfile extends Component {
   constructor(props){
@@ -22,7 +23,7 @@ class CreateProfile extends Component {
     this.handleClick=this.handleClick.bind(this);
     this.imageUploadHandler=this.imageUploadHandler.bind(this);
   }
-
+  
   handleDescriptionChange=e=>{
     this.setState({short_description:e.target.value});
   }

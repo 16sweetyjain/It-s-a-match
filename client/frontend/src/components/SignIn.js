@@ -2,6 +2,7 @@ import { Component } from "react";
 import { withRouter} from "react-router-dom";
 import axios from 'axios';
 import { connect } from "react-redux";
+import auth from './Auth';
 import setUserEmail from '../actions/setUserEmail';
 
 class SignIn extends Component {
@@ -34,8 +35,10 @@ class SignIn extends Component {
     console.log('user:',user);
     console.log('login success');
    this.props.setUserEmail(this.state.email);
-   console.log(this.props)
+  
+   auth.signin(()=>{
    this.props.history.push('/create');
+   })
 }
   onChangeEmail=e=>{
     this.setState({email:e.target.value});

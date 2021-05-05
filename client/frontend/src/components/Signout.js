@@ -1,9 +1,13 @@
 import { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
+import auth from './Auth';
 class Signout extends Component {
     constructor(props){
         super(props);
     }
+   componentDidMount(){
+     auth.signout(()=>{});
+   }
     render(){
         return(
         <div style={{ height: "75vh" }} className="container valign-wrapper">
@@ -14,7 +18,7 @@ class Signout extends Component {
             </h4>
             <div className="col s6">
               <Link
-                to="/"
+              to='/'
                 style={{
                   width: "500px",
                   borderRadius: "3px",
@@ -32,4 +36,4 @@ class Signout extends Component {
         )
     }
 }
-export default Signout;
+export default withRouter(Signout);

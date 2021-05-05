@@ -2,6 +2,7 @@ import {React,Component} from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import auth from './Auth';
 
 class MainPage extends Component {
     constructor(props){
@@ -19,6 +20,7 @@ class MainPage extends Component {
             console.log(error);
         });  
     }
+    
  render(){
     let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
     const name = my_logged_in_user.map(user=>user.profile.pet_name);
@@ -33,7 +35,7 @@ class MainPage extends Component {
             <li  value="1"><NavLink to='/showAllPets'>List of Pets</NavLink></li>
             <li  value="2" ><NavLink to='/viewRequests'>View Requests</NavLink></li>
             <li  value="3"><NavLink to='/viewFriends'>Friends</NavLink></li>
-            <li  value="4"><NavLink to='/signout'>Logout</NavLink></li>
+            <li  value="4" ><NavLink to='/signout'>Logout</NavLink></li>
           </ul>
           
         </div>

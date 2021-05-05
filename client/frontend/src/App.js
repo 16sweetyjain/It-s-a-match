@@ -13,6 +13,7 @@ import ViewRequests from './components/ViewRequests';
 import ViewFriends from './components/ViewFriends';
 import axios from 'axios';
 import Signout from './components/Signout';
+import {ProtectedRoute} from './components/ProtectedRoute';
 
 export default class App extends Component {
   constructor(props){
@@ -28,7 +29,8 @@ export default class App extends Component {
     },(error)=>{
         console.log(error);
     });  
-}
+  }
+  
   render() {
       return (
         <div>
@@ -36,15 +38,15 @@ export default class App extends Component {
         <Navbar/>
       </div>
     <Switch>
-    <Route  path='/signin' component={SignIn}/>
-    <Route  path='/signup' component={Signup}/>
-    <Route path='/create' component={CreateProfile}/>
-    <Route path='/showAllPets' component={() => <ShowAllPets users = {this.state.users}/>}/>
-    <Route path='/main' component={() => <MainPage users={this.state.users}/>}/>
-    <Route path = '/viewProfile' component = {ViewProfile}/>
-    <Route path = '/viewRequests' component={() => <ViewRequests users = {this.state.users}/>  }/>
-    <Route path='/viewFriends' component={() => <ViewFriends users = {this.state.users}/>}/>
-    <Route path = '/signout' component={Signout}/>
+    <Route  path='/signin' component={() => <SignIn />}/>
+    <Route  path='/signup' component={() => <Signup />}/>
+    <ProtectedRoute path='/create' component={CreateProfile}/>
+    <ProtectedRoute path='/showAllPets' component={() => <ShowAllPets users = {this.state.users}/>}/>
+    <ProtectedRoute path='/main' component={() => <MainPage users={this.state.users} />}/>
+    <ProtectedRoute path = '/viewProfile' component = {ViewProfile}/>
+    <ProtectedRoute path = '/viewRequests' component={() => <ViewRequests users = {this.state.users}/>  }/>
+    <ProtectedRoute path='/viewFriends' component={() => <ViewFriends users = {this.state.users}/>}/>
+    <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
     <Route exact path='/' component={HomePage}/>
     </Switch>
     </div>
