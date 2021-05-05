@@ -17,15 +17,18 @@ import { NavLink, withRouter} from "react-router-dom";
         this.sendRequest = this.sendRequest.bind(this);
         this.viewProfileHandler = this.viewProfileHandler.bind(this);
     }
+    
     componentDidMount(){ 
         this.setState({sender_email: this.props.email});
     }
+
     onSendRequestHandler = (e, userEmail, pet_name, image) =>{
       e.preventDefault();
       console.log(userEmail);
         this.setState({receiver_email: userEmail});
         this.sendRequest(pet_name, image);
     }
+
     sendRequest =(pet_name, image) => {
       const request = {
         sender_email: this.state.sender_email,
