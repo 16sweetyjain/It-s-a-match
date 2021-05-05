@@ -60,7 +60,7 @@ class CreateProfile extends Component {
       }
     }
     console.log('pet_profile:',pet_profile);
-    axios.put('http://localhost:8000/api/create',formData,{ headers: {'Content-type': 'multipart/form-data'}})
+    axios.put('api/create',formData,{ headers: {'Content-type': 'multipart/form-data'}})
     .then((response)=>{
         console.log(response);
     },(error)=>{

@@ -18,7 +18,6 @@ class SignIn extends Component {
 
   }
   onSubmit = e =>{
-    //console.log(this.props)
     e.preventDefault();
     this.setState({isLogged:true});
     const user = { 
@@ -26,7 +25,7 @@ class SignIn extends Component {
       password:this.state.password,
     
     }
-    axios.post('http://localhost:8000/api/signin',user)
+    axios.post('api/signin',user)
     .then((response)=>{
         console.log(response);
     },(error)=>{
@@ -45,10 +44,8 @@ class SignIn extends Component {
   this.setState({password:e.target.value});
 }
     render(){
-     
-     
       return(
-        <div className="row"   style={{
+        <div className="row"  style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center"

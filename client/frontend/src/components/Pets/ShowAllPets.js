@@ -9,7 +9,6 @@ import { NavLink, withRouter} from "react-router-dom";
     constructor(props){
         super(props);
         this.state = {
-            users:[],
             notification_status: "pending",
             sender_email:"",
             receiver_email:"",
@@ -18,13 +17,7 @@ import { NavLink, withRouter} from "react-router-dom";
         this.sendRequest = this.sendRequest.bind(this);
         this.viewProfileHandler = this.viewProfileHandler.bind(this);
     }
-    componentDidMount(){
-        axios.get('http://localhost:8000/api/getAllUsers')
-        .then((response)=>{
-            this.setState({users:response.data.result});
-        },(error)=>{
-            console.log(error);
-        });  
+    componentDidMount(){ 
         this.setState({sender_email: this.props.email});
     }
     onSendRequestHandler = (e, userEmail, pet_name, image) =>{
@@ -42,7 +35,7 @@ import { NavLink, withRouter} from "react-router-dom";
         image:image
     };
     console.log(request);
-    axios.put('http://localhost:8000/api/sendNotifications', request)
+    axios.put('api/sendNotifications', request)
     .then((response)=>{
           console.log(response);
     },(error)=>{
@@ -68,8 +61,8 @@ import { NavLink, withRouter} from "react-router-dom";
       let common_interests = [];
       let show_matches = [];
       let number_of_interests = 0;
-      let my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
-      let other_users=this.state.users.filter(user=>user.email !== this.props.email);
+      let my_logged_in_user = this.props.users.filter((user) => user.email === this.props.email);
+      let other_users=this.props.users.filter(user=>user.email !== this.props.email);
       const my_pet_name = my_logged_in_user.map(user=>user.profile.pet_name);
       const my_pet_interests =  my_logged_in_user.map(user=>user.profile.interests.split(','));
       my_pet_interests.map(i=>{
@@ -118,7 +111,7 @@ import { NavLink, withRouter} from "react-router-dom";
      <div class="col s7 m7" >
      <div class="card" >
                       <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src={`http://localhost:8000/${image.substr(8)}`}/>
+                        <img class="activator" src={`${image.substr(8)}`}/>
                       </div>
                       <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{pet_name.toUpperCase()}<i class="material-icons right">more_vert</i></span>

@@ -2,11 +2,11 @@ import { Component } from 'react';
 import { connect } from "react-redux";
 import axios from 'axios';
 import MainPage from './MainPage';
+
 class ViewRequests extends Component{
     constructor(props){
         super(props);
         this.state = {
-            users:[],
             notification_status:"accepted",
             sender_of_accept_email:"",
             receiver_of_accept_email:"",
@@ -16,13 +16,7 @@ class ViewRequests extends Component{
         this.acceptRequest=this.acceptRequest.bind(this);
         this.handleReject=this.handleReject.bind(this);
     }
-    componentDidMount(){
-        axios.get('http://localhost:8000/api/getAllUsers')
-        .then((response)=>{
-            this.setState({users:response.data.result});
-        },(error)=>{
-            console.log(error);
-        });  
+    componentDidMount(){  
         this.setState({sender_of_accept_email:this.props.email});
     }
     handleReject=(e)=>{
@@ -41,7 +35,7 @@ class ViewRequests extends Component{
             notification_status:this.state.notification_status
         }
         console.log(request)
-        axios.put('http://localhost:8000/api/acceptNotifications', request)
+        axios.put('api/acceptNotifications', request)
     .then((response)=>{
           console.log(response);
     },(error)=>{
@@ -52,7 +46,7 @@ class ViewRequests extends Component{
         let notifications=[];
         let pending_requests=[] ;
         let my_logged_in_user;
-        my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
+        my_logged_in_user = this.props.users.filter((user) => user.email === this.props.email);
         my_logged_in_user.forEach((user)=>{
             notifications = user.notifications;
         })
@@ -71,7 +65,7 @@ class ViewRequests extends Component{
         <div class="card-panel grey lighten-5 z-depth-1">
           <div class="row valign-wrapper">
             <div class="col s2">
-              <img src={`http://localhost:8000/${image.substr(8)}`} alt=""  style={{height:100,width:100}}/> 
+              <img src={`${image.substr(8)}`} alt=""  style={{height:100,width:100}}/> 
             </div>
             <div class="col s12">
               <span class="black-text">

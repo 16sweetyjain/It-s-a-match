@@ -7,18 +7,7 @@ import { NavLink, withRouter} from "react-router-dom";
 class ViewFriends extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            users:[]
-        }
         this.viewProfileHandler = this.viewProfileHandler.bind(this);
-    }
-    componentDidMount(){
-        axios.get('http://localhost:8000/api/getAllUsers')
-        .then((response)=>{
-            this.setState({users:response.data.result});
-        },(error)=>{
-            console.log(error);
-        });
     }
     viewProfileHandler = (userEmail, pet_name, interests, dislikes, short_info, image) => {
         const state_of_user = {
@@ -39,8 +28,8 @@ class ViewFriends extends Component{
         let pending_requests=[] ;
         let my_logged_in_user;
         let all_pets=[];let friends=[];
-        let other_users=this.state.users.filter(user=>user.email !== this.props.email);
-        my_logged_in_user = this.state.users.filter((user) => user.email === this.props.email);
+        let other_users=this.props.users.filter(user=>user.email !== this.props.email);
+        my_logged_in_user = this.props.users.filter((user) => user.email === this.props.email);
         my_logged_in_user.forEach((user)=>{
             notifications = user.notifications;
         })
@@ -75,7 +64,7 @@ class ViewFriends extends Component{
      <div class="col s7 m7" >
      <div class="card" >
                       <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src={`http://localhost:8000/${image.substr(8)}`}/>
+                        <img class="activator" src={`${image.substr(8)}`}/>
                       </div>
                       <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">{pet_name.toUpperCase()} 

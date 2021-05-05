@@ -29,7 +29,7 @@ export default class ViewProfile extends Component{
       justifyContent: "center",
       alignItems: "center"
     }}   >
-                      <img class="activator" src={`http://localhost:8000/${image.substr(8)}`}/>
+                      <img class="activator" src={`${image.substr(8)}`}/>
                       </div>
                       <div class="col s6"   >
                      <h2>Pet name :{pet_name}</h2>

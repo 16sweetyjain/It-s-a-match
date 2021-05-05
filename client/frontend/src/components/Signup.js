@@ -25,7 +25,7 @@ class Signup extends Component {
         password:this.state.password,
         password_confirmation:this.state.password_confirmation
     };
-        axios.post('http://localhost:8000/api/signup',new_user)
+        axios.post('api/signup',new_user)
         .then((response)=>{
             console.log(response);
         },(error)=>{
