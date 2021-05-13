@@ -9,13 +9,13 @@ var storage = multer.diskStorage({
         cb(null , file.originalname);
     }
 });
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 
 const { signup, signin } = require('../controllers/auth');
-const {profile}=require('../controllers/profile');
-const{getAllUsers}= require('../controllers/getAll');
-const {getPet} = require('../controllers/getPet');
-const {getAllPets} = require('../controllers/getAllPets');
+const { profile } = require('../controllers/profile');
+const{ getAllUsers } = require('../controllers/getAll');
+const { getPet } = require('../controllers/getPet');
+const { getAllPets } = require('../controllers/getAllPets');
 const { sendNotifications } = require('../controllers/sendNotifications');
 const { acceptNotifications } = require('../controllers/acceptNotifications');
 router.post('/signup', signup);

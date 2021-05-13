@@ -8,14 +8,14 @@ import setUserEmail from '../actions/setUserEmail';
 class SignIn extends Component {
     constructor(props){
         super(props);
-        this.state={
+        this.state = {
             email:'',
             password:'',
             isLogged:false
         };
-        this.onChangePassword=this.onChangePassword.bind(this);
-        this.onChangeEmail=this.onChangeEmail.bind(this);
-        this.onSubmit=this.onSubmit.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
   onSubmit = e => {
@@ -26,20 +26,20 @@ class SignIn extends Component {
           password:this.state.password,
       };
       axios.post('api/signin',user)
-          .then((response)=>{
+          .then((response) => {
               console.log(response);
-          },(error)=>{
+          },(error) => {
               console.log(error);
           });
       console.log('user:',user);
       console.log('login success');
       this.props.setUserEmail(this.state.email);
-      auth.signin(()=>{
+      auth.signin(() => {
           this.props.history.push('/create');
       });
   }
 
-  onChangeEmail=e=>{
+  onChangeEmail= e => {
       this.setState({ email:e.target.value });
   }
 
@@ -75,7 +75,7 @@ class SignIn extends Component {
       ); 
   }
 }
-const mapStateToProps= (state) => {
+const mapStateToProps = (state) => {
     const { userEmail } = state;
     return userEmail;
 };

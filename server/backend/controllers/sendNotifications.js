@@ -9,16 +9,16 @@ exports.sendNotifications = (req,res) => {
         image:image
     };
 
-    User.findOneAndUpdate({email: receiver_email}, { $addToSet:{notifications: notification}}, {new: true})
-        .then(response=>{
+    User.findOneAndUpdate({ email: receiver_email }, { $addToSet:{ notifications: notification } }, { new: true })
+        .then(response => {
             res.status(200).json({
                 success:'request sent',
                 result:response
             });
         })
-        .catch(err=>{
+        .catch(err => {
             res.status(500).json({
-                errors:[{error:err}]
+                errors:[{ error:err }]
             });
         });
 };

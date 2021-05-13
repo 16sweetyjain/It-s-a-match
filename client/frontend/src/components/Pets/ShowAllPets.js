@@ -45,9 +45,9 @@ class ShowAllPets extends Component{
         };
         console.log(request);
         axios.put('api/sendNotifications', request)
-            .then((response)=>{
+            .then((response) => {
                 console.log(response);
-            },(error)=>{
+            },(error) => {
                 console.log(error);
             });
     }
@@ -75,15 +75,15 @@ class ShowAllPets extends Component{
         const otherUsers = this.state.users.filter(user => user.email !== this.props.email);
         const myPetName = myLoggedInUser.map(user => user.profile.pet_name);
         const myPetInterests =  myLoggedInUser.map(user => user.profile.interests.split(','));
-        myPetInterests.map(i=>{
-            numberOfInterests=i.length;
+        myPetInterests.map(i => {
+            numberOfInterests = i.length;
         });
         otherUsers.map((user) => {
             const checkInterests = user.profile.interests.split(',');
             myPetInterests.map(i => {
-                commonInterests = i.filter(x=>checkInterests.indexOf(x)!=-1);
+                commonInterests = i.filter(x => checkInterests.indexOf(x) != -1);
             });
-            const percentMatch = (commonInterests.length/numberOfInterests)*100;
+            const percentMatch = (commonInterests.length / numberOfInterests) * 100;
             showMatches.push({ 'common_interests': percentMatch,'user': user });
         });
         showMatches.sort(function compare(a,b) {
@@ -103,7 +103,7 @@ class ShowAllPets extends Component{
                 <MainPage/>
                 <div className='container'>
                     <div >  
-                        {showMatches.map((match)=>{
+                        {showMatches.map((match) => {
                             const userEmail = match.user.email;
                             const petName = match.user.profile.pet_name;
                             const shortInfo = match.user.profile.short_description;
@@ -119,12 +119,12 @@ class ShowAllPets extends Component{
                                             </div>
                                             <div className="card-content">
                                                 <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()}<i className="material-icons right">more_vert</i></span>
-                                                <button onClick={ () =>this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button>
+                                                <button onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button>
                                             </div>
                                             <div className="card-reveal">
                                                 <span className="card-title grey-text text-darken-4">Match Finder<i className="material-icons right">close</i></span>
                                                 <h3>{myPetName} matches {match.common_interests}% with {petName}</h3>
-                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } }className="btn btn-large waves-effect waves-light hoverable blue accent-3"onClick={ (e) =>this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
+                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } }className="btn btn-large waves-effect waves-light hoverable blue accent-3"onClick={ (e) => this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@ class ShowAllPets extends Component{
         );
     }
 }
-const mapStateToProps= (state) => {
+const mapStateToProps = (state) => {
     const { userEmail } = state;
     return userEmail;
 };

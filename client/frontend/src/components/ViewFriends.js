@@ -11,9 +11,9 @@ class ViewFriends extends Component{
     }
     componentDidMount(){
         axios.get('api/getAllUsers')
-            .then((response)=>{
+            .then((response) => {
                 this.setState({ users:response.data.result });
-            },(error)=>{
+            },(error) => {
                 console.log(error);
             }); 
     } 
@@ -35,17 +35,17 @@ class ViewFriends extends Component{
     render(){
         let notifications = [];
         let myLoggedInUser = [];
-        const allPets=[];
-        const friends=[];
-        const otherUsers=this.state.users.filter(user=>user.email !== this.props.email);
+        const allPets = [];
+        const friends = [];
+        const otherUsers = this.state.users.filter(user => user.email !== this.props.email);
         myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-        myLoggedInUser.forEach((user)=>{
+        myLoggedInUser.forEach((user) => {
             notifications = user.notifications;
         });
-        const acceptedRequests = notifications.filter(notif=>notif.notification_status==='accepted');
-        acceptedRequests.map(r=>allPets.push(r.user_email));
-        otherUsers.map(user=>{
-            const c=user.email;
+        const acceptedRequests = notifications.filter(notif => notif.notification_status === 'accepted');
+        acceptedRequests.map(r => allPets.push(r.user_email));
+        otherUsers.map(user => {
+            const c = user.email;
             if(allPets.includes(c)){
                 friends.push(user);
             }
@@ -56,7 +56,7 @@ class ViewFriends extends Component{
                 <MainPage/>
                 <div className ='container'>
                     <div>
-                        {friends.map((friend)=>{
+                        {friends.map((friend) => {
                             const userEmail = friend.email;
                             const petName = friend.profile.pet_name;
                             const shortInfo = friend.profile.short_description;
@@ -72,7 +72,7 @@ class ViewFriends extends Component{
                                             </div>
                                             <div className="card-content">
                                                 <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()} 
-                                                    <button onClick={ () =>this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
+                                                    <button onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
                                                 View Profile
                                                     </button>
                                                 </span>
@@ -87,7 +87,7 @@ class ViewFriends extends Component{
         );
     }
 }
-const mapStateToProps= (state) => {
+const mapStateToProps = (state) => {
     const { userEmail } = state;
     return userEmail;
 };

@@ -11,11 +11,11 @@ class Signup extends Component {
             passwordConfirmation:'',
             name:''
         };
-        this.onChangeConfirmPassword=this.onChangeConfirmPassword.bind(this);
-        this.onChangeName=this.onChangeName.bind(this);
-        this.onChangePassword=this.onChangePassword.bind(this);
-        this.onChangeEmail=this.onChangeEmail.bind(this);
-        this.onSubmit=this.onSubmit.bind(this);
+        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onSubmit = e => {
@@ -27,15 +27,15 @@ class Signup extends Component {
             passwordConfirmation:this.state.password_confirmation
         };
         axios.post('api/signup',newUser)
-            .then((response)=>{
+            .then((response) => {
                 console.log(response);
-            },(error)=>{
+            },(error) => {
                 console.log(error);
             });
         this.props.history.push('/signin');
     }
 
-    onChangeConfirmPassword=(e)=>{
+    onChangeConfirmPassword= e => {
         this.setState({ passwordConfirmation : e.target.value });
     }
 
@@ -47,7 +47,7 @@ class Signup extends Component {
         this.setState({ name:e.target.value });
     }
 
-    onChangePassword=e=>{
+    onChangePassword= e => {
         this.setState({ password:e.target.value });
     }
 
@@ -58,28 +58,28 @@ class Signup extends Component {
                     <div className="row">
                         <div className="input-field col s12">
                             <i className="material-icons prefix">account_circle</i>
-                            <input id="name" type="text" className="validate" value={ this.state.name } onChange={ e=>this.onChangeName(e) }/>
+                            <input id="name" type="text" className="validate" value={ this.state.name } onChange={ e => this.onChangeName(e) }/>
                             <label>Name</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <i className="material-icons prefix">email</i>
-                            <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e=>this.onChangeEmail(e) }/>
+                            <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e => this.onChangeEmail(e) }/>
                             <label>Email</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <i className="material-icons prefix">lock</i>
-                            <input id="password" type="password" className="validate" value={ this.state.password } onChange={ e=>this.onChangePassword(e) }/>
+                            <input id="password" type="password" className="validate" value={ this.state.password } onChange={ e => this.onChangePassword(e) }/>
                             <label>Password</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <i className="material-icons prefix">lock</i>
-                            <input id="password" type="password" className="validate" value={ this.state.passwordConfirmation } onChange={ e=>this.onChangeConfirmPassword(e) }/>
+                            <input id="password" type="password" className="validate" value={ this.state.passwordConfirmation } onChange={ e => this.onChangeConfirmPassword(e) }/>
                             <label>Confirm Password</label>
                         </div>
                     </div>

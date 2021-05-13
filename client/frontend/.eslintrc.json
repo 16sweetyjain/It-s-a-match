@@ -20,6 +20,9 @@
         "react"
     ],
     "rules": {
+        "arrow-spacing": ["error", { "before": true, "after": true }],
+        "space-infix-ops": ["error", { "int32Hint": false }],
+        "object-curly-spacing": [2, "always"],
         "react/prop-types": "off",
         "indent": [
             "error",

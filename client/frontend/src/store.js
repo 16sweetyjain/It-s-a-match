@@ -1,4 +1,4 @@
-import { combineReducers, applyMiddleware, createStore} from 'redux';
+import { combineReducers, applyMiddleware, createStore } from 'redux';
 import setUserEmailReducer from './reducers/setUserEmail';
 import logger from 'redux-logger';
 const rootReducer = combineReducers({

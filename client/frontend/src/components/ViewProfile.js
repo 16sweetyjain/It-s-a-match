@@ -4,9 +4,9 @@ import MainPage from './MainPage';
 export default class ViewProfile extends Component{
     constructor(props){
         super(props);
-        this.onClick=this.onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
-    onClick=()=>{
+    onClick=() => {
         console.log('err');
     }
     render(){
@@ -14,14 +14,14 @@ export default class ViewProfile extends Component{
         const petName = this.props.location.state.pet_name;
         const image = this.props.location.state.image;
         const dislikes = this.props.location.state.dislikes;
-        const interests=this.props.location.state.interests;
-        const shortInfo=this.props.location.state.short_info;
+        const interests = this.props.location.state.interests;
+        const shortInfo = this.props.location.state.short_info;
 
         return (
             <div>
                 <MainPage/>
                 <div className ="row">
-                    <div className="col s6" style={ { display:'flex', justifyContent: 'center', alignItems: 'center' } }   >
+                    <div className="col s6" style={ { display:'flex', justifyContent: 'center', alignItems: 'center' } }>
                         <img className="activator" src={ `${ image.substr(8) }` }/>
                     </div>
                     <div className="col s6"   >

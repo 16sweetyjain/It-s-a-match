@@ -1,22 +1,22 @@
 const User = require('../models/User');
 
 exports.uploadImage = (req,res) => {
-    const email=req.body.email;
+    const email = req.body.email;
     console.log(req.file);
-    const profile={
+    const profile = {
         image_of_pet:req.file
     };
 
-    User.findOneAndUpdate({email:email},{profile:profile})
-        .then(response=>{
+    User.findOneAndUpdate({ email:email },{ profile:profile })
+        .then(response => {
             res.status(200).json({
                 success:'updated',
                 result:response
             });
         })
-        .catch(err=>{
+        .catch(err => {
             res.status(500).json({
-                errors:[{error:err}]
+                errors:[{ error:err }]
             });
         });
 };

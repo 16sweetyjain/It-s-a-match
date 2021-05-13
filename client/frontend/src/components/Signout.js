@@ -8,7 +8,7 @@ class Signout extends Component {
     }
 
     componentDidMount() {
-        auth.signout(()=>{});
+        auth.signout(() => {});
     }
 
     render(){

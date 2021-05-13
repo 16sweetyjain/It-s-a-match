@@ -15,36 +15,36 @@ class CreateProfile extends Component {
             imageOfPetFile: null,
             email:''
         };
-        this.handleDescriptionChange=this.handleDescriptionChange.bind(this);
-        this.handleDislikesChange=this.handleDislikesChange.bind(this);
-        this.handleInterestsChange=this.handleInterestsChange.bind(this);
-        this.handlePetNameChange=this.handlePetNameChange.bind(this);
-        this.handleClick=this.handleClick.bind(this);
-        this.imageUploadHandler=this.imageUploadHandler.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handleDislikesChange = this.handleDislikesChange.bind(this);
+        this.handleInterestsChange = this.handleInterestsChange.bind(this);
+        this.handlePetNameChange = this.handlePetNameChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.imageUploadHandler = this.imageUploadHandler.bind(this);
     }
   
-  handleDescriptionChange = (e) => {
+  handleDescriptionChange = e => {
       this.setState({ shortDescription:e.target.value });
   }
 
-  handleDislikesChange=e=>{
+  handleDislikesChange= e => {
       this.setState({ dislikes:e.target.value });
   }
 
-  handleInterestsChange=e=>{
+  handleInterestsChange= e => {
       this.setState({ interests:e.target.value });
   }
 
-  handlePetNameChange=e=>{
+  handlePetNameChange= e => {
       this.setState({ petName:e.target.value });
   }
 
-  imageUploadHandler=e=>{
+  imageUploadHandler= e => {
       const file = e.target.files[ 0 ];
       this.setState({ imageOfPetPreview: URL.createObjectURL(file) , imageOfPetFile:file });
   }
 
-  handleClick = () =>{
+  handleClick = () => {
       this.setState({ email: this.props.email });
       const formData = new FormData();
       formData.append('image_of_pet',this.state.image_of_pet_file,this.state.image_of_pet_file.name);
@@ -66,9 +66,9 @@ class CreateProfile extends Component {
       };
       console.log('pet_profile:',petProfile);
       axios.put('api/create',formData,{ headers: { 'Content-type': 'multipart/form-data', 'Accept':'application/json' } })
-          .then((response)=>{
+          .then((response) => {
               console.log(response);
-          },(error)=>{
+          },(error) => {
               console.log(error);
           });
       console.log('profile created');
@@ -135,7 +135,7 @@ class CreateProfile extends Component {
       );
   }
 }
-const mapStateToProps= (state) => {
+const mapStateToProps = (state) => {
     const { userEmail } = state;
     return userEmail;
 };

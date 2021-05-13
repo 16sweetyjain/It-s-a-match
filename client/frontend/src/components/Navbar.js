@@ -9,7 +9,7 @@ export default class Navbar extends Component {
                     <div className="nav-wrapper white">
                         <Link to="/" style={ { fontFamily: 'monospace' } } className="col s5 brand-logo center black-text">
                             <i className="material-icons">code</i>
-                        IT &apos S-A-MATCH
+                        IT&apos;S-A-MATCH
                         </Link>
                     </div>
                 </nav>

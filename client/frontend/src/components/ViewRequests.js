@@ -12,29 +12,29 @@ class ViewRequests extends Component{
             receiverOfAcceptEmail:'',
             rejected:'false'
         };
-        this.onAcceptRequestHandler=this.onAcceptRequestHandler.bind(this);
-        this.acceptRequest=this.acceptRequest.bind(this);
-        this.handleReject=this.handleReject.bind(this);
+        this.onAcceptRequestHandler = this.onAcceptRequestHandler.bind(this);
+        this.acceptRequest = this.acceptRequest.bind(this);
+        this.handleReject = this.handleReject.bind(this);
     }
     componentDidMount(){  
         this.setState({ senderOfAcceptEmail:this.props.email });
         axios.get('api/getAllUsers')
-            .then((response)=>{
+            .then((response) => {
                 this.setState({ users:response.data.result });
-            },(error)=>{
+            },(error) => {
                 console.log(error);
             });    
     }
-    handleReject = (e)=>{
+    handleReject = (e) => {
         e.preventDefault();
         this.setState({ rejected:true });
     }
-    onAcceptRequestHandler=(e,userEmail)=>{
+    onAcceptRequestHandler=(e,userEmail) => {
         e.preventDefault();
         this.setState({ receiverOfAcceptEmail:userEmail });
         this.acceptRequest();
     }
-    acceptRequest=()=>{
+    acceptRequest=() => {
         const request = {
             senderOfAcceptEmail:this.state.sender_of_accept_email,
             receiverOfAcceptEmail:this.state.receiver_of_accept_email,
@@ -42,27 +42,27 @@ class ViewRequests extends Component{
         };
         console.log(request);
         axios.put('api/acceptNotifications', request)
-            .then((response)=>{
+            .then((response) => {
                 console.log(response);
-            },(error)=>{
+            },(error) => {
                 console.log(error);
             });
     }
     render(){
-        let notifications=[];
-        let pendingRequests=[] ;
+        let notifications = [];
+        let pendingRequests = [] ;
         let myLoggedInUser = [];
         myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-        myLoggedInUser.forEach((user)=>{
+        myLoggedInUser.forEach((user) => {
             notifications = user.notifications;
         });
-        pendingRequests = notifications.filter(notif=>notif.notification_status==='pending');
+        pendingRequests = notifications.filter(notif => notif.notification_status === 'pending');
         return(
             <div>
                 <MainPage/>
                 <div className ='container'>
                     <div>
-                        {pendingRequests.map((request)=>{
+                        {pendingRequests.map((request) => {
                             const petName = request.pet_name;
                             const image = request.image;
                             const userEmail = request.user_email;
@@ -80,10 +80,10 @@ class ViewRequests extends Component{
                                             </div>
                                             <div >
                                                 <div className="col s12">
-                                                    <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e)=>this.onAcceptRequestHandler(e,userEmail) }>Accept</button>
+                                                    <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onAcceptRequestHandler(e,userEmail) }>Accept</button>
                                                 </div>
                                                 <div className="col s12">
-                                                    <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e)=>this.handleReject(e) }>Reject</button>
+                                                    <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleReject(e) }>Reject</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@ class ViewRequests extends Component{
         );
     }
 }
-const mapStateToProps= (state) => {
+const mapStateToProps = (state) => {
     const { userEmail } = state;
     return userEmail;
 };

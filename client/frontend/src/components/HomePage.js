@@ -8,7 +8,7 @@ export default class HomePage extends Component {
                 <div className="row">
                     <div className="col s12 center-align">
                         <h4>
-                            <b>Welcome to It &apos s-a-match</b> 
+                            <b>Welcome to It&apos;s-a-match</b> 
                         </h4>
                         <p className="flow-text grey-text text-darken-1">
                             <h3>

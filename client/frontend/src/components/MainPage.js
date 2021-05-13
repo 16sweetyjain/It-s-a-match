@@ -13,16 +13,16 @@ class MainPage extends Component {
 
     componentDidMount(){
         axios.get('api/getAllUsers')
-            .then((response)=>{
+            .then((response) => {
                 this.setState({ users:response.data.result });
-            },(error)=>{
+            },(error) => {
                 console.log(error);
             });  
     }
     
     render(){
         const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-        const name = myLoggedInUser.map(user=>user.profile.pet_name);
+        const name = myLoggedInUser.map(user => user.profile.pet_name);
         console.log(myLoggedInUser);
    
         return(
@@ -41,7 +41,7 @@ class MainPage extends Component {
     }
 }
 
-const mapStateToProps= (state) => {
+const mapStateToProps = (state) => {
     const { userEmail } = state;
     return userEmail;
 };
