@@ -1,17 +1,17 @@
 const User = require('../models/User');
 
-exports.profile = (req,res,next) => {
+exports.profile = (req,res) => {
     
     let {email, pet_name, interests, dislikes, short_description} = req.body;
     let image_of_pet = req.file.path;
-   console.log(req.file)
+    console.log(req.file);
     const profile={
         pet_name: pet_name,
         interests: interests,
         dislikes: dislikes,
         short_description: short_description,
         image_of_pet:image_of_pet
-    }
+    };
  
     let errors=[];
     if(!profile.pet_name){
@@ -21,16 +21,15 @@ exports.profile = (req,res,next) => {
         return res.status(422).json({ errors: errors });
     }
     User.findOneAndUpdate({email:email},{profile:profile},{new: true})
-    .then(response=>{
-        res.status(200).json({
-            success:'updated',
-            result:response
+        .then(response=>{
+            res.status(200).json({
+                success:'updated',
+                result:response
+            });
         })
-    })
-    .catch(err=>{
-        res.status(500).json({
-            errors:[{error:err}]
-        });
-        });
-       
-}
+        .catch(err=>{
+            res.status(500).json({
+                errors:[{error:err}]
+            });
+        });      
+};

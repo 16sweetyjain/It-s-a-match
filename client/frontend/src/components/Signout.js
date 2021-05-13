@@ -6,9 +6,11 @@ class Signout extends Component {
     constructor(props){
         super(props);
     }
-   componentDidMount() {
-    auth.signout(()=>{});
-   }
+
+    componentDidMount() {
+        auth.signout(()=>{});
+    }
+
     render(){
         return(
             <div style={ { height:'75vh' } } className="container valign-wrapper">
@@ -25,7 +27,7 @@ class Signout extends Component {
                     </div>
                 </div>
             </div>
-              );
-            }
+        );
+    }
 }
 export default withRouter(Signout);

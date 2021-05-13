@@ -7,21 +7,18 @@ exports.sendNotifications = (req,res) => {
         notification_status: notification_status,
         pet_name:pet_name,
         image:image
-    }
+    };
+
     User.findOneAndUpdate({email: receiver_email}, { $addToSet:{notifications: notification}}, {new: true})
-    .then(response=>{
-        res.status(200).json({
-            success:'request sent',
-            result:response
+        .then(response=>{
+            res.status(200).json({
+                success:'request sent',
+                result:response
+            });
         })
-    })
-    .catch(err=>{
-        res.status(500).json({
-            errors:[{error:err}]
+        .catch(err=>{
+            res.status(500).json({
+                errors:[{error:err}]
+            });
         });
-        });
-
-
-    
-       
-}
+};

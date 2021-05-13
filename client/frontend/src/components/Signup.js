@@ -10,42 +10,47 @@ class Signup extends Component {
             password:'',
             passwordConfirmation:'',
             name:''
-        }
+        };
         this.onChangeConfirmPassword=this.onChangeConfirmPassword.bind(this);
         this.onChangeName=this.onChangeName.bind(this);
         this.onChangePassword=this.onChangePassword.bind(this);
         this.onChangeEmail=this.onChangeEmail.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
     }
+
     onSubmit = e => {
         e.preventDefault();
         const newUser = {
-        name:this.state.name,
-        email:this.state.email,
-        password:this.state.password,
-        passwordConfirmation:this.state.password_confirmation
-    };
+            name:this.state.name,
+            email:this.state.email,
+            password:this.state.password,
+            passwordConfirmation:this.state.password_confirmation
+        };
         axios.post('api/signup',newUser)
-        .then((response)=>{
-            console.log(response);
-        },(error)=>{
-            console.log(error);
-        });
+            .then((response)=>{
+                console.log(response);
+            },(error)=>{
+                console.log(error);
+            });
         this.props.history.push('/signin');
-
     }
+
     onChangeConfirmPassword=(e)=>{
         this.setState({ passwordConfirmation : e.target.value });
     }
+
     onChangeEmail= e => {
         this.setState({ email:e.target.value });
     }
+
     onChangeName= e => {
         this.setState({ name:e.target.value });
     }
+
     onChangePassword=e=>{
         this.setState({ password:e.target.value });
     }
+
     render(){
         return(
             <div className="row"   style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
@@ -81,12 +86,12 @@ class Signup extends Component {
                     <div className="row">
                         <div className="input-field col s12">
                             <button style={ { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ e => this.onSubmit(e) }>Register</button>
+                                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ e => this.onSubmit(e) }>Register</button>
                         </div>
                     </div>
                 </form>
             </div>
-          );
+        );
     }
 }
 export default withRouter(Signup);

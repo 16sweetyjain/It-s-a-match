@@ -8,40 +8,42 @@ class MainPage extends Component {
         super(props); 
         this.state = {
             users:[]
-          }
+        };
     }
 
     componentDidMount(){
         axios.get('api/getAllUsers')
-        .then((response)=>{
-            this.setState({ users:response.data.result });
-        },(error)=>{
-            console.log(error);
-        });  
+            .then((response)=>{
+                this.setState({ users:response.data.result });
+            },(error)=>{
+                console.log(error);
+            });  
     }
     
- render(){
-    const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-    const name = myLoggedInUser.map(user=>user.profile.pet_name);
-    console.log(myLoggedInUser)
+    render(){
+        const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
+        const name = myLoggedInUser.map(user=>user.profile.pet_name);
+        console.log(myLoggedInUser);
    
-     return(
-         <nav>
-             <div className="nav-wrapper"> 
-                 <a href="/" className="brand-logo left">Welcome, {name}</a>
-                 <ul id="nav-mobile" className="right hide-on-med-and-down" >
-                     <li  value="1"><NavLink to='/showAllPets'>List of Pets</NavLink></li>
-                     <li  value="2" ><NavLink to='/viewRequests'>View Requests</NavLink></li>
-                     <li  value="3"><NavLink to='/viewFriends'>Friends</NavLink></li>
-                     <li  value="4" ><NavLink to='/signout'>Logout</NavLink></li>
-                 </ul>
-             </div>
-         </nav>
-     );
- }
-  }
-  const mapStateToProps= (state) => {
+        return(
+            <nav>
+                <div className="nav-wrapper"> 
+                    <a href="/" className="brand-logo left">Welcome, {name}</a>
+                    <ul id="nav-mobile" className="right hide-on-med-and-down" >
+                        <li  value="1"><NavLink to='/showAllPets'>List of Pets</NavLink></li>
+                        <li  value="2" ><NavLink to='/viewRequests'>View Requests</NavLink></li>
+                        <li  value="3"><NavLink to='/viewFriends'>Friends</NavLink></li>
+                        <li  value="4" ><NavLink to='/signout'>Logout</NavLink></li>
+                    </ul>
+                </div>
+            </nav>
+        );
+    }
+}
+
+const mapStateToProps= (state) => {
     const { userEmail } = state;
-    return userEmail
+    return userEmail;
 };
+
 export default connect(mapStateToProps,null)(MainPage);

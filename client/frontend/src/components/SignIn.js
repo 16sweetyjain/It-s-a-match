@@ -6,47 +6,48 @@ import auth from './Auth';
 import setUserEmail from '../actions/setUserEmail';
 
 class SignIn extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      email:'',
-      password:'',
-      isLogged:false
-  }
-  this.onChangePassword=this.onChangePassword.bind(this);
-  this.onChangeEmail=this.onChangeEmail.bind(this);
-  this.onSubmit=this.onSubmit.bind(this);
-  }
+    constructor(props){
+        super(props);
+        this.state={
+            email:'',
+            password:'',
+            isLogged:false
+        };
+        this.onChangePassword=this.onChangePassword.bind(this);
+        this.onChangeEmail=this.onChangeEmail.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
+    }
 
   onSubmit = e => {
-    e.preventDefault();
-    this.setState({ isLogged:true });
-    const user = { 
-      email:this.state.email,
-      password:this.state.password,
-    };
-    axios.post('api/signin',user)
-    .then((response)=>{
-        console.log(response);
-    },(error)=>{
-        console.log(error);
-    });
-    console.log('user:',user);
-    console.log('login success');
-    this.props.setUserEmail(this.state.email);
-    auth.signin(()=>{
-    this.props.history.push('/create');
-    })
+      e.preventDefault();
+      this.setState({ isLogged:true });
+      const user = { 
+          email:this.state.email,
+          password:this.state.password,
+      };
+      axios.post('api/signin',user)
+          .then((response)=>{
+              console.log(response);
+          },(error)=>{
+              console.log(error);
+          });
+      console.log('user:',user);
+      console.log('login success');
+      this.props.setUserEmail(this.state.email);
+      auth.signin(()=>{
+          this.props.history.push('/create');
+      });
   }
 
   onChangeEmail=e=>{
-    this.setState({ email:e.target.value });
-  }
-  onChangePassword = e => {
-  this.setState({ password:e.target.value });
+      this.setState({ email:e.target.value });
   }
 
-    render(){
+  onChangePassword = e => {
+      this.setState({ password:e.target.value });
+  } 
+
+  render(){
       return(
           <div className="row"  style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
               <form className="col s6">
@@ -72,16 +73,16 @@ class SignIn extends Component {
               </form>
           </div>
       ); 
-    }
+  }
 }
 const mapStateToProps= (state) => {
     const { userEmail } = state;
-    return userEmail
+    return userEmail;
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return{
-    setUserEmail: email => dispatch(setUserEmail(email))
-  }
+    return{
+        setUserEmail: email => dispatch(setUserEmail(email))
+    };
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));

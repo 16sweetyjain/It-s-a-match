@@ -14,29 +14,29 @@ import ViewFriends from './components/ViewFriends';
 import Signout from './components/Signout';
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-  }
+    constructor(props){
+        super(props);
+    }
   
-  render() {
-      return (
-        <div>
-      <div>
-        <Navbar/>
-      </div>
-    <Switch>
-    <Route  path='/signin' component={() => <SignIn />}/>
-    <Route  path='/signup' component={() => <Signup />}/>
-    <Route path='/create' component={CreateProfile}/>
-    <Route path='/showAllPets' component={() => <ShowAllPets />}/>
-    <Route path='/main' component={() => <MainPage  />}/>
-    <Route path = '/viewProfile' component = {ViewProfile}/>
-    <Route path = '/viewRequests' component={() => <ViewRequests />  }/>
-    <Route path='/viewFriends' component={() => <ViewFriends />}/>
-    <Route path = '/signout' component={() => <Signout /> }/>
-    <Route exact path='/' component={HomePage}/>
-    </Switch>
-    </div>
-  );
-}
+    render() {
+        return (
+            <div>
+                <div>
+                    <Navbar/>
+                </div>
+                <Switch>
+                    <Route  path='/signin' component={() => <SignIn />}/>
+                    <Route  path='/signup' component={() => <Signup />}/>
+                    <Route path='/create' component={CreateProfile}/>
+                    <Route path='/showAllPets' component={() => <ShowAllPets />}/>
+                    <Route path='/main' component={() => <MainPage  />}/>
+                    <Route path = '/viewProfile' component = {ViewProfile}/>
+                    <Route path = '/viewRequests' component={() => <ViewRequests />  }/>
+                    <Route path='/viewFriends' component={() => <ViewFriends />}/>
+                    <Route path = '/signout' component={() => <Signout /> }/>
+                    <Route exact path='/' component={HomePage}/>
+                </Switch>
+            </div>
+        );
+    }
 }
