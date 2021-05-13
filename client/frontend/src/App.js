@@ -11,24 +11,11 @@ import MainPage from './components/MainPage';
 import ViewProfile from './components/ViewProfile';
 import ViewRequests from './components/ViewRequests';
 import ViewFriends from './components/ViewFriends';
-import axios from 'axios';
 import Signout from './components/Signout';
-import {ProtectedRoute} from './components/ProtectedRoute';
 
 export default class App extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      users:[]
-    }
-  }
-  componentDidMount(){
-    axios.get('api/getAllUsers')
-    .then((response)=>{
-        this.setState({users:response.data.result});
-    },(error)=>{
-        console.log(error);
-    });  
   }
   
   render() {
@@ -40,13 +27,13 @@ export default class App extends Component {
     <Switch>
     <Route  path='/signin' component={() => <SignIn />}/>
     <Route  path='/signup' component={() => <Signup />}/>
-    <ProtectedRoute path='/create' component={CreateProfile}/>
-    <ProtectedRoute path='/showAllPets' component={() => <ShowAllPets users = {this.state.users}/>}/>
-    <ProtectedRoute path='/main' component={() => <MainPage users={this.state.users} />}/>
-    <ProtectedRoute path = '/viewProfile' component = {ViewProfile}/>
-    <ProtectedRoute path = '/viewRequests' component={() => <ViewRequests users = {this.state.users}/>  }/>
-    <ProtectedRoute path='/viewFriends' component={() => <ViewFriends users = {this.state.users}/>}/>
-    <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
+    <Route path='/create' component={CreateProfile}/>
+    <Route path='/showAllPets' component={() => <ShowAllPets />}/>
+    <Route path='/main' component={() => <MainPage  />}/>
+    <Route path = '/viewProfile' component = {ViewProfile}/>
+    <Route path = '/viewRequests' component={() => <ViewRequests />  }/>
+    <Route path='/viewFriends' component={() => <ViewFriends />}/>
+    <Route path = '/signout' component={() => <Signout /> }/>
     <Route exact path='/' component={HomePage}/>
     </Switch>
     </div>
