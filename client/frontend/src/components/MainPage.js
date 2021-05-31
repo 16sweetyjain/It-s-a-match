@@ -14,6 +14,7 @@ class MainPage extends Component {
     componentDidMount(){
         axios.get('api/getAllUsers')
             .then((response) => {
+                //  console.log(response);
                 this.setState({ users:response.data.result });
             },(error) => {
                 console.log(error);
@@ -22,8 +23,9 @@ class MainPage extends Component {
     
     render(){
         const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-        const name = myLoggedInUser.map(user => user.profile.pet_name);
         console.log(myLoggedInUser);
+        const name = myLoggedInUser.map(user => user.profile.pet_name);
+       
    
         return(
             <nav>

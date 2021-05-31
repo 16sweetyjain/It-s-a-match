@@ -37,9 +37,9 @@ class ShowAllPets extends Component{
 
     sendRequest = (petName, image) => {
         const request = {
-            senderEmail: this.state.sender_email,
-            receiverEmail: this.state.receiver_email,
-            notificationStatus: this.state.notification_status,
+            senderEmail: this.state.senderEmail,
+            receiverEmail: this.state.receiverEmail,
+            notificationStatus: this.state.notificationStatus,
             petName:petName,
             image:image
         };
@@ -52,7 +52,8 @@ class ShowAllPets extends Component{
             });
     }
 
-    viewProfileHandler = (userEmail, petName, interests, dislikes, shortInfo, image) => {
+    viewProfileHandler = (e, userEmail, petName, interests, dislikes, shortInfo, image) => {
+        e.preventDefault();
         const stateOfUser = {
             petName:petName,
             userEmail:userEmail,
@@ -61,6 +62,7 @@ class ShowAllPets extends Component{
             interests:interests,
             image: image
         };
+        console.log(stateOfUser);
         this.props.history.push({
             pathname:'/viewProfile',
             state:stateOfUser
@@ -119,12 +121,12 @@ class ShowAllPets extends Component{
                                             </div>
                                             <div className="card-content">
                                                 <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()}<i className="material-icons right">more_vert</i></span>
-                                                <button onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button>
+                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.viewProfileHandler( e, userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button>
                                             </div>
                                             <div className="card-reveal">
                                                 <span className="card-title grey-text text-darken-4">Match Finder<i className="material-icons right">close</i></span>
                                                 <h3>{myPetName} matches {match.common_interests}% with {petName}</h3>
-                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } }className="btn btn-large waves-effect waves-light hoverable blue accent-3"onClick={ (e) => this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
+                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
                                             </div>
                                         </div>
                                     </div>

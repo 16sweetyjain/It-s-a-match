@@ -1,15 +1,15 @@
 const User = require('../models/User');
 
 exports.acceptNotifications = (req,res) => {
-    let { sender_of_accept_email, receiver_of_accept_email, notification_status } = req.body;  
+    let { senderOfAcceptEmail, receiverOfAcceptEmail, notificationStatus  } = req.body;  
     const notification_for_receiver_of_accept_request = {
-        user_email: sender_of_accept_email,
-        notification_status: notification_status
+        user_email: senderOfAcceptEmail,
+        notification_status: notificationStatus
     };
-    User.findOneAndUpdate({ email:sender_of_accept_email, 'notifications.user_email': receiver_of_accept_email }, { $set:{ 'notifications.$.notification_status': notification_status } }, { new:true })
+    User.findOneAndUpdate({ email:senderOfAcceptEmail, 'notifications.user_email': receiverOfAcceptEmail }, { $set:{ 'notifications.$.notification_status': notificationStatus } }, { new:true })
         .then(response => {
             res.status(200).json({
-                success:`${receiver_of_accept_email}'s request accepted`,
+                success:`${receiverOfAcceptEmail}'s request accepted`,
                 result:response
             });
         })
@@ -19,10 +19,10 @@ exports.acceptNotifications = (req,res) => {
             });
         });
 
-    User.findOneAndUpdate({ email: receiver_of_accept_email }, { $addToSet:{ notifications: notification_for_receiver_of_accept_request } }, { new: true })
+    User.findOneAndUpdate({ email: receiverOfAcceptEmail }, { $addToSet:{ notifications: notification_for_receiver_of_accept_request } }, { new: true })
         .then(response => {
             res.status(200).json({
-                success:`request accepted by ${sender_of_accept_email}`,
+                success:`request accepted by ${senderOfAcceptEmail}`,
                 result:response
             });
         })

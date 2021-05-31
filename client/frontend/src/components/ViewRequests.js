@@ -10,7 +10,8 @@ class ViewRequests extends Component{
             notificationStatus:'accepted',
             senderOfAcceptEmail:'',
             receiverOfAcceptEmail:'',
-            rejected:'false'
+            rejected:'false',
+            users:[]
         };
         this.onAcceptRequestHandler = this.onAcceptRequestHandler.bind(this);
         this.acceptRequest = this.acceptRequest.bind(this);
@@ -36,9 +37,9 @@ class ViewRequests extends Component{
     }
     acceptRequest=() => {
         const request = {
-            senderOfAcceptEmail:this.state.sender_of_accept_email,
-            receiverOfAcceptEmail:this.state.receiver_of_accept_email,
-            notificationStatus:this.state.notification_status
+            senderOfAcceptEmail:this.state.senderOfAcceptEmail,
+            receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
+            notificationStatus:this.state.notificationStatus
         };
         console.log(request);
         axios.put('api/acceptNotifications', request)

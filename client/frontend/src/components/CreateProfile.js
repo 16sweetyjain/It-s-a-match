@@ -27,7 +27,7 @@ class CreateProfile extends Component {
       this.setState({ shortDescription:e.target.value });
   }
 
-  handleDislikesChange= e => {
+  handleDislikesChange = e => {
       this.setState({ dislikes:e.target.value });
   }
 
@@ -40,32 +40,35 @@ class CreateProfile extends Component {
   }
 
   imageUploadHandler= e => {
-      const file = e.target.files[ 0 ];
+      e.preventDefault();
+      const file = e.target.files[0];
       this.setState({ imageOfPetPreview: URL.createObjectURL(file) , imageOfPetFile:file });
   }
 
-  handleClick = () => {
+  handleClick = ( e ) => {
+      e.preventDefault();
       this.setState({ email: this.props.email });
       const formData = new FormData();
-      formData.append('image_of_pet',this.state.image_of_pet_file,this.state.image_of_pet_file.name);
-      formData.append('pet_name',this.state.pet_name);
+      console.log(this.state.imageOfPetFile);
+      formData.append('image_of_pet',this.state.imageOfPetFile);
+      formData.append('pet_name',this.state.petName);
       formData.append('email',this.state.email);
       formData.append('dislikes',this.state.dislikes);
       formData.append('interests',this.state.interests);
-      formData.append('short_description',this.state.short_description);
+      formData.append('short_description',this.state.shortDescription);
 
-      const petProfile = {
+      /*const petProfile = {
           email:this.props.email,
           profile:{
-              petName:this.state.pet_name,
+              petName:this.state.petName,
               interests:this.state.interests,
               dislikes:this.state.dislikes,
-              shortDescription:this.state.short_description,
-              imageOfPet:this.state.image_of_pet_file
+              shortDescription:this.state.shortDescription,
+              imageOfPet:this.state.imageOfPetFile
           }
-      };
-      console.log('pet_profile:',petProfile);
-      axios.put('api/create',formData,{ headers: { 'Content-type': 'multipart/form-data', 'Accept':'application/json' } })
+      };*/
+      console.log('pet_profile:',formData);
+      axios.put('api/create',formData, { headers: { 'content-type': 'multipart/form-data' } })
           .then((response) => {
               console.log(response);
           },(error) => {
@@ -76,14 +79,14 @@ class CreateProfile extends Component {
   }
 
   render(){
-      console.log(this.props.email);
+      // console.log(this.props.email);
 
       return (
           <div className="row"   style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
               <form className="col s6">
                   <div className="row">
                       <div className="input-field col s12">
-                          <h3> Create your pet &apos s profile </h3>
+                          <h3> Create your pet&apos;s profile </h3>
                       </div>
                   </div>
                   <div className="row">
@@ -110,21 +113,21 @@ class CreateProfile extends Component {
                   <div className="row">
                       <div className="input-field col s12">
                           <i className="material-icons prefix">mode_edit</i>
-                          <textarea id="textarea1" className="materialize-textarea"></textarea>
+                          <textarea id="textarea1" className="materialize-textarea" onChange={ e => this.handleDescriptionChange(e)}></textarea>
                           <label >Write short info of your pet</label>
                       </div>
                   </div>
                   <div className="row">
                       <div className="input-field col s12">
                           <i className="material-icons prefix">upload</i>
-                          <input type="file" left="200" onChange={ this.imageUploadHandler() }/>
+                          <input type="file" left="200" onChange={ e => this.imageUploadHandler(e) }/>
                           <img alt="" src={ this.state.imageOfPetPreview } width="400" left="1000"/>
                       </div>
                   </div>
                   <div className="row">
                       <div className="input-field col s12">
                           <button style = { { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
-                              className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ e => this.handleClick(e) }>
+                              className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleClick(e) }>
                           Create Profile
                           </button>
                       </div>
@@ -140,4 +143,4 @@ const mapStateToProps = (state) => {
     return userEmail;
 };
 
-export default withRouter(connect(mapStateToProps)(CreateProfile));
+export default withRouter(connect(mapStateToProps,null)(CreateProfile));

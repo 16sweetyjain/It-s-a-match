@@ -1,6 +1,9 @@
 const User = require('../models/User');
 
-exports.profile = (req,res) => {
+exports.profile = (req,res, err) => {
+    if(err){
+        console.log(err);
+    }
     
     let { email, pet_name, interests, dislikes, short_description } = req.body;
     let image_of_pet = req.file.path;

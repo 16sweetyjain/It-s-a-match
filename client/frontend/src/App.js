@@ -27,10 +27,10 @@ export default class App extends Component {
                 <Switch>
                     <Route  path='/signin' component={() => <SignIn />}/>
                     <Route  path='/signup' component={() => <Signup />}/>
-                    <Route path='/create' component={CreateProfile}/>
+                    <Route path='/create' component={() => <CreateProfile/>}/>
                     <Route path='/showAllPets' component={() => <ShowAllPets />}/>
                     <Route path='/main' component={() => <MainPage  />}/>
-                    <Route path = '/viewProfile' component = {ViewProfile}/>
+                    <Route path = '/viewProfile' component = {() => <ViewProfile/>}/>
                     <Route path = '/viewRequests' component={() => <ViewRequests />  }/>
                     <Route path='/viewFriends' component={() => <ViewFriends />}/>
                     <Route path = '/signout' component={() => <Signout /> }/>
