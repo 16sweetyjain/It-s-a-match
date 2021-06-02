@@ -2,6 +2,8 @@ import React, { Component }  from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import MainPage from './MainPage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ViewRequests extends Component{
     constructor(props){
@@ -29,6 +31,7 @@ class ViewRequests extends Component{
     handleReject = (e) => {
         e.preventDefault();
         this.setState({ rejected:true });
+        toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     }
     onAcceptRequestHandler=(e,userEmail) => {
         e.preventDefault();
@@ -48,6 +51,7 @@ class ViewRequests extends Component{
             },(error) => {
                 console.log(error);
             });
+        toast.success('Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     }
     render(){
         let notifications = [];
@@ -82,9 +86,11 @@ class ViewRequests extends Component{
                                             <div >
                                                 <div className="col s12">
                                                     <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onAcceptRequestHandler(e,userEmail) }>Accept</button>
+                                                    <ToastContainer />
                                                 </div>
                                                 <div className="col s12">
                                                     <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleReject(e) }>Reject</button>
+                                                    <ToastContainer />
                                                 </div>
                                             </div>
                                         </div>
