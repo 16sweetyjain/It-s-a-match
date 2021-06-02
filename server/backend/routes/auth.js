@@ -20,7 +20,7 @@ const { sendNotifications } = require('../controllers/sendNotifications');
 const { acceptNotifications } = require('../controllers/acceptNotifications');
 router.post('/signup', signup);
 router.post('/signin', signin);
-router.put('/create',upload.single('image_of_pet'),profile), 
+router.post('/create',upload.single('image_of_pet'),profile), 
 router.get('/getAllUsers',getAllUsers);
 router.get('/getAllPets',getAllPets);
 router.get('/getPet',getPet);

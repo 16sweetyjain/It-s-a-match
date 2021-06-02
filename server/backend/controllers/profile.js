@@ -6,9 +6,11 @@ exports.profile = (req,res, err) => {
     }
     
     let { email, pet_name, interests, dislikes, short_description } = req.body;
-    let image_of_pet = req.file.path;
+    console.log(req.body);
     console.log(req.file);
-    const profile = {
+    let userEmail = email;
+    let image_of_pet = req.file.path;
+    const petProfile = {
         pet_name: pet_name,
         interests: interests,
         dislikes: dislikes,
@@ -17,14 +19,15 @@ exports.profile = (req,res, err) => {
     };
  
     let errors = [];
-    if(!profile.pet_name){
+    if(!petProfile.pet_name){
         errors.push({ pet_name:'required' });
     }
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });
     }
-    User.findOneAndUpdate({ email:email },{ profile:profile }, { new: true })
+    User.findOneAndUpdate({ email:userEmail },{ $set:{ profile:petProfile } }, { new: true })
         .then(response => {
+            //console.log(response);
             res.status(200).json({
                 success:'updated',
                 result:response

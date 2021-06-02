@@ -43,32 +43,19 @@ class CreateProfile extends Component {
       e.preventDefault();
       const file = e.target.files[0];
       this.setState({ imageOfPetPreview: URL.createObjectURL(file) , imageOfPetFile:file });
+      this.setState({ email: this.props.email });
   }
 
   handleClick = ( e ) => {
       e.preventDefault();
-      this.setState({ email: this.props.email });
       const formData = new FormData();
-      console.log(this.state.imageOfPetFile);
       formData.append('image_of_pet',this.state.imageOfPetFile);
       formData.append('pet_name',this.state.petName);
       formData.append('email',this.state.email);
       formData.append('dislikes',this.state.dislikes);
       formData.append('interests',this.state.interests);
       formData.append('short_description',this.state.shortDescription);
-
-      /*const petProfile = {
-          email:this.props.email,
-          profile:{
-              petName:this.state.petName,
-              interests:this.state.interests,
-              dislikes:this.state.dislikes,
-              shortDescription:this.state.shortDescription,
-              imageOfPet:this.state.imageOfPetFile
-          }
-      };*/
-      console.log('pet_profile:',formData);
-      axios.put('api/create',formData, { headers: { 'content-type': 'multipart/form-data' } })
+      axios.post('api/create',formData )
           .then((response) => {
               console.log(response);
           },(error) => {
@@ -79,8 +66,6 @@ class CreateProfile extends Component {
   }
 
   render(){
-      // console.log(this.props.email);
-
       return (
           <div className="row"   style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
               <form className="col s6">

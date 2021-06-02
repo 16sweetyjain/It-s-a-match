@@ -17,6 +17,7 @@ mongoose
     .then(() => console.log('DB Connected'));
 //middlewares
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static('uploads'));
 //routes middleware
