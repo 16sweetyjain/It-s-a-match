@@ -12,6 +12,7 @@ import ViewProfile from './components/ViewProfile';
 import ViewRequests from './components/ViewRequests';
 import ViewFriends from './components/ViewFriends';
 import Signout from './components/Signout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default class App extends Component {
     constructor(props){
@@ -25,15 +26,15 @@ export default class App extends Component {
                     <Navbar/>
                 </div>
                 <Switch>
-                    <Route  path='/signin' component={() => <SignIn />}/>
-                    <Route  path='/signup' component={() => <Signup />}/>
-                    <Route path='/create' component={() => <CreateProfile/>}/>
-                    <Route path='/showAllPets' component={() => <ShowAllPets />}/>
-                    <Route path='/main' component={() => <MainPage  />}/>
-                    <Route path = '/viewProfile' component = {() => <ViewProfile/>}/>
-                    <Route path = '/viewRequests' component={() => <ViewRequests />  }/>
-                    <Route path='/viewFriends' component={() => <ViewFriends />}/>
-                    <Route path = '/signout' component={() => <Signout /> }/>
+                    <ProtectedRoute  path='/signin' component={() => <SignIn />}/>
+                    <ProtectedRoute  path='/signup' component={() => <Signup />}/>
+                    <ProtectedRoute path='/create' component={() => <CreateProfile/>}/>
+                    <ProtectedRoute path='/showAllPets' component={() => <ShowAllPets />}/>
+                    <ProtectedRoute path='/main' component={() => <MainPage  />}/>
+                    <ProtectedRoute path = '/viewProfile' component = {() => <ViewProfile/>}/>
+                    <ProtectedRoute path = '/viewRequests' component={() => <ViewRequests />  }/>
+                    <ProtectedRoute path='/viewFriends' component={() => <ViewFriends />}/>
+                    <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
                     <Route exact path='/' component={HomePage}/>
                 </Switch>
             </div>

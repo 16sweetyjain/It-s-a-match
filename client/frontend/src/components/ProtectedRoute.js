@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import auth from './Auth';
 import ErrorPage from './ErrorPage';
 
-export const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
     return(
         <Route { ...rest } render = { props => {
             if(auth.isAuthenticated()){
@@ -16,3 +16,4 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
         />
     );
 };
+export default ProtectedRoute;
