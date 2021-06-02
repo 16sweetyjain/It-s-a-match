@@ -25,18 +25,26 @@ class SignIn extends Component {
           email:this.state.email,
           password:this.state.password,
       };
+      let val;
       axios.post('api/signin',user)
           .then((response) => {
-              console.log(response);
+              console.log(response.data.message);
+              val = response.data.message;
+              console.log('user:',user);
+              console.log('login success');
+              this.props.setUserEmail(this.state.email);
+              //console.log(route.isProfileCreated());
+              auth.signin(() => {
+                  if(Object.prototype.hasOwnProperty.call(val,'profile')){
+                      this.props.history.push('/showAllPets');   
+                  }
+                  else{
+                      this.props.history.push('/create');
+                  }
+              });
           },(error) => {
               console.log(error);
           });
-      console.log('user:',user);
-      console.log('login success');
-      this.props.setUserEmail(this.state.email);
-      auth.signin(() => {
-          this.props.history.push('/create');
-      });
   }
 
   onChangeEmail= e => {
