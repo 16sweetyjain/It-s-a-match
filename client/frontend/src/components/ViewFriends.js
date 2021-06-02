@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import MainPage from './MainPage';
 import { withRouter } from 'react-router-dom';
+import NoFriends from './NoFriends';
 
 class ViewFriends extends Component{
     constructor(props){
@@ -58,33 +59,35 @@ class ViewFriends extends Component{
             <div>
                 <MainPage/>
                 <div className ='container'>
-                    <div>
-                        {friends.map((friend) => {
-                            const userEmail = friend.email;
-                            const petName = friend.profile.pet_name;
-                            const shortInfo = friend.profile.short_description;
-                            const interests = friend.profile.interests;
-                            const dislikes = friend.profile.dislikes;
-                            const image = friend.profile.image_of_pet;
-                            return(
-                                <div  key={ petName } className="row"  style={ { display:'flex', justifyContent: 'left', alignItems: 'left' } }>
-                                    <div className="col s7 m7" >
-                                        <div className="card" >
-                                            <div className="card-image waves-effect waves-block waves-light">
-                                                <img className="activator" src={ `${ image.substr(8) }` }/>
-                                            </div>
-                                            <div className="card-content">
-                                                <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()} 
-                                                    <button onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
-                                                View Profile
-                                                    </button>
-                                                </span>
+                    {friends.length == 0 ? <NoFriends/> :
+                        <div>
+                            {friends.map((friend) => {
+                                const userEmail = friend.email;
+                                const petName = friend.profile.pet_name;
+                                const shortInfo = friend.profile.short_description;
+                                const interests = friend.profile.interests;
+                                const dislikes = friend.profile.dislikes;
+                                const image = friend.profile.image_of_pet;
+                                return(
+                                    <div  key={ petName } className="row"  style={ { display:'flex', justifyContent: 'left', alignItems: 'left' } }>
+                                        <div className="col s7 m7" >
+                                            <div className="card" >
+                                                <div className="card-image waves-effect waves-block waves-light">
+                                                    <img className="activator" src={ `${ image.substr(8) }` }/>
+                                                </div>
+                                                <div className="card-content">
+                                                    <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()} 
+                                                        <button onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
+                                                            View Profile
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            );})}
-                    </div>
+                                );})}
+                        </div>
+                    }
                 </div>
             </div>
         );

@@ -1,6 +1,8 @@
 import { React,Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Signup extends Component {
     constructor(props){
@@ -24,15 +26,20 @@ class Signup extends Component {
             name:this.state.name,
             email:this.state.email,
             password:this.state.password,
-            passwordConfirmation:this.state.password_confirmation
+            passwordConfirmation:this.state.passwordConfirmation
         };
+        console.log(newUser);
         axios.post('api/signup',newUser)
             .then((response) => {
                 console.log(response);
-            },(error) => {
-                console.log(error);
+                this.props.history.push('/signin');
+            })
+            .catch(error => {
+                let errorMessage = error.response.data.errors;
+                errorMessage.map( e => {
+                    toast.error(e.error,{ position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );  
+                });
             });
-        this.props.history.push('/signin');
     }
 
     onChangeConfirmPassword= e => {
@@ -87,6 +94,7 @@ class Signup extends Component {
                         <div className="input-field col s12">
                             <button style={ { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
                                 className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ e => this.onSubmit(e) }>Register</button>
+                            <ToastContainer/>
                         </div>
                     </div>
                 </form>

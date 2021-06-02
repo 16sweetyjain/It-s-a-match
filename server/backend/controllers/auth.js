@@ -10,24 +10,24 @@ exports.signup = (req, res) => {
     console.log(req.body);
     let errors = [];
     if (!name) {
-        errors.push({ name: 'required' });
+        errors.push({ error: ' Name Required' });
     }
     if (!email) {
-        errors.push({ email: 'required' });
+        errors.push({ error: ' Email Required' });
     }
     if (!emailRegexp.test(email)) {
-        errors.push({ email: 'invalid' });
+        errors.push({ error: 'Email Invalid' });
     }
     if (!password) {
-        errors.push({ password: 'required' });
+        errors.push({ error: 'Password Required' });
     }
     if (!password_confirmation) {
         errors.push({
-            password_confirmation: 'required',
+            error : 'password confirmation required',
         });
     }
     if (password != password_confirmation) {
-        errors.push({ password: 'mismatch' });
+        errors.push({ error: ' Passwords do not match' });
     }
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });
@@ -35,7 +35,7 @@ exports.signup = (req, res) => {
     User.findOne({email: email})
         .then(user=>{
             if(user){
-                return res.status(422).json({ errors: [{ user: 'email already exists' }] });
+                return res.status(422).json({ errors: [{ error: ' user email already exists' }] });
             }else {
                 const user = new User({
                     name: name,
@@ -71,27 +71,26 @@ exports.signin = (req, res) => {
     let { email, password } = req.body;
     let errors = [];
     if (!email) {
-        errors.push({ email: 'required' });
+        errors.push({ error: 'Email Required' });
     }
     if (!emailRegexp.test(email)) {
-        errors.push({ email: 'invalid email' });
+        errors.push({ error: 'Invalid Email' });
     }
     if (!password) {
-        errors.push({ passowrd: 'required' });
+        errors.push({ error: ' Password Required' });
     }
     if (errors.length > 0) {
-        return res.status(422).json({ errors: errors });
+        return res.status(422).json({ errors:  errors });
     }
     User.findOne({ email: email }).then(user => {
         if (!user) {
             return res.status(404).json({
-                errors: [{ user: 'not found' }],
+                errors: [{error:'User not found'}]
             });
         } else {
             bcrypt.compare(password, user.password).then(isMatch => {
                 if (!isMatch) {
-                    return res.status(400).json({ errors: [{ password:'incorrect' }] 
-                    });
+                    return res.status(400).json({ errors: [{error:'Password Incorrect'}]});
                 }
                 let access_token = createJWT(
                     user.email,
