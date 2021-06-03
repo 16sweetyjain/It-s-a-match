@@ -33,8 +33,7 @@ class ShowAllPets extends Component{
     onSendRequestHandler = (e, userEmail, petName, image) => {
         e.preventDefault();
         console.log(userEmail);
-        this.setState({ receiverEmail: userEmail });
-        this.sendRequest(petName, image);
+        this.setState({ receiverEmail: userEmail },() => this.sendRequest(petName, image));   
     }
 
     sendRequest = (petName, image) => {

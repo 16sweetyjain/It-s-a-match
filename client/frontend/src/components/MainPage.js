@@ -30,7 +30,7 @@ class MainPage extends Component {
         return(
             <nav>
                 <div className="nav-wrapper"> 
-                    <a href="/" className="brand-logo left">Welcome, {name}</a>
+                    <label className="brand-logo left">Welcome, {name}</label>
                     <ul id="nav-mobile" className="right hide-on-med-and-down" >
                         <li  value="1"><NavLink to='/showAllPets'>List of Pets</NavLink></li>
                         <li  value="2" ><NavLink to='/viewRequests'>View Requests</NavLink></li>

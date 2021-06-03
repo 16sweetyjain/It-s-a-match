@@ -31,13 +31,11 @@ class ViewRequests extends Component{
     }
     handleReject = (e) => {
         e.preventDefault();
-        this.setState({ rejected:true });
-        toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
+        this.setState({ rejected:true }, () => toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 }) );
     }
     onAcceptRequestHandler=(e,userEmail) => {
         e.preventDefault();
-        this.setState({ receiverOfAcceptEmail:userEmail });
-        this.acceptRequest();
+        this.setState({ receiverOfAcceptEmail:userEmail }, () => this.acceptRequest()  );
     }
     acceptRequest=() => {
         const request = {
