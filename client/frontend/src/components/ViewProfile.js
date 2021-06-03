@@ -9,7 +9,6 @@ class ViewProfile extends Component{
     }
     arrangeMeetHandler = (e) => {
         e.preventDefault();
-        console.log('err');
     }
     render(){
         const petName = this.props.location.state.petName;
