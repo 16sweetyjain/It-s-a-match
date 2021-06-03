@@ -11,11 +11,9 @@ export default class NoFriends extends Component{
                             <b> No friends found</b> 
                         </h4>
                         <div className="col s6">
-                            <Link to="/showAllPets" style={ { width: '1000px', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3">
+                            <Link to="/showAllPets" style={ { width: '500px', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3">
                                 Find Friends
                             </Link>
-                        </div>
-                        <div className="col s6">
                         </div>
                     </div>
                 </div>

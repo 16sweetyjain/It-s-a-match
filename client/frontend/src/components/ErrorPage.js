@@ -20,8 +20,6 @@ export default class ErrorPage extends Component{
                                 Go to Home Page
                             </Link>
                         </div>
-                        <div className="col s6">
-                        </div>
                     </div>
                 </div>
             </div>

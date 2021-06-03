@@ -12,7 +12,6 @@ class ViewProfile extends Component{
         console.log('err');
     }
     render(){
-        //  console.log(this.props.location.state.image);
         const petName = this.props.location.state.petName;
         const image = this.props.location.state.image;
         const dislikes = this.props.location.state.dislikes;
