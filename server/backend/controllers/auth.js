@@ -6,7 +6,7 @@ const {
 } = require('../utils/auth');
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 exports.signup = (req, res) => {
-    let { name, email, password, password_confirmation } = req.body;
+    let { name, email, password, passwordConfirmation } = req.body;
     console.log(req.body);
     let errors = [];
     if (!name) {
@@ -21,12 +21,12 @@ exports.signup = (req, res) => {
     if (!password) {
         errors.push({ error: 'Password Required' });
     }
-    if (!password_confirmation) {
+    if (!passwordConfirmation) {
         errors.push({
             error : 'password confirmation required',
         });
     }
-    if (password != password_confirmation) {
+    if (password != passwordConfirmation) {
         errors.push({ error: ' Passwords do not match' });
     }
     if (errors.length > 0) {

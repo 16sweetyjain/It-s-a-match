@@ -28,7 +28,7 @@ class Signup extends Component {
             password:this.state.password,
             passwordConfirmation:this.state.passwordConfirmation
         };
-        console.log(newUser);
+        //console.log(newUser);
         axios.post('api/signup',newUser)
             .then((response) => {
                 console.log(response);
