@@ -43,7 +43,7 @@ class ViewRequests extends Component{
             receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
             notificationStatus:this.state.notificationStatus
         };
-        console.log(request);
+        //console.log(request);
         axios.put('api/acceptNotifications', request)
             .then((response) => {
                 console.log(response);
