@@ -106,7 +106,7 @@ class ShowAllPets extends Component{
             <div>
                 <MainPage/>
                 <div className='container'>
-                    <div >  
+                    <div className="row" >  
                         {showMatches.map((match) => {
                             const userEmail = match.user.email;
                             const petName = match.user.profile.pet_name;
@@ -115,22 +115,20 @@ class ShowAllPets extends Component{
                             const dislikes = match.user.profile.dislikes;
                             const image = match.user.profile.image_of_pet;
                             return(
-                                <div className="row" key={ petName } style={ { display:'flex', justifyContent: 'left', alignItems: 'left' } }>
-                                    <div className="col s7 m7" >
-                                        <div className="card" >
-                                            <div className="card-image waves-effect waves-block waves-light">
-                                                <img className="activator" src={ `${ image.substr(8) }` }/>
-                                            </div>
-                                            <div className="card-content">
-                                                <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()}<i className="material-icons right">more_vert</i></span>
-                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.viewProfileHandler( e, userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button>
-                                            </div>
-                                            <div className="card-reveal">
-                                                <span className="card-title grey-text text-darken-4">Match Finder<i className="material-icons right">close</i></span>
-                                                <h3>{myPetName} matches {match.common_interests}% with {petName}</h3>
-                                                <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
-                                                <ToastContainer />
-                                            </div>
+                                <div  key = {petName}className="col s6" style= {{ textAlign: 'center' }} >
+                                    <div className="card large" >
+                                        <div>
+                                            <img  style = { { height : '350px', width: '350px' } } className="activator circle" src={ `${ image.substr(8) }` }/>
+                                        </div>
+                                        <div className="card-content ">
+                                            <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()}</b></h5><i className="material-icons right">more_vert</i></span>
+                                            <div style = {{  textAlign:'center' }}><button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.viewProfileHandler( e, userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button></div>
+                                        </div>
+                                        <div className="card-reveal ">
+                                            <span className="card-title grey-text text-darken-4"><h2><b>Match Finder</b></h2><i className="material-icons right">close</i></span>
+                                            <h3>{myPetName} matches {match.common_interests}% with {petName}</h3>
+                                            <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
+                                            <ToastContainer />
                                         </div>
                                     </div>
                                 </div>

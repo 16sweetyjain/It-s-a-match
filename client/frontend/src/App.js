@@ -22,9 +22,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <Navbar/>
-                </div>
+                <Navbar/>
                 <Switch>
                     <Route  path='/signin' component={() => <SignIn />}/>
                     <Route  path='/signup' component={() => <Signup />}/>

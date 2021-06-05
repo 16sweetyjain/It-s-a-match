@@ -28,7 +28,7 @@ class MainPage extends Component {
        
    
         return(
-            <nav>
+            <nav className="brown darken-1">
                 <div className="nav-wrapper"> 
                     <label className="brand-logo left">Welcome, {name}</label>
                     <ul id="nav-mobile" className="right hide-on-med-and-down" >
