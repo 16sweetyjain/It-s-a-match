@@ -43,7 +43,6 @@ class ViewRequests extends Component{
             receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
             notificationStatus:this.state.notificationStatus
         };
-        //console.log(request);
         axios.put('api/acceptNotifications', request)
             .then((response) => {
                 console.log(response);
@@ -76,7 +75,7 @@ class ViewRequests extends Component{
                                         <div className="card-panel grey lighten-5 z-depth-1">
                                             <div className="row valign-wrapper">
                                                 <div className="col s2">
-                                                    <img src={ `${ image.substr(8) }` } alt=""  style={ { height:100,width:100 } }/> 
+                                                    <img className = "circle" src={ `${ image.substr(8) }` } style={ { height:100,width:100 } }/> 
                                                 </div>
                                                 <div className="col s12">
                                                     <span className="black-text">
@@ -84,7 +83,7 @@ class ViewRequests extends Component{
                                                     </span>
                                                 </div>
                                                 <div >
-                                                    <div className="col s12">
+                                                    <div className="col s12" style={{ marginBottom :'5px' }}>
                                                         <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onAcceptRequestHandler(e,userEmail) }>Accept</button>
                                                         <ToastContainer />
                                                     </div>

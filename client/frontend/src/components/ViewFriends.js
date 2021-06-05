@@ -60,7 +60,7 @@ class ViewFriends extends Component{
                 <MainPage/>
                 <div className ='container'>
                     {friends.length == 0 ? <NoFriends/> :
-                        <div>
+                        <div className="row">
                             {friends.map((friend) => {
                                 const userEmail = friend.email;
                                 const petName = friend.profile.pet_name;
@@ -69,19 +69,19 @@ class ViewFriends extends Component{
                                 const dislikes = friend.profile.dislikes;
                                 const image = friend.profile.image_of_pet;
                                 return(
-                                    <div  key={ petName } className="row"  style={ { display:'flex', justifyContent: 'left', alignItems: 'left' } }>
-                                        <div className="col s7 m7" >
-                                            <div className="card" >
-                                                <div className="card-image waves-effect waves-block waves-light">
-                                                    <img className="activator" src={ `${ image.substr(8) }` }/>
-                                                </div>
-                                                <div className="card-content">
-                                                    <span className="card-title activator grey-text text-darken-4">{petName.toUpperCase()} 
-                                                        <button onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
+                                    <div  key={ petName } className = "col s6" style={ { textAlign:'center' } }>
+                                        <div className="card" >
+                                            <div >
+                                                <img  style = { { height : '350px', width: '350px' } } className="activator" src={ `${ image.substr(8) }` }/>
+                                            </div>
+                                            <div className="card-content">
+                                                <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()} </b></h5>
+                                                    <div style = {{  textAlign:'center' }}>
+                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
                                                             View Profile
                                                         </button>
-                                                    </span>
-                                                </div>
+                                                    </div>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

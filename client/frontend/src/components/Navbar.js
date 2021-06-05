@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
     render() {
         return (
-            <div className="navbar-fixed">
+            <div className="navbar-fixed ">
                 <nav className="z-depth-0">
-                    <div className="nav-wrapper white">
-                        <Link to="/" style={ { fontFamily: 'monospace' } } className="col s5 brand-logo center black-text">
-                            <i className="material-icons">code</i>
+                    <div className="nav-wrapper blue-grey darken-3">
+                        <label style={ { fontFamily: 'monospace' } } className="col s5 brand-logo center white-text">
+                            <i className="large material-icons">pets</i>
                         IT&apos;S-A-MATCH
-                        </Link>
+                        </label>
                     </div>
                 </nav>
             </div>
