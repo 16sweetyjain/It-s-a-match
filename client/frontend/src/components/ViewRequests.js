@@ -5,6 +5,7 @@ import MainPage from './MainPage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoRequests from './NoRequests';
+import { withRouter } from 'react-router-dom';
 
 class ViewRequests extends Component{
     constructor(props){
@@ -13,21 +14,14 @@ class ViewRequests extends Component{
             notificationStatus:'accepted',
             senderOfAcceptEmail:'',
             receiverOfAcceptEmail:'',
-            rejected:'false',
-            users:[]
+            rejected:'false'
         };
         this.onAcceptRequestHandler = this.onAcceptRequestHandler.bind(this);
         this.acceptRequest = this.acceptRequest.bind(this);
         this.handleReject = this.handleReject.bind(this);
     }
     componentDidMount(){  
-        this.setState({ senderOfAcceptEmail:this.props.email });
-        axios.get('api/getAllUsers')
-            .then((response) => {
-                this.setState({ users:response.data.result });
-            },(error) => {
-                console.log(error);
-            });    
+        this.setState({ senderOfAcceptEmail:this.props.email });   
     }
     handleReject = (e) => {
         e.preventDefault();
@@ -52,14 +46,8 @@ class ViewRequests extends Component{
         toast.success('Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     }
     render(){
-        let notifications = [];
-        let pendingRequests = [] ;
-        let myLoggedInUser = [];
-        myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-        myLoggedInUser.forEach((user) => {
-            notifications = user.notifications;
-        });
-        pendingRequests = notifications.filter(notif => notif.notification_status === 'pending');
+        const pendingRequests = this.props.location.state.pendingRequests;
+
         return(
             <div>
                 <MainPage/>
@@ -109,4 +97,4 @@ const mapStateToProps = (state) => {
     return userEmail;
 };
 
-export default connect(mapStateToProps,null)(ViewRequests);
+export default withRouter(connect(mapStateToProps,null)(ViewRequests));
