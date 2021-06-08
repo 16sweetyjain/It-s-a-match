@@ -14,14 +14,35 @@ class ViewRequests extends Component{
             notificationStatus:'accepted',
             senderOfAcceptEmail:'',
             receiverOfAcceptEmail:'',
-            rejected:'false'
+            rejected:'false',
+            users:[],
+            petName:'',
+            petImage:'',
+            pendingRequestsForUser:[]
         };
         this.onAcceptRequestHandler = this.onAcceptRequestHandler.bind(this);
         this.acceptRequest = this.acceptRequest.bind(this);
         this.handleReject = this.handleReject.bind(this);
     }
     componentDidMount(){  
-        this.setState({ senderOfAcceptEmail:this.props.email });   
+        this.setState({ senderOfAcceptEmail:this.props.email });
+        axios.get('api/getAllUsers')
+            .then((response) => {
+                console.log(response);
+                this.setState({ users:response.data.result });
+                let pendingRequests = [];
+                let myLoggedInUser = [];
+                let notifications = [];
+                myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
+                myLoggedInUser.map(user => this.setState({ petName:user.profile.pet_name,petImage:user.profile.image_of_pet }));
+                myLoggedInUser.forEach((user) => {
+                    notifications = user.notifications;
+                });
+                pendingRequests = notifications.filter(notif => notif.notification_status === 'pending');
+                this.setState({ pendingRequestsForUser:pendingRequests });
+            },(error) => {
+                console.log(error);
+            });     
     }
     handleReject = (e) => {
         e.preventDefault();
@@ -35,26 +56,30 @@ class ViewRequests extends Component{
         const request = {
             senderOfAcceptEmail:this.state.senderOfAcceptEmail,
             receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
-            notificationStatus:this.state.notificationStatus
+            notificationStatus:this.state.notificationStatus,
+            petName:this.state.petName,
+            image:this.state.petImage
         };
         axios.put('api/acceptNotifications', request)
             .then((response) => {
                 console.log(response);
+                let pendingRequests = [];
+                pendingRequests = response.data.result.notifications.filter(notif => notif.notification_status === 'pending');
+                this.setState({ pendingRequestsForUser:pendingRequests });
             },(error) => {
                 console.log(error);
             });
         toast.success('Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     }
     render(){
-        const pendingRequests = this.props.location.state.pendingRequests;
-
+        const { pendingRequestsForUser = undefined } = this.state;
         return(
             <div>
                 <MainPage/>
                 <div className ='container'>
-                    {pendingRequests.length == 0 ? <NoRequests/> :
+                    {pendingRequestsForUser.length == 0 ? <NoRequests/> :
                         <div>
-                            {pendingRequests.map((request) => {
+                            {pendingRequestsForUser.map((request) => {
                                 const petName = request.pet_name;
                                 const image = request.image;
                                 const userEmail = request.user_email;

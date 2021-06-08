@@ -1,13 +1,26 @@
 import React, { Component }  from 'react';
 import { connect } from 'react-redux';
 import MainPage from './MainPage';
+import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import NoFriends from './NoFriends';
 
 class ViewFriends extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            users:[]
+        };
         this.viewProfileHandler = this.viewProfileHandler.bind(this);
+    }
+    componentDidMount(){
+        axios.get('api/getAllUsers')
+            .then((response) => {
+                console.log(response);
+                this.setState({ users:response.data.result });
+            },(error) => {
+                console.log(error);
+            });  
     }
   
     viewProfileHandler = (userEmail, petName, interests, dislikes, shortInfo, image) => {
@@ -25,7 +38,24 @@ class ViewFriends extends Component{
         });
     }
     render(){
-        const friends = this.props.location.state.friends;
+        let notifications = [];
+        let friends = [];
+        let otherUsers = [];
+        let allPets = [];
+        const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
+        otherUsers = this.state.users.filter((user) => user.email !== this.props.email);
+        myLoggedInUser.forEach((user) => {
+            notifications = user.notifications;
+        });
+        console.log(notifications);
+        const acceptedRequests = notifications.filter(notif => notif.notification_status === 'accepted');
+        acceptedRequests.map(r => allPets.push(r.user_email));
+        otherUsers.map(user => {
+            const c = user.email;
+            if(allPets.includes(c)){
+                friends.push(user);
+            }
+        });
         return(
             <div>
                 <MainPage/>

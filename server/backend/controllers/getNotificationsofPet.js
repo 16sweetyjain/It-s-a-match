@@ -1,11 +1,11 @@
 const User = require('../models/User');
 
-exports.getAllPets = (req,res) => {
-    User.find({},{ '_id':0,'profile':1 })
+exports.getNotificationsofPet = (req,res) => {
+    User.find({},{ '_id':0,'notifications':1 })
         .then(response => {
             res.status(200).json({
                 result:response,
-                message:'fetched all pets',
+                message:'fetched all notifications of pet',
                 statusCode:200
             });
         })

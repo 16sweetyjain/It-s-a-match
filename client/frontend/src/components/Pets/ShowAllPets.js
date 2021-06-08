@@ -30,19 +30,19 @@ class ShowAllPets extends Component{
             });  
     }
 
-    onSendRequestHandler = (e, userEmail, petName, image) => {
+    onSendRequestHandler = (e, userEmail, senderPetName, senderPetImage) => {
         e.preventDefault();
         console.log(userEmail);
-        this.setState({ receiverEmail: userEmail },() => this.sendRequest(petName, image));   
+        this.setState({ receiverEmail: userEmail },() => this.sendRequest(senderPetName, senderPetImage));   
     }
 
-    sendRequest = (petName, image) => {
+    sendRequest = (senderPetName, senderPetImage) => {
         const request = {
             senderEmail: this.state.senderEmail,
             receiverEmail: this.state.receiverEmail,
             notificationStatus: this.state.notificationStatus,
-            petName:petName,
-            image:image
+            petName:senderPetName, 
+            image:senderPetImage
         };
         console.log(request);
         axios.put('api/sendNotifications', request)
@@ -75,9 +75,14 @@ class ShowAllPets extends Component{
         let commonInterests = [];
         const showMatches = [];
         let numberOfInterests = 0;
+        let senderPetName = '';
+        let senderPetImage = '';
         const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
+        myLoggedInUser.map((user) => {
+            senderPetName = user.profile.pet_name;
+            senderPetImage = user.profile.image_of_pet;
+        }); 
         const otherUsers = this.state.users.filter(user => user.email !== this.props.email);
-        const myPetName = myLoggedInUser.map(user => user.profile.pet_name);
         const myPetInterests =  myLoggedInUser.map(user => user.profile.interests.split(','));
         myPetInterests.map(i => {
             numberOfInterests = i.length;
@@ -126,8 +131,8 @@ class ShowAllPets extends Component{
                                         </div>
                                         <div className="card-reveal ">
                                             <span className="card-title grey-text text-darken-4"><h2><b>Match Finder</b></h2><i className="material-icons right">close</i></span>
-                                            <h3>{myPetName} matches {match.common_interests}% with {petName}</h3>
-                                            <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, petName, image) }>Send Request</button>
+                                            <h3>{senderPetName} matches {match.common_interests}% with {petName}</h3>
+                                            <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, senderPetName, senderPetImage) }>Send Request</button>
                                             <ToastContainer />
                                         </div>
                                     </div>
