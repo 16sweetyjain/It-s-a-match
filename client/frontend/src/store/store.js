@@ -1,5 +1,5 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
-import setUserEmailReducer from './reducers/setUserEmail';
+import setUserEmailReducer from '../reducers/setUserEmail.js';
 import logger from 'redux-logger';
 const rootReducer = combineReducers({
     userEmail: setUserEmailReducer

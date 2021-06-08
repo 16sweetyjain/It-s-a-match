@@ -5,12 +5,12 @@ import SignIn from './components/SignIn.js';
 import Signup from './components/Signup.js';
 import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
-import CreateProfile from './components/CreateProfile';
-import ShowAllPets from './components/Pets/ShowAllPets';
-import MainPage from './components/MainPage';
-import ViewProfile from './components/ViewProfile';
-import ViewRequests from './components/ViewRequests';
-import ViewFriends from './components/ViewFriends';
+import CreateProfile from './components/pet/CreateProfile';
+import ShowAllPets from './components/pet/ShowAllPets';
+import MainPage from './components/pet/MainPage';
+import ViewProfile from './components/pet/ViewProfile';
+import ViewRequests from './components/pet/ViewRequests';
+import ViewFriends from './components/pet/ViewFriends';
 import Signout from './components/Signout';
 import ProtectedRoute from './components/ProtectedRoute';
 

@@ -1,7 +1,7 @@
 import { React, Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import MainPage from '../MainPage';
+import MainPage from './MainPage';
 import { withRouter } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
