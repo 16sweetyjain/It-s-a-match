@@ -73,58 +73,60 @@ class CreateProfile extends Component {
 
   render(){
       return (
-          <div className="row"   style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
-              <form className="col s6">
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <h3> Create your pet&apos;s profile </h3>
+          <div className='container'>
+              <div className="row"   style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+                  <form className="col">
+                      <div className="row">
+                          <div className="input-field col s12" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+                              <h3> Create your pet&apos;s profile </h3>
+                          </div>
                       </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">pets</i>
-                          <input id="name" type="text" className="validate" value={ this.state.petName } onChange={ e => this.handlePetNameChange(e) }/>
-                          <label > Name of your pet</label>
+                      <div className="row">
+                          <div className="input-field col s12">
+                              <i className="material-icons prefix">pets</i>
+                              <input id="name" type="text" className="validate" value={ this.state.petName } onChange={ e => this.handlePetNameChange(e) }/>
+                              <label > Name of your pet</label>
+                          </div>
                       </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">thumb_up</i>
-                          <input id="name" type="text" className="validate" value={ this.state.interests } onChange={ e => this.handleInterestsChange(e) }/>
-                          <label> Interests</label>
+                      <div className="row">
+                          <div className="input-field col s12">
+                              <i className="material-icons prefix">thumb_up</i>
+                              <input id="name" type="text" className="validate" value={ this.state.interests } onChange={ e => this.handleInterestsChange(e) }/>
+                              <label> Interests</label>
+                          </div>
                       </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">thumb_down</i>
-                          <input id="name" type="text" className="validate" value={ this.state.dislikes } onChange={ e => this.handleDislikesChange(e) }/>
-                          <label > Dislikes</label>
+                      <div className="row">
+                          <div className="input-field col s12">
+                              <i className="material-icons prefix">thumb_down</i>
+                              <input id="name" type="text" className="validate" value={ this.state.dislikes } onChange={ e => this.handleDislikesChange(e) }/>
+                              <label > Dislikes</label>
+                          </div>
                       </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">mode_edit</i>
-                          <textarea id="textarea1" className="materialize-textarea" onChange={ e => this.handleDescriptionChange(e)}></textarea>
-                          <label >Write short info of your pet</label>
+                      <div className="row">
+                          <div className="input-field col s12">
+                              <i className="material-icons prefix">mode_edit</i>
+                              <textarea id="textarea1" className="materialize-textarea" onChange={ e => this.handleDescriptionChange(e)}></textarea>
+                              <label >Write short info of your pet</label>
+                          </div>
                       </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">upload</i>
-                          <input type="file" left="200" onChange={ e => this.imageUploadHandler(e) }/>
-                          <img alt="" src={ this.state.imageOfPetPreview } width="400" left="1000"/>
+                      <div className="row">
+                          <div className="input-field col s12">
+                              <i className="material-icons prefix">upload</i>
+                              <input type="file" left="200" onChange={ e => this.imageUploadHandler(e) }/>
+                              <img alt="" src={ this.state.imageOfPetPreview } width="400" left="1000"/>
+                          </div>
                       </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <button style = { { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
-                              className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleClick(e) }>
+                      <div className="row">
+                          <div className="input-field col s12">
+                              <button style = { { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
+                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleClick(e) }>
                           Create Profile
-                          </button>
-                          <ToastContainer/>
+                              </button>
+                              <ToastContainer/>
+                          </div>
                       </div>
-                  </div>
-              </form>
+                  </form>
+              </div>
           </div>
 
       );
