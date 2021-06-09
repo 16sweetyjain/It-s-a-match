@@ -5,6 +5,7 @@ import MainPage from './MainPage';
 import { withRouter } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 class ShowAllPets extends Component{
     constructor(props){
@@ -51,7 +52,7 @@ class ShowAllPets extends Component{
             },(error) => {
                 console.log(error);
             });
-        toast.success('Request sent', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
+        //toast.success('Request sent', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     }
 
     viewProfileHandler = (e, userEmail, petName, interests, dislikes, shortInfo, image) => {
@@ -133,7 +134,7 @@ class ShowAllPets extends Component{
                                             <span className="card-title grey-text text-darken-4"><h2><b>Match Finder</b></h2><i className="material-icons right">close</i></span>
                                             <h3>{senderPetName} matches {match.common_interests}% with {petName}</h3>
                                             <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, senderPetName, senderPetImage) }>Send Request</button>
-                                            <ToastContainer />
+                                            <ToastContainer/>
                                         </div>
                                     </div>
                                 </div>

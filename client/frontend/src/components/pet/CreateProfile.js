@@ -2,6 +2,7 @@ import { React, Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 class CreateProfile extends Component {
     constructor(props){
@@ -58,11 +59,16 @@ class CreateProfile extends Component {
       axios.post('api/create',formData )
           .then((response) => {
               console.log(response);
-          },(error) => {
-              console.log(error);
+              console.log('profile created');
+              this.props.history.push('/showAllPets');
+          })
+          .catch(( error ) => {
+              console.log(error.response.data.errors);
+              let errorMessage = error.response.data.errors;
+              errorMessage.map( e => {
+                  toast.error(e.error,{ position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );  
+              });
           });
-      console.log('profile created');
-      this.props.history.push('/showAllPets');
   }
 
   render(){
@@ -115,6 +121,7 @@ class CreateProfile extends Component {
                               className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleClick(e) }>
                           Create Profile
                           </button>
+                          <ToastContainer/>
                       </div>
                   </div>
               </form>
