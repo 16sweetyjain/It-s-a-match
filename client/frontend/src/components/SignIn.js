@@ -6,7 +6,7 @@ import auth from './Auth.js';
 import setUserEmail from '../actions/setUserEmail.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import background from '../helpers/background.jpg';
+//import background from '../helpers/background.jpg';
 
 
 class SignIn extends Component {
@@ -62,32 +62,33 @@ class SignIn extends Component {
 
   render(){
       return(
-          <div className="row "  >
-              <div className="col s6 ">
-                  <img style = { { height : '500px', width: '500px', textAlign:'center', marginTop:'20px' } }className="materialboxed circle" src = { background }/>
+          <div className="">
+              <div className='container '>
+                  <div className="row " >
+                      <form className="col s12" style  = {{ marginTop:'100px' }}>
+                          <div className="row">
+                              <div className="input-field col s12 center-align">
+                                  <i className="material-icons prefix">email</i>
+                                  <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e => this.onChangeEmail(e) }/>
+                                  <label> <b>Email</b> </label>
+                              </div>
+                          </div>
+                          <div className="row">
+                              <div className="input-field col s12 center-align">
+                                  <i className="material-icons prefix">lock</i>
+                                  <input id="password" type="password" className="validate" value={ this.state.password } onChange={ e => this.onChangePassword(e) }/>
+                                  <label> <b>Password</b> </label>
+                              </div>
+                          </div>
+                          <div className="row">
+                              <div className="input-field col s12" style = { { textAlign:'center' } }>
+                                  <button style={ { width: '100px', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large btn-dark" onClick={ e => this.onSubmit(e) }>Login</button>
+                                  <ToastContainer/>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
               </div>
-              <form className="col s6" style  = {{ marginTop:'100px' }}>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">email</i>
-                          <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e => this.onChangeEmail(e) }/>
-                          <label> <b>Email</b> </label>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                          <i className="material-icons prefix">lock</i>
-                          <input id="password" type="password" className="validate" value={ this.state.password } onChange={ e => this.onChangePassword(e) }/>
-                          <label> <b>Password</b> </label>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12" style = { { textAlign:'center' } }>
-                          <button style={ { width: '100px', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ e => this.onSubmit(e) }>Login</button>
-                          <ToastContainer/>
-                      </div>
-                  </div>
-              </form>
           </div>
       ); 
   }

@@ -7,18 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import NoRequests from './NoRequests';
 import { withRouter } from 'react-router-dom';
 
-class ViewRequests extends Component{
+class ViewMeetRequests extends Component{
     constructor(props){
         super(props);
         this.state = {
-            notificationStatus:'accepted',
             senderOfAcceptEmail:'',
             receiverOfAcceptEmail:'',
             rejected:'false',
             users:[],
             petName:'',
             petImage:'',
-            pendingRequestsForUser:[]
+            pendingMeetRequestsForUser:[]
         };
         this.onAcceptRequestHandler = this.onAcceptRequestHandler.bind(this);
         this.acceptRequest = this.acceptRequest.bind(this);
@@ -30,16 +29,16 @@ class ViewRequests extends Component{
             .then((response) => {
                 console.log(response);
                 this.setState({ users:response.data.result });
-                let pendingRequests = [];
+                let pendingMeetRequests = [];
                 let myLoggedInUser = [];
-                let notifications = [];
+                let meets = [];
                 myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
                 myLoggedInUser.map(user => this.setState({ petName:user.profile.pet_name,petImage:user.profile.image_of_pet }));
                 myLoggedInUser.forEach((user) => {
-                    notifications = user.notifications;
+                    meets = user.meets;
                 });
-                pendingRequests = notifications.filter(notif => notif.notification_status === 'pending');
-                this.setState({ pendingRequestsForUser:pendingRequests });
+                pendingMeetRequests = meets.filter(notif => notif.notification_status === 'pending');
+                this.setState({ pendingMeetRequestsForUser:pendingMeetRequests });
             },(error) => {
                 console.log(error);
             });     
@@ -48,41 +47,47 @@ class ViewRequests extends Component{
         e.preventDefault();
         this.setState({ rejected:true }, () => toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 }) );
     }
-    onAcceptRequestHandler=(e,userEmail) => {
+
+    onAcceptRequestHandler=(e,userEmail, meetDate, meetTime) => {
         e.preventDefault();
-        this.setState({ receiverOfAcceptEmail:userEmail }, () => this.acceptRequest()  );
+        this.setState({ receiverOfAcceptEmail:userEmail }, () => this.acceptRequest(meetDate, meetTime)  );
     }
-    acceptRequest=() => {
+
+    acceptRequest=(meetDate, meetTime) => {
         const request = {
             senderOfAcceptEmail:this.state.senderOfAcceptEmail,
             receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
-            notificationStatus:this.state.notificationStatus,
+            meetRequestStatus:'accepted',
             petName:this.state.petName,
-            image:this.state.petImage
+            image:this.state.petImage,
+            meetDate:meetDate,
+            meetTime:meetTime
         };
-        axios.put('api/acceptNotifications', request)
+        axios.put('api/acceptMeetRequest', request)
             .then((response) => {
                 console.log(response);
                 let pendingRequests = [];
-                pendingRequests = response.data.result.notifications.filter(notif => notif.notification_status === 'pending');
-                this.setState({ pendingRequestsForUser:pendingRequests });
-                toast.success('Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
+                pendingRequests = response.data.result.notifications.filter(notif => notif.meetRequestStatus === 'pending');
+                this.setState({ pendingMeetRequestsForUser:pendingRequests });
             },(error) => {
                 console.log(error);
             });
+        toast.success('Meet Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     }
     render(){
-        const { pendingRequestsForUser = undefined } = this.state;
+        const { pendingMeetRequestsForUser = undefined } = this.state;
         return(
             <div>
                 <MainPage/>
                 <div className ='container'>
-                    {pendingRequestsForUser.length == 0 ? <NoRequests/> :
+                    {pendingMeetRequestsForUser.length == 0 ? <NoRequests/> :
                         <div>
-                            {pendingRequestsForUser.map((request) => {
+                            {pendingMeetRequestsForUser.map((request) => {
                                 const petName = request.pet_name;
                                 const image = request.image;
                                 const userEmail = request.user_email;
+                                const meetDate = request.meetDate;
+                                const meetTime = request.meetTime;
                                 return(
                                     <div  key={ petName } className="col s12 m8 offset-m2 l6 offset-l3">
                                         <div className="card-panel grey lighten-5 z-depth-1">
@@ -92,12 +97,12 @@ class ViewRequests extends Component{
                                                 </div>
                                                 <div className="col s12">
                                                     <span className="black-text">
-                                                        <h4>{petName} sent you a friend request</h4>
+                                                        <h4>{petName} arranged a meet at {meetTime} on {meetDate}</h4>
                                                     </span>
                                                 </div>
                                                 <div >
                                                     <div className="col s12" style={{ marginBottom :'5px' }}>
-                                                        <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onAcceptRequestHandler(e,userEmail) }>Accept</button>
+                                                        <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onAcceptRequestHandler(e,userEmail, meetDate, meetTime) }>Accept</button>
                                                         <ToastContainer />
                                                     </div>
                                                     <div className="col s12">
@@ -122,4 +127,4 @@ const mapStateToProps = (state) => {
     return userEmail;
 };
 
-export default withRouter(connect(mapStateToProps,null)(ViewRequests));
+export default withRouter(connect(mapStateToProps,null)(ViewMeetRequests));

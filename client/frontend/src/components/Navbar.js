@@ -5,7 +5,7 @@ export default class Navbar extends Component {
         return (
             <div className="navbar-fixed ">
                 <nav className="z-depth-0">
-                    <div className="nav-wrapper blue-grey darken-3">
+                    <div className="nav-wrapper black">
                         <label style={ { fontFamily: 'monospace' } } className="col s5 brand-logo center white-text">
                             <i className="large material-icons">pets</i>
                         IT&apos;S-A-MATCH

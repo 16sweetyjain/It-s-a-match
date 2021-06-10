@@ -9,9 +9,9 @@ class ViewFriends extends Component{
     constructor(props){
         super(props);
         this.state = {
-            users:[]
+            users:[],
         };
-        this.viewProfileHandler = this.viewProfileHandler.bind(this);
+        this.arrangeMeetHandler = this.arrangeMeetHandler.bind(this);
     }
     componentDidMount(){
         axios.get('api/getAllUsers')
@@ -23,18 +23,17 @@ class ViewFriends extends Component{
             });  
     }
   
-    viewProfileHandler = (userEmail, petName, interests, dislikes, shortInfo, image) => {
-        const stateOfUser = {
+    arrangeMeetHandler = (userEmail, petName, interests, dislikes, shortInfo, image) => {
+        const stateOfMeetRequest = {
+            senderEmail:this.props.email,
+            receiverEmail:userEmail,
+            meetRequestStatus:'pending',
             petName:petName,
-            userEmail:userEmail,
-            shortInfo:shortInfo,
-            dislikes:dislikes,
-            interests:interests,
             image: image
         };
         this.props.history.push({
-            pathname:'/viewProfile',
-            state:stateOfUser
+            pathname:'/arrangeMeet',
+            state:stateOfMeetRequest
         });
     }
     render(){
@@ -78,8 +77,8 @@ class ViewFriends extends Component{
                                             <div className="card-content">
                                                 <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()} </b></h5>
                                                     <div style = {{  textAlign:'center' }}>
-                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ () => this.viewProfileHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
-                                                            View Profile
+                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ () => this.arrangeMeetHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
+                                                            Arrange a Meet
                                                         </button>
                                                     </div>
                                                 </span>

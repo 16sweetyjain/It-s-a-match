@@ -122,7 +122,7 @@ class ShowAllPets extends Component{
                             const image = match.user.profile.image_of_pet;
                             return(
                                 <div  key = {petName}className="col s6" style= {{ textAlign: 'center' }} >
-                                    <div className="card large" >
+                                    <div className="card large hoverable" >
                                         <div>
                                             <img  style = { { height : '350px', width: '350px' } } className="activator circle" src={ `${ image.substr(8) }` }/>
                                         </div>

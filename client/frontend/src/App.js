@@ -13,6 +13,7 @@ import ViewRequests from './components/pet/ViewRequests';
 import ViewFriends from './components/pet/ViewFriends';
 import Signout from './components/Signout';
 import ProtectedRoute from './components/ProtectedRoute';
+import ArrangeMeet from './components/pet/ArrangeMeet';
 
 export default class App extends Component {
     constructor(props){
@@ -33,6 +34,7 @@ export default class App extends Component {
                     <ProtectedRoute path = '/viewRequests' component={() => <ViewRequests />  }/>
                     <ProtectedRoute path='/viewFriends' component={() => <ViewFriends />}/>
                     <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
+                    <ProtectedRoute path = '/arrangeMeet' component ={() => <ArrangeMeet/> }/>
                     <Route exact path='/' component={HomePage}/>
                 </Switch>
             </div>
