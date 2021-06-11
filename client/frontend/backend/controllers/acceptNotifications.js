@@ -1,11 +1,11 @@
 const User = require('../models/User');
 
 exports.acceptNotifications = (req,res) => {
-    let { senderOfAcceptEmail, receiverOfAcceptEmail, notificationStatus, petName, image  } = req.body;  
+    let { senderOfAcceptEmail, receiverOfAcceptEmail, notificationStatus, pet_name, image  } = req.body;  
     const notification_for_receiver_of_accept_request = {
         user_email: senderOfAcceptEmail,
         notification_status: notificationStatus,
-        petName:petName,
+        pet_name:pet_name,
         image:image
     };
     User.findOneAndUpdate({ email:senderOfAcceptEmail, 'notifications.user_email': receiverOfAcceptEmail }, { $set:{ 'notifications.$.notification_status': notificationStatus } }, { new:true })

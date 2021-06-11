@@ -42,7 +42,7 @@ class ShowAllPets extends Component{
             senderEmail: this.state.senderEmail,
             receiverEmail: this.state.receiverEmail,
             notificationStatus: this.state.notificationStatus,
-            petName:senderPetName, 
+            pet_name:senderPetName, 
             image:senderPetImage
         };
         console.log(request);
@@ -96,7 +96,7 @@ class ShowAllPets extends Component{
             const percentMatch = (commonInterests.length / numberOfInterests) * 100;
             showMatches.push({ 'common_interests': percentMatch,'user': user });
         });
-        showMatches.sort(function compare(a,b) {
+        showMatches.sort(function compare(a,b) {                                //return matches in decreasing order of interests match
             const pa = a.common_interests;
             const pb = b.common_interests;
             let comparison = 0;

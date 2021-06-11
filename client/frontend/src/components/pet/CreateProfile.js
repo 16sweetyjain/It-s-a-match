@@ -16,38 +16,24 @@ class CreateProfile extends Component {
             imageOfPetFile: null,
             email:''
         };
-        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-        this.handleDislikesChange = this.handleDislikesChange.bind(this);
-        this.handleInterestsChange = this.handleInterestsChange.bind(this);
-        this.handlePetNameChange = this.handlePetNameChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.imageUploadHandler = this.imageUploadHandler.bind(this);
     }
   
-  handleDescriptionChange = e => {
-      this.setState({ shortDescription:e.target.value });
+  handleChange = e => {
+      e.preventDefault();
+      this.setState({ [e.target.id]:e.target.value });
   }
 
-  handleDislikesChange = e => {
-      this.setState({ dislikes:e.target.value });
-  }
-
-  handleInterestsChange= e => {
-      this.setState({ interests:e.target.value });
-  }
-
-  handlePetNameChange= e => {
-      this.setState({ petName:e.target.value });
-  }
-
-  imageUploadHandler= e => {
+  imageUploadHandler = e => {
       e.preventDefault();
       const file = e.target.files[0];
       this.setState({ imageOfPetPreview: URL.createObjectURL(file) , imageOfPetFile:file });
       this.setState({ email: this.props.email });
   }
 
-  handleClick = ( e ) => {
+  handleSubmit = ( e ) => {
       e.preventDefault();
       const formData = new FormData();
       formData.append('image_of_pet',this.state.imageOfPetFile);
@@ -84,42 +70,42 @@ class CreateProfile extends Component {
                       <div className="row">
                           <div className="input-field col s12">
                               <i className="material-icons prefix">pets</i>
-                              <input id="name" type="text" className="validate" value={ this.state.petName } onChange={ e => this.handlePetNameChange(e) }/>
+                              <input id="petName" type="text" className="validate" value={ this.state.petName } onChange={this.handleChange}/>
                               <label > Name of your pet</label>
                           </div>
                       </div>
                       <div className="row">
                           <div className="input-field col s12">
                               <i className="material-icons prefix">thumb_up</i>
-                              <input id="name" type="text" className="validate" value={ this.state.interests } onChange={ e => this.handleInterestsChange(e) }/>
-                              <label> Interests</label>
+                              <input id="interests" type="text" className="validate" value={ this.state.interests } onChange={this.handleChange}/>
+                              <label> Interests (separate by commas)</label>
                           </div>
                       </div>
                       <div className="row">
                           <div className="input-field col s12">
                               <i className="material-icons prefix">thumb_down</i>
-                              <input id="name" type="text" className="validate" value={ this.state.dislikes } onChange={ e => this.handleDislikesChange(e) }/>
+                              <input id="dislikes" type="text" className="validate" value={ this.state.dislikes } onChange={this.handleChange}/>
                               <label > Dislikes</label>
                           </div>
                       </div>
                       <div className="row">
                           <div className="input-field col s12">
                               <i className="material-icons prefix">mode_edit</i>
-                              <textarea id="textarea1" className="materialize-textarea" onChange={ e => this.handleDescriptionChange(e)}></textarea>
+                              <textarea id="shortDescription" className="materialize-textarea" onChange={this.handleChange}></textarea>
                               <label >Write short info of your pet</label>
                           </div>
                       </div>
                       <div className="row">
                           <div className="input-field col s12">
                               <i className="material-icons prefix">upload</i>
-                              <input type="file" left="200" onChange={ e => this.imageUploadHandler(e) }/>
+                              <input id="imageOfPet" type="file" left="200" onChange={this.imageUploadHandler}/>
                               <img alt="" src={ this.state.imageOfPetPreview } width="400" left="1000"/>
                           </div>
                       </div>
                       <div className="row">
                           <div className="input-field col s12">
                               <button style = { { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
-                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.handleClick(e) }>
+                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={this.handleSubmit}>
                           Create Profile
                               </button>
                               <ToastContainer/>

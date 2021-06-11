@@ -13,11 +13,12 @@ const upload = multer({ storage: storage });
 
 const { signup, signin } = require('../controllers/auth');
 const { profile } = require('../controllers/profile');
-const{ getAllUsers } = require('../controllers/getAll');
+const { getAllUsers } = require('../controllers/getAllUsers');
 const { sendNotifications } = require('../controllers/sendNotifications');
 const { acceptNotifications } = require('../controllers/acceptNotifications');
 const { sendMeetRequest } = require('../controllers/sendMeetRequest');
 const { acceptMeetRequest } = require('../controllers/acceptMeetRequest');
+
 router.post('/signup', signup);
 router.post('/signin', signin);
 router.post('/create',upload.single('image_of_pet'),profile), 

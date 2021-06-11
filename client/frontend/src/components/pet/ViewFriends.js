@@ -42,33 +42,21 @@ class ViewFriends extends Component{
     }
     render(){
         let notifications = [];
-        let friends = [];
-        let otherUsers = [];
-        let allPets = [];
         const myLoggedInUser = this.state.users.filter((user) => user.email === this.props.email);
-        otherUsers = this.state.users.filter((user) => user.email !== this.props.email);
         myLoggedInUser.forEach((user) => {
             notifications = user.notifications;
         });
-        console.log(notifications);
         const acceptedRequests = notifications.filter(notif => notif.notification_status === 'accepted');
-        acceptedRequests.map(r => allPets.push(r.user_email));
-        otherUsers.map(user => {
-            const c = user.email;
-            if(allPets.includes(c)){
-                friends.push(user);
-            }
-        });
         return(
             <div>
                 <MainPage/>
                 <div className ='container'>
-                    {friends.length == 0 ? <NoFriends/> :
+                    {acceptedRequests.length == 0 ? <NoFriends/> :
                         <div className="row">
-                            {friends.map((friend) => {
-                                const userEmail = friend.email;
-                                const petName = friend.profile.pet_name;
-                                const image = friend.profile.image_of_pet;
+                            {acceptedRequests.map((friend) => {
+                                const userEmail = friend.user_email;
+                                const petName = friend.pet_name;
+                                const image = friend.image;
                                 return(
                                     <div  key={ petName } className = "col s6" style={ { textAlign:'center' } }>
                                         <div className="card" >

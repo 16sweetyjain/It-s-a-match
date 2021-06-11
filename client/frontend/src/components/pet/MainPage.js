@@ -7,9 +7,7 @@ class MainPage extends Component {
     constructor(props){
         super(props); 
         this.state = {
-            users:[],
-            notifications:[],
-            petName:''
+            users:[]
         };
     }
 
@@ -32,8 +30,8 @@ class MainPage extends Component {
                 <div className="nav-wrapper"> 
                     <label className="brand-logo left">Welcome, {name}</label>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        <li  value="1"><Link to='/showAllPets'>List of Pets</Link></li>
-                        <li  value="2" ><Link to='/viewRequests'>View Requests</Link></li>
+                        <li  value="1"><Link to='/showAllPets'>Pets</Link></li>
+                        <li  value="2" ><Link to='/viewRequests'>Friend Requests</Link></li>
                         <li  value="3"><Link to='/viewFriends'>Friends</Link></li>
                         <li  value="4"><Link to='/viewMeetRequests'>Meet Requests</Link></li>
                         <li  value="5"><Link to='/viewMeets'>Upcoming Meets</Link></li>

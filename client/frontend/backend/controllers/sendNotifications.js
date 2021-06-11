@@ -1,11 +1,11 @@
 const User = require('../models/User');
 
 exports.sendNotifications = (req,res) => {
-    let { senderEmail, receiverEmail, notificationStatus, petName, image } = req.body;  //notif_status = 'pending'
+    let { senderEmail, receiverEmail, notificationStatus, pet_name, image } = req.body;  //notif_status = 'pending'
     const notification = {
         user_email: senderEmail,
         notification_status: notificationStatus,
-        pet_name:petName,
+        pet_name:pet_name,
         image:image
     };
 

@@ -57,7 +57,7 @@ class ViewRequests extends Component{
             senderOfAcceptEmail:this.state.senderOfAcceptEmail,
             receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
             notificationStatus:this.state.notificationStatus,
-            petName:this.state.petName,
+            pet_name:this.state.petName,
             image:this.state.petImage
         };
         axios.put('api/acceptNotifications', request)

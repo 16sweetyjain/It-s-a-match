@@ -15,19 +15,19 @@ exports.profile = (req,res, err) => {
         errors.push({ error: ' Email Required' });
     }
     if(!pet_name){
-        errors.push({error:'Pet name required'});
+        errors.push({ error:'Pet name required' });
     }
     if(!interests){
-        errors.push({error:'Interests required'});
+        errors.push({ error:'Interests required' });
     }
     if(!dislikes){
-        errors.push({error:'Dislikes required'});
+        errors.push({ error:'Dislikes required' });
     }
     if(!short_description){
-        errors.push({error:'Description required'});
+        errors.push({ error:'Description required' });
     }
     if(!image){
-        errors.push({error:'Image of pet required'});
+        errors.push({ error:'Image of pet required' });
     }
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });

@@ -5,7 +5,7 @@ exports.acceptMeetRequest = (req,res) => {
     const notification_for_receiver_of_accept_request = {
         user_email: senderOfAcceptEmail,
         meetRequestStatus: meetRequestStatus,
-        petName:pet_name,
+        pet_name:pet_name,
         image:image,
         meetDate:meetDate,
         meetTime:meetTime
