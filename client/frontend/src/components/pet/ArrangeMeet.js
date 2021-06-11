@@ -31,19 +31,18 @@ class ArrangeMeet extends Component {
         Materialize.Timepicker.init(elemTime,{
             onCloseEnd:context.handleTime
         });
-  
     }
 
     handleDate = () => {
         this.setState({ meetDate : this.meetdate.current.value });    
-        console.log(this.state.meetDate);       
+    //console.log(this.state.meetDate);       
     }
 
     handleTime = () => {
         this.setState({
             meetTime : this.meettime.current.value
         });
-        console.log(this.state.meetTime);
+        //console.log(this.state.meetTime);
     }
     handleChange = e => {
         this.setState({ [e.target.id] : e.target.value });
@@ -62,16 +61,15 @@ class ArrangeMeet extends Component {
             meetTime:this.state.meetTime
         };
         console.log(request);
-        axios.put('/sendMeetRequest',request)
+        axios.put('api/sendMeetRequest',request)
             .then((response) => {
                 console.log(response);
                 toast.success('Meet Request sent', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 });
-            })
-            .catch((error) => {
+            },(error) => {
                 console.log(error);
             });
-        console.log(this.state.meetDate);
-        console.log(this.state.meetTime);
+        //console.log(this.state.meetDate);
+        //console.log(this.state.meetTime);
     }
 
     render(){

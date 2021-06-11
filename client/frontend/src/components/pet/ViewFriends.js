@@ -10,6 +10,7 @@ class ViewFriends extends Component{
         super(props);
         this.state = {
             users:[],
+            senderEmail:''
         };
         this.arrangeMeetHandler = this.arrangeMeetHandler.bind(this);
     }
@@ -21,16 +22,19 @@ class ViewFriends extends Component{
             },(error) => {
                 console.log(error);
             });  
+        this.setState({ senderEmail:this.props.email });
     }
   
-    arrangeMeetHandler = (userEmail, petName, interests, dislikes, shortInfo, image) => {
+    arrangeMeetHandler = (e,userEmail, petName, image) => {
+        e.preventDefault();
         const stateOfMeetRequest = {
-            senderEmail:this.props.email,
+            senderEmail:this.state.senderEmail,
             receiverEmail:userEmail,
             meetRequestStatus:'pending',
-            petName:petName,
+            pet_name:petName,
             image: image
         };
+        console.log(stateOfMeetRequest);
         this.props.history.push({
             pathname:'/arrangeMeet',
             state:stateOfMeetRequest
@@ -64,9 +68,6 @@ class ViewFriends extends Component{
                             {friends.map((friend) => {
                                 const userEmail = friend.email;
                                 const petName = friend.profile.pet_name;
-                                const shortInfo = friend.profile.short_description;
-                                const interests = friend.profile.interests;
-                                const dislikes = friend.profile.dislikes;
                                 const image = friend.profile.image_of_pet;
                                 return(
                                     <div  key={ petName } className = "col s6" style={ { textAlign:'center' } }>
@@ -77,7 +78,7 @@ class ViewFriends extends Component{
                                             <div className="card-content">
                                                 <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()} </b></h5>
                                                     <div style = {{  textAlign:'center' }}>
-                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ () => this.arrangeMeetHandler( userEmail, petName, interests, dislikes, shortInfo, image ) }>
+                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.arrangeMeetHandler( e,userEmail, petName, image ) }>
                                                             Arrange a Meet
                                                         </button>
                                                     </div>

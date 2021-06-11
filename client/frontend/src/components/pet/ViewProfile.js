@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MainPage from './MainPage';
 import { withRouter } from 'react-router-dom';
-import Materialize from 'materialize-css';
 
 class ViewProfile extends Component{
     constructor(props){

@@ -32,8 +32,8 @@ exports.signup = (req, res) => {
     if (errors.length > 0) {
         return res.status(422).json({ errors: errors });
     }
-    User.findOne({email: email})
-        .then(user=>{
+    User.findOne({ email: email })
+        .then( user => {
             if(user){
                 return res.status(422).json({ errors: [{ error: ' user email already exists' }] });
             }else {
@@ -60,7 +60,7 @@ exports.signup = (req, res) => {
                 });
                 });
             }
-        }).catch(err =>{
+        }).catch(err => {
             res.status(500).json({
                 errors: [{ error: err }]
             });
@@ -85,12 +85,12 @@ exports.signin = (req, res) => {
     User.findOne({ email: email }).then(user => {
         if (!user) {
             return res.status(404).json({
-                errors: [{error:'User not found'}]
+                errors: [{ error:'User not found' }]
             });
         } else {
             bcrypt.compare(password, user.password).then(isMatch => {
                 if (!isMatch) {
-                    return res.status(400).json({ errors: [{error:'Password Incorrect'}]});
+                    return res.status(400).json({ errors: [{ error:'Password Incorrect' }] });
                 }
                 let access_token = createJWT(
                     user.email,

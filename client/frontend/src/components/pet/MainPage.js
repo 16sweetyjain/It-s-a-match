@@ -35,7 +35,9 @@ class MainPage extends Component {
                         <li  value="1"><Link to='/showAllPets'>List of Pets</Link></li>
                         <li  value="2" ><Link to='/viewRequests'>View Requests</Link></li>
                         <li  value="3"><Link to='/viewFriends'>Friends</Link></li>
-                        <li  value="4" ><Link to='/signout'>Logout</Link></li>
+                        <li  value="4"><Link to='/viewMeetRequests'>Meet Requests</Link></li>
+                        <li  value="5"><Link to='/viewMeets'>Upcoming Meets</Link></li>
+                        <li  value="6" ><Link to='/signout'>Logout</Link></li>
                     </ul>
                 </div>
             </nav>

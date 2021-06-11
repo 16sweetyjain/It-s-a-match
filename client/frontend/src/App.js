@@ -14,6 +14,8 @@ import ViewFriends from './components/pet/ViewFriends';
 import Signout from './components/Signout';
 import ProtectedRoute from './components/ProtectedRoute';
 import ArrangeMeet from './components/pet/ArrangeMeet';
+import ViewMeetRequests from './components/pet/ViewMeetRequests';
+import UpcomingMeets from './components/pet/UpcomingMeets';
 
 export default class App extends Component {
     constructor(props){
@@ -35,6 +37,8 @@ export default class App extends Component {
                     <ProtectedRoute path='/viewFriends' component={() => <ViewFriends />}/>
                     <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
                     <ProtectedRoute path = '/arrangeMeet' component ={() => <ArrangeMeet/> }/>
+                    <ProtectedRoute path = '/viewMeetRequests' component ={() => <ViewMeetRequests/> }/>
+                    <ProtectedRoute path = '/viewMeets' component ={() => <UpcomingMeets/> }/>
                     <Route exact path='/' component={HomePage}/>
                 </Switch>
             </div>

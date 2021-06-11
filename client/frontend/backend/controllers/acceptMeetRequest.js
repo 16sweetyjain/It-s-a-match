@@ -1,11 +1,11 @@
 const User = require('../models/User');
 
 exports.acceptMeetRequest = (req,res) => {
-    let { senderOfAcceptEmail, receiverOfAcceptEmail, meetRequestStatus, petName, image, meetDate, meetTime  } = req.body;  
+    let { senderOfAcceptEmail, receiverOfAcceptEmail, meetRequestStatus, pet_name, image, meetDate, meetTime  } = req.body;  
     const notification_for_receiver_of_accept_request = {
         user_email: senderOfAcceptEmail,
         meetRequestStatus: meetRequestStatus,
-        petName:petName,
+        petName:pet_name,
         image:image,
         meetDate:meetDate,
         meetTime:meetTime

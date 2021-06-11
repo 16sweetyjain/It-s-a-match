@@ -37,7 +37,7 @@ class ViewMeetRequests extends Component{
                 myLoggedInUser.forEach((user) => {
                     meets = user.meets;
                 });
-                pendingMeetRequests = meets.filter(notif => notif.notification_status === 'pending');
+                pendingMeetRequests = meets.filter(meet => meet.meetRequestStatus === 'pending');
                 this.setState({ pendingMeetRequestsForUser:pendingMeetRequests });
             },(error) => {
                 console.log(error);
@@ -58,7 +58,7 @@ class ViewMeetRequests extends Component{
             senderOfAcceptEmail:this.state.senderOfAcceptEmail,
             receiverOfAcceptEmail:this.state.receiverOfAcceptEmail,
             meetRequestStatus:'accepted',
-            petName:this.state.petName,
+            pet_name:this.state.petName,
             image:this.state.petImage,
             meetDate:meetDate,
             meetTime:meetTime
@@ -67,7 +67,7 @@ class ViewMeetRequests extends Component{
             .then((response) => {
                 console.log(response);
                 let pendingRequests = [];
-                pendingRequests = response.data.result.notifications.filter(notif => notif.meetRequestStatus === 'pending');
+                pendingRequests = response.data.result.meets.filter(notif => notif.meetRequestStatus === 'pending');
                 this.setState({ pendingMeetRequestsForUser:pendingRequests });
             },(error) => {
                 console.log(error);
@@ -97,7 +97,7 @@ class ViewMeetRequests extends Component{
                                                 </div>
                                                 <div className="col s12">
                                                     <span className="black-text">
-                                                        <h4>{petName} arranged a meet at {meetTime} on {meetDate}</h4>
+                                                        <h4>{petName} arranged a meet on {meetDate} at {meetTime} </h4>
                                                     </span>
                                                 </div>
                                                 <div >
