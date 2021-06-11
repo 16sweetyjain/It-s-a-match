@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NoRequests from './NoRequests';
 import { withRouter } from 'react-router-dom';
 
-class ViewRequests extends Component{
+class ViewFriendRequests extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -122,4 +122,4 @@ const mapStateToProps = (state) => {
     return userEmail;
 };
 
-export default withRouter(connect(mapStateToProps,null)(ViewRequests));
+export default withRouter(connect(mapStateToProps,null)(ViewFriendRequests));

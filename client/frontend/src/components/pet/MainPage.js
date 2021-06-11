@@ -26,7 +26,7 @@ class MainPage extends Component {
         const name = myLoggedInUser.map(user => user.profile.pet_name);
 
         return(
-            <nav className="brown darken-1">
+            <nav>
                 <div className="nav-wrapper"> 
                     <label className="brand-logo left">Welcome, {name}</label>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">

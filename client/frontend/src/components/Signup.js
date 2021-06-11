@@ -3,6 +3,8 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Navbar';
+
 
 class Signup extends Component {
     constructor(props){
@@ -60,44 +62,48 @@ class Signup extends Component {
 
     render(){
         return(
-            <div className="row"   style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
-                <form className="col s6">
+            <div>
+                <Navbar/>
+                <div  style={ { height: '90vh' } } className='container'>
                     <div className="row">
-                        <div className="input-field col s12">
-                            <i className="material-icons prefix">account_circle</i>
-                            <input id="name" type="text" className="validate" value={ this.state.name } onChange={ e => this.onChangeName(e) }/>
-                            <label>Name</label>
-                        </div>
+                        <form className="col s12">
+                            <div className="row">
+                                <div className="input-field col s12 black-text">
+                                    <i className="material-icons prefix">account_circle</i>
+                                    <input id="name" type="text" className="validate" value={ this.state.name } onChange={ e => this.onChangeName(e) }/>
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12 black-text">
+                                    <i className="material-icons prefix">email</i>
+                                    <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e => this.onChangeEmail(e) }/>
+                                    <label>Email</label>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12 black-text">
+                                    <i className="material-icons prefix">lock</i>
+                                    <input id="password" type="password" className="validate" value={ this.state.password } onChange={ e => this.onChangePassword(e) }/>
+                                    <label>Password</label>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12 black-text">
+                                    <i className="material-icons prefix">lock</i>
+                                    <input id="password" type="password" className="validate" value={ this.state.passwordConfirmation } onChange={ e => this.onChangeConfirmPassword(e) }/>
+                                    <label>Confirm Password</label>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12" style = { { textAlign:'center' } }>
+                                    <button className="btn btn-large btn-dark" onClick={ e => this.onSubmit(e) }>Register</button>
+                                    <ToastContainer/>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <i className="material-icons prefix">email</i>
-                            <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e => this.onChangeEmail(e) }/>
-                            <label>Email</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <i className="material-icons prefix">lock</i>
-                            <input id="password" type="password" className="validate" value={ this.state.password } onChange={ e => this.onChangePassword(e) }/>
-                            <label>Password</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <i className="material-icons prefix">lock</i>
-                            <input id="password" type="password" className="validate" value={ this.state.passwordConfirmation } onChange={ e => this.onChangeConfirmPassword(e) }/>
-                            <label>Confirm Password</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <button style={ { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
-                                className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ e => this.onSubmit(e) }>Register</button>
-                            <ToastContainer/>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         );
     }

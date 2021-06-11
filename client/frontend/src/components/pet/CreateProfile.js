@@ -63,49 +63,48 @@ class CreateProfile extends Component {
               <div className="row"   style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                   <form className="col">
                       <div className="row">
-                          <div className="input-field col s12" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+                          <div className="input-field col s12 white-text" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                               <h3> Create your pet&apos;s profile </h3>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="input-field col s12">
+                          <div className="input-field col s12 white-text">
                               <i className="material-icons prefix">pets</i>
                               <input id="petName" type="text" className="validate" value={ this.state.petName } onChange={this.handleChange}/>
                               <label > Name of your pet</label>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="input-field col s12">
+                          <div className="input-field col s12 white-text">
                               <i className="material-icons prefix">thumb_up</i>
                               <input id="interests" type="text" className="validate" value={ this.state.interests } onChange={this.handleChange}/>
                               <label> Interests (separate by commas)</label>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="input-field col s12">
+                          <div className="input-field col s12 white-text">
                               <i className="material-icons prefix">thumb_down</i>
                               <input id="dislikes" type="text" className="validate" value={ this.state.dislikes } onChange={this.handleChange}/>
                               <label > Dislikes</label>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="input-field col s12">
+                          <div className="input-field col s12 white-text">
                               <i className="material-icons prefix">mode_edit</i>
                               <textarea id="shortDescription" className="materialize-textarea" onChange={this.handleChange}></textarea>
                               <label >Write short info of your pet</label>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="input-field col s12">
+                          <div className="input-field col s12 white-text">
                               <i className="material-icons prefix">upload</i>
                               <input id="imageOfPet" type="file" left="200" onChange={this.imageUploadHandler}/>
                               <img alt="" src={ this.state.imageOfPetPreview } width="400" left="1000"/>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="input-field col s12">
-                              <button style = { { width: '140px', borderRadius: '3px', letterSpacing: '1.5px' } }
-                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={this.handleSubmit}>
+                          <div className="input-field col s12 white-text" style={{ textAlign:'center' }}>
+                              <button className="btn btn-large btn-dark" onClick={this.handleSubmit}>
                           Create Profile
                               </button>
                               <ToastContainer/>

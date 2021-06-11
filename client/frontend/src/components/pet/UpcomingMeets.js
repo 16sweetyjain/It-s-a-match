@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MainPage from './MainPage';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import NoRequests from './NoRequests';
+import NoMeets from './NoMeets';
 
 class UpcomingMeets extends Component{
     constructor(props){
@@ -35,7 +35,7 @@ class UpcomingMeets extends Component{
             <div>
                 <MainPage/>
                 <div className ='container'>
-                    {acceptedRequests.length == 0 ? <NoRequests/> :
+                    {acceptedRequests.length == 0 ? <NoMeets/> :
                         <div>
                             {acceptedRequests.map((meet) => {
                                 const petName = meet.pet_name;

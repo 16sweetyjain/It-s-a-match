@@ -111,7 +111,7 @@ class ShowAllPets extends Component{
         return(
             <div>
                 <MainPage/>
-                <div className='container'>
+                <div className='container' >
                     <div className="row" >  
                         {showMatches.map((match) => {
                             const userEmail = match.user.email;
@@ -126,14 +126,14 @@ class ShowAllPets extends Component{
                                         <div>
                                             <img  style = { { height : '350px', width: '350px' } } className="activator circle" src={ `${ image.substr(8) }` }/>
                                         </div>
-                                        <div className="card-content ">
+                                        <div className="card-content " style = { { textAlign:'center' } }>
                                             <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()}</b></h5><i className="material-icons right">more_vert</i></span>
-                                            <div style = {{  textAlign:'center' }}><button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.viewProfileHandler( e, userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button></div>
+                                            <div style = {{  textAlign:'center' }}><button className="btn btn-large btn-dark" onClick={ (e) => this.viewProfileHandler( e, userEmail, petName, interests, dislikes, shortInfo, image ) }>View Profile</button></div>
                                         </div>
-                                        <div className="card-reveal ">
+                                        <div className="card-reveal " style = { { textAlign:'center' } }>
                                             <span className="card-title grey-text text-darken-4"><h2><b>Match Finder</b></h2><i className="material-icons right">close</i></span>
                                             <h3>{senderPetName} matches {match.common_interests}% with {petName}</h3>
-                                            <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => this.onSendRequestHandler(e, userEmail, senderPetName, senderPetImage) }>Send Request</button>
+                                            <button className="btn btn-large btn-dark" onClick={ (e) => this.onSendRequestHandler(e, userEmail, senderPetName, senderPetImage) }>Send Request</button>
                                             <ToastContainer/>
                                         </div>
                                     </div>

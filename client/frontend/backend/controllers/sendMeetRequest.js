@@ -3,6 +3,18 @@ const User = require('../models/User');
 exports.sendMeetRequest = (req,res) => {
     let { senderEmail, receiverEmail, meetRequestStatus, pet_name, image, meetDate, meetTime } = req.body;  //notif_status = 'pending'
     console.log(req.body);
+    let errors = [];
+    if(!meetDate){
+        errors.push({ error: 'Pick a date' }); 
+
+    }
+    if(!meetTime){
+        errors.push({ error: 'Pick a time' });
+    }
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+
     const meetNotification = {
         user_email: senderEmail,
         meetRequestStatus: meetRequestStatus,

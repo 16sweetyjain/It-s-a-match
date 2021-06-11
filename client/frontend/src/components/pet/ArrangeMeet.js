@@ -34,15 +34,13 @@ class ArrangeMeet extends Component {
     }
 
     handleDate = () => {
-        this.setState({ meetDate : this.meetdate.current.value });    
-    //console.log(this.state.meetDate);       
+        this.setState({ meetDate : this.meetdate.current.value });       
     }
 
     handleTime = () => {
         this.setState({
             meetTime : this.meettime.current.value
         });
-        //console.log(this.state.meetTime);
     }
     handleChange = e => {
         this.setState({ [e.target.id] : e.target.value });
@@ -65,24 +63,27 @@ class ArrangeMeet extends Component {
             .then((response) => {
                 console.log(response);
                 toast.success('Meet Request sent', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 });
-            },(error) => {
-                console.log(error);
+            })
+            .catch(( error ) => {
+                console.log(error.response.data.errors);
+                let errorMessage = error.response.data.errors;
+                errorMessage.map( e => {
+                    toast.error(e.error,{ position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );  
+                });
             });
-        //console.log(this.state.meetDate);
-        //console.log(this.state.meetTime);
     }
 
     render(){
-        const { petName } = this.props.location.state;
+        const { pet_name } = this.props.location.state;
         return(
             <div>
                 <MainPage/>
                 <div className='container'>
                     <div className ="row " >
-                        <div className ='col'>
+                        <div className ='col' >
                             <div className='row' >
-                                <div className='col s12' style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
-                                    <h3>Arrange a Meet with {petName}</h3>
+                                <div className='col s12' style = { { textAlign:'center' }}>
+                                    <h3>Arrange a Meet with {pet_name}</h3>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +102,8 @@ class ArrangeMeet extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="input-field col s12">
-                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3"onClick={ (e) => this.arrangeMeetHandler(e) }>Arrange a meet</button>
+                                    <div className="input-field col s12" style = { { textAlign:'center' }}>
+                                        <button  className="btn btn-large btn-dark" onClick={ (e) => this.arrangeMeetHandler(e) }>Arrange a meet</button>
                                         <ToastContainer/>
                                     </div>
                                 </div>
