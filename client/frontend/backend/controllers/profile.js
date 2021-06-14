@@ -11,9 +11,7 @@ exports.profile = (req,res, err) => {
     console.log(req.file);
     let image = req.file;
     let errors = [];
-    if(!email) {
-        errors.push({ error: ' Email Required' });
-    }
+
     if(!pet_name){
         errors.push({ error:'Pet name required' });
     }
