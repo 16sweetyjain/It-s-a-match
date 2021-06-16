@@ -14,7 +14,7 @@ class ShowAllPets extends Component{
             notificationStatus: 'pending',
             senderEmail:'',
             receiverEmail:'',
-            users:[]
+            users:[],
         };
         this.onSendRequestHandler = this.onSendRequestHandler.bind(this);
         this.sendRequest = this.sendRequest.bind(this);
