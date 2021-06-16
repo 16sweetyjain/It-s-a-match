@@ -1,5 +1,5 @@
 import './App.css';
-import { React, Component } from 'react';
+import { React } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import SignIn from './components/SignIn.js';
 import Signup from './components/Signup.js';
@@ -16,30 +16,25 @@ import ArrangeMeet from './components/pet/ArrangeMeet';
 import ViewMeetRequests from './components/pet/ViewMeetRequests';
 import UpcomingMeets from './components/pet/UpcomingMeets';
 
-export default class App extends Component {
-    constructor(props){
-        super(props);
-    }
-  
-    render() {
-        return (
-            <div className=''>
-                <Switch>
-                    <Route  path='/signin' component={() => <SignIn />}/>
-                    <Route  path='/signup' component={() => <Signup />}/>
-                    <Route path='/create' component={() => <CreateProfile/>}/>
-                    <ProtectedRoute path='/showAllPets' component={() => <ShowAllPets />}/>
-                    <ProtectedRoute path='/main' component={() => <MainPage  />}/>
-                    <ProtectedRoute path = '/viewProfile' component = {() => <ViewProfile/>}/>
-                    <ProtectedRoute path = '/viewRequests' component={() => <ViewFriendRequests />  }/>
-                    <ProtectedRoute path='/viewFriends' component={() => <ViewFriends />}/>
-                    <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
-                    <ProtectedRoute path = '/arrangeMeet' component ={() => <ArrangeMeet/> }/>
-                    <ProtectedRoute path = '/viewMeetRequests' component ={() => <ViewMeetRequests/> }/>
-                    <ProtectedRoute path = '/viewMeets' component ={() => <UpcomingMeets/> }/>
-                    <Route exact path='/' component={HomePage}/>
-                </Switch>
-            </div>
-        );
-    }
+export default function App () {
+   
+    return (
+        <div className=''>
+            <Switch>
+                <Route  path='/signin' component={() => <SignIn />}/>
+                <Route  path='/signup' component={() => <Signup />}/>
+                <ProtectedRoute path='/create' component={() => <CreateProfile/>}/>
+                <ProtectedRoute path='/showAllPets' component={() => <ShowAllPets />}/>
+                <ProtectedRoute path='/main' component={() => <MainPage  />}/>
+                <ProtectedRoute path = '/viewProfile' component = {() => <ViewProfile/>}/>
+                <ProtectedRoute path = '/viewRequests' component={() => <ViewFriendRequests />  }/>
+                <ProtectedRoute path='/viewFriends' component={() => <ViewFriends />}/>
+                <ProtectedRoute path = '/signout' component={() => <Signout /> }/>
+                <ProtectedRoute path = '/arrangeMeet' component ={() => <ArrangeMeet/> }/>
+                <ProtectedRoute path = '/viewMeetRequests' component ={() => <ViewMeetRequests/> }/>
+                <ProtectedRoute path = '/viewMeets' component ={() => <UpcomingMeets/> }/>
+                <Route exact path='/' component={HomePage}/>
+            </Switch>
+        </div>
+    );
 }
