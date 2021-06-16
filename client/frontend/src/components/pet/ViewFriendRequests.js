@@ -20,7 +20,7 @@ export default function ViewFriendRequests() {
         onChangeSender(userEmail);
         axios.get('api/getAllUsers')
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 usersList(response.data.result);
                 let pendingRequests = [];
                 let myLoggedInUser = [];
@@ -47,7 +47,8 @@ export default function ViewFriendRequests() {
 
     const onAcceptRequestHandler = (e,user_email) => {
         e.preventDefault();
-        useEffect(() => onChangeReceiver(user_email), () => acceptRequest());
+        onChangeReceiver(user_email);
+        acceptRequest();
     };
 
     const acceptRequest = () => {
