@@ -69,6 +69,11 @@ class SignIn extends Component {
                   <div className="row " >
                       <form className="col s12" style  = {{ marginTop:'100px' }}>
                           <div className="row">
+                              <div className="input-field col s12 black-text" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+                                  <h3>Login</h3>
+                              </div>
+                          </div>
+                          <div className="row">
                               <div className="input-field col s12 center-align black-text">
                                   <i className="material-icons prefix">email</i>
                                   <input id="email" type="email" className="validate" value={ this.state.email } onChange={ e => this.onChangeEmail(e) }/>

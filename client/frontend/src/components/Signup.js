@@ -65,8 +65,13 @@ class Signup extends Component {
             <div>
                 <Navbar/>
                 <div  style={ { height: '90vh' } } className='container'>
-                    <div className="row">
+                    <div className="row"  style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                         <form className="col s12">
+                            <div className="row">
+                                <div className="input-field col s12 black-text" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+                                    <h3>Register</h3>
+                                </div>
+                            </div>
                             <div className="row">
                                 <div className="input-field col s12 black-text">
                                     <i className="material-icons prefix">account_circle</i>

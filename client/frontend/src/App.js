@@ -27,7 +27,7 @@ export default class App extends Component {
                 <Switch>
                     <Route  path='/signin' component={() => <SignIn />}/>
                     <Route  path='/signup' component={() => <Signup />}/>
-                    <ProtectedRoute path='/create' component={() => <CreateProfile/>}/>
+                    <Route path='/create' component={() => <CreateProfile/>}/>
                     <ProtectedRoute path='/showAllPets' component={() => <ShowAllPets />}/>
                     <ProtectedRoute path='/main' component={() => <MainPage  />}/>
                     <ProtectedRoute path = '/viewProfile' component = {() => <ViewProfile/>}/>

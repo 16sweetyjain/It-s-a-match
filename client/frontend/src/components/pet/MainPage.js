@@ -31,10 +31,10 @@ class MainPage extends Component {
                     <label className="brand-logo left">Welcome, {name}</label>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li  value="1"><Link to='/showAllPets'>Pets</Link></li>
-                        <li  value="2" ><Link to='/viewRequests'>Friend Requests</Link></li>
                         <li  value="3"><Link to='/viewFriends'>Friends</Link></li>
+                        <li  value="5"><Link to='/viewMeets'>Meets</Link></li>
                         <li  value="4"><Link to='/viewMeetRequests'>Meet Requests</Link></li>
-                        <li  value="5"><Link to='/viewMeets'>Upcoming Meets</Link></li>
+                        <li  value="2" ><Link to='/viewRequests'>Friend Requests</Link></li>
                         <li  value="6" ><Link to='/signout'>Logout</Link></li>
                     </ul>
                 </div>
