@@ -6,9 +6,9 @@ This is a MERN stack application which aims at finding perfect match for your pe
 
 ### Prerequisites
 
-MongoDB.
-Node.
-npm.
+MongoDB  
+Node  
+npm  
 
 ### Cloning the Repo
 
@@ -35,9 +35,9 @@ npm install
 
 Create a .env file under client/frontend/backend and specify the following values-
 
-<strong>PORT</strong> - port at which server runs.
-<strong>token</strong> - secret token used for password encryption.
-<strong>DATABASE</strong> - URL of the Mongodb Database created using MongoDB Atlas.
+<strong>PORT</strong> - port at which server runs  
+<strong>token</strong> - secret token used for password encryption  
+<strong>DATABASE</strong> - URL of the Mongodb Database created using MongoDB Atlas  
 
 ## Running the application
 
@@ -48,14 +48,14 @@ npm start
 
 ## Features
 
-Create a profile of your pet.
-Find appropriate matches for your pet.
-Send friend requests to other pets to get in touch.
-Send a meet request to a pet who is your friend.
+Create a profile of your pet.  
+Find appropriate matches for your pet.  
+Send friend requests to other pets to get in touch.  
+Send a meet request to a pet who is your friend.  
 
 ## Future Enhancements
 
-Specify location while arranging a meet.
-Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..)
-Chat option for friends
+Specify location while arranging a meet.  
+Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).  
+Chat option for friends.  
 
