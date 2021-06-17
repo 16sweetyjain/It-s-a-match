@@ -2,7 +2,6 @@ import React from 'react';
 import MainPage from './MainPage';
 import { useLocation } from 'react-router-dom';
 
-
 export default function ViewProfile (){
 
     const location = useLocation();

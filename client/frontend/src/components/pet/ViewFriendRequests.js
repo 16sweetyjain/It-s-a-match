@@ -48,10 +48,6 @@ export default function ViewFriendRequests() {
     const onAcceptRequestHandler = (e,user_email) => {
         e.preventDefault();
         onChangeReceiver(user_email);
-        acceptRequest();
-    };
-
-    const acceptRequest = () => {
         const request = {
             senderOfAcceptEmail:senderOfAcceptEmail,
             receiverOfAcceptEmail:receiverOfAcceptEmail,
@@ -64,7 +60,7 @@ export default function ViewFriendRequests() {
                 console.log(response);
                 let pendingRequests = [];
                 pendingRequests = response.data.result.notifications.filter(notif => notif.notification_status === 'pending');
-                this.setState({ pendingRequestsForUser:pendingRequests });
+                getPendingRequests(pendingRequests);
                 toast.success('Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
             },(error) => {
                 console.log(error);
