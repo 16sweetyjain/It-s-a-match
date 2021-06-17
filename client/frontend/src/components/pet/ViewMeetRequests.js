@@ -38,8 +38,21 @@ export default function ViewMeetRequests(){
             .catch((error) => console.log(error));    
     },[]);
 
-    const handleReject = (e) => {
+    const handleReject = (e, user_email) => {
         e.preventDefault();
+        const request = {
+            userEmail:user_email,
+            current_user_email:userEmail,
+            petName:petName
+        };
+        axios.put('api/deleteMeet',request)
+            .then((response) => {
+                console.log(response);
+                let pendingRequests = [];
+                pendingRequests = response.data.result.meets.filter(notif => notif.meetRequestStatus === 'pending');
+                getPendingRequests(pendingRequests);
+            })
+            .catch((error) => console.log(error));
         toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 });
     };
 
@@ -95,7 +108,7 @@ export default function ViewMeetRequests(){
                                                     <ToastContainer />
                                                 </div>
                                                 <div className="col s12">
-                                                    <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => handleReject(e) }>Reject</button>
+                                                    <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => handleReject(e, userEmail) }>Reject</button>
                                                     <ToastContainer />
                                                 </div>
                                             </div>

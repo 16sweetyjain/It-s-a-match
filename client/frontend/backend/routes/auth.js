@@ -18,6 +18,8 @@ const { sendNotifications } = require('../controllers/sendNotifications');
 const { acceptNotifications } = require('../controllers/acceptNotifications');
 const { sendMeetRequest } = require('../controllers/sendMeetRequest');
 const { acceptMeetRequest } = require('../controllers/acceptMeetRequest');
+const { deleteNotification } = require('../controllers/deleteNotification');
+const { deleteMeet } = require('../controllers/deleteMeet');
 
 router.post('/signup', signup);
 router.post('/signin', signin);
@@ -27,5 +29,8 @@ router.put('/sendNotifications',sendNotifications);
 router.put('/acceptNotifications',acceptNotifications);
 router.put('/sendMeetRequest',sendMeetRequest);
 router.put('/acceptMeetRequest',acceptMeetRequest);
+router.put('/deleteNotification',deleteNotification);
+router.put('/deleteMeet',deleteMeet);
+
 
 module.exports = router;
