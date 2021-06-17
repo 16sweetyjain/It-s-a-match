@@ -9,8 +9,6 @@ import NoRequests from './NoRequests';
 export default function ViewMeetRequests(){
 
     const [senderOfAcceptEmail, onChangeSender] = useState('');
-    const [receiverOfAcceptEmail, onChangeReceiver] = useState('');
-    //const  rejected = 'false';
     const [ users, usersList ] = useState([]);
     const [ petName, getPetName] = useState('');
     const [ petImage, getPetImage] = useState('');
@@ -36,26 +34,20 @@ export default function ViewMeetRequests(){
                 });
                 pendingMeetRequests = meets.filter(meet => meet.meetRequestStatus === 'pending');
                 getPendingRequests(pendingMeetRequests);
-            },(error) => {
-                console.log(error);
-            });     
-    });
+            })
+            .catch((error) => console.log(error));    
+    },[]);
 
     const handleReject = (e) => {
         e.preventDefault();
         toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 });
     };
 
-    const onAcceptRequestHandler = (e,userEmail, meetDate, meetTime) => {
+    const onAcceptRequestHandler = (e,user_email, meetDate, meetTime) => {
         e.preventDefault();
-        onChangeReceiver(userEmail);
-        acceptRequest(meetDate, meetTime);
-    };
-
-    const acceptRequest = (meetDate, meetTime) => {
         const request = {
             senderOfAcceptEmail:senderOfAcceptEmail,
-            receiverOfAcceptEmail:receiverOfAcceptEmail,
+            receiverOfAcceptEmail:user_email,
             meetRequestStatus:'accepted',
             pet_name:petName,
             image:petImage,
@@ -68,9 +60,8 @@ export default function ViewMeetRequests(){
                 let pendingRequests = [];
                 pendingRequests = response.data.result.meets.filter(notif => notif.meetRequestStatus === 'pending');
                 getPendingRequests(pendingRequests);
-            },(error) => {
-                console.log(error);
-            });
+            })
+            .catch((error) => console.log(error));
         toast.success('Meet Request accepted', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
     };
 
@@ -81,7 +72,7 @@ export default function ViewMeetRequests(){
                 {pendingMeetRequestsForUser.length == 0 ? <NoRequests/> :
                     <div>
                         {pendingMeetRequestsForUser.map((request) => {
-                            const petName = request.pet_name;
+                            const pet_Name = request.pet_name;
                             const image = request.image;
                             const userEmail = request.user_email;
                             const meetDate = request.meetDate;
@@ -95,7 +86,7 @@ export default function ViewMeetRequests(){
                                             </div>
                                             <div className="col s12">
                                                 <span className="black-text">
-                                                    <h4>{petName} arranged a meet on {meetDate} at {meetTime} </h4>
+                                                    <h4>{pet_Name} arranged a meet on {meetDate} at {meetTime} </h4>
                                                 </span>
                                             </div>
                                             <div >

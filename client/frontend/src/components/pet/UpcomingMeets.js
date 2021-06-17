@@ -17,7 +17,7 @@ export default function UpcomingMeets(){
             },(error) => {
                 console.log(error);
             });  
-    });
+    },[]);
   
     let meets = [];
     const myLoggedInUser = users.filter((user) => user.email === userEmail);

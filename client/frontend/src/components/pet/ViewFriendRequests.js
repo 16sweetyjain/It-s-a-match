@@ -9,7 +9,6 @@ import NoRequests from './NoRequests';
 export default function ViewFriendRequests() {
 
     const [senderOfAcceptEmail, onChangeSender] = useState('');
-    const [receiverOfAcceptEmail, onChangeReceiver] = useState('');
     const [ users, usersList ] = useState([]);
     const [ petName, getPetName] = useState('');
     const [ petImage, getPetImage] = useState('');
@@ -20,7 +19,7 @@ export default function ViewFriendRequests() {
         onChangeSender(userEmail);
         axios.get('api/getAllUsers')
             .then((response) => {
-                //console.log(response);
+                console.log(response);
                 usersList(response.data.result);
                 let pendingRequests = [];
                 let myLoggedInUser = [];
@@ -38,7 +37,7 @@ export default function ViewFriendRequests() {
             },(error) => {
                 console.log(error);
             });     
-    });
+    },[]);
 
     const handleReject = (e) => {
         e.preventDefault();
@@ -47,10 +46,9 @@ export default function ViewFriendRequests() {
 
     const onAcceptRequestHandler = (e,user_email) => {
         e.preventDefault();
-        onChangeReceiver(user_email);
         const request = {
             senderOfAcceptEmail:senderOfAcceptEmail,
-            receiverOfAcceptEmail:receiverOfAcceptEmail,
+            receiverOfAcceptEmail:user_email,
             notificationStatus:'accepted',
             pet_name:petName,
             image:petImage
@@ -74,11 +72,11 @@ export default function ViewFriendRequests() {
                 {pendingRequestsForUser.length == 0 ? <NoRequests/> :
                     <div>
                         {pendingRequestsForUser.map((request) => {
-                            const petName = request.pet_name;
+                            const pet_name = request.pet_name;
                             const image = request.image;
                             const userEmail = request.user_email;
                             return(
-                                <div  key={ petName } className="col s12 m8 offset-m2 l6 offset-l3">
+                                <div  key={ pet_name } className="col s12 m8 offset-m2 l6 offset-l3">
                                     <div className="card-panel grey lighten-5 z-depth-1">
                                         <div className="row valign-wrapper">
                                             <div className="col s2">
@@ -86,7 +84,7 @@ export default function ViewFriendRequests() {
                                             </div>
                                             <div className="col s12">
                                                 <span className="black-text">
-                                                    <h4>{petName} sent you a friend request</h4>
+                                                    <h4>{pet_name} sent you a friend request</h4>
                                                 </span>
                                             </div>
                                             <div >

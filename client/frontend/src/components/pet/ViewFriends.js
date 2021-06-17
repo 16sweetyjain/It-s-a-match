@@ -20,7 +20,7 @@ export default function ViewFriends(){
                 console.log(error);
             });  
         onChangeSenderEmail(userEmail);
-    });
+    },[]);
   
     const arrangeMeetHandler = (e,user_Email, petName, image) => {
         e.preventDefault();

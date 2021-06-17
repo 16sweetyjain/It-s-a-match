@@ -23,7 +23,7 @@ export default function ArrangeMeet() {
         Materialize.Timepicker.init(elemTime,{
             onCloseEnd:handleTime
         });
-    });
+    },[]);
 
     const handleDate = () => {
         setmeetDate(meetdate.current.value);       
@@ -43,12 +43,12 @@ export default function ArrangeMeet() {
 
     const arrangeMeetHandler = (e) => {
         e.preventDefault();
-        const { senderEmail, receiverEmail, meetRequestStatus, petName, image } = location.state;
+        const { senderEmail, receiverEmail, meetRequestStatus, pet_name, image } = location.state;
         const request = {
             senderEmail:senderEmail,
             receiverEmail:receiverEmail,
             meetRequestStatus:meetRequestStatus,
-            petName:petName,
+            pet_name:pet_name,
             image:image,
             meetDate:meetDate,
             meetTime:meetTime

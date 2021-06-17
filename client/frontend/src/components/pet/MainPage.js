@@ -10,11 +10,12 @@ export default function MainPage(){
     useEffect(() => {
         axios.get('api/getAllUsers')
             .then((response) => {
+                console.log(response);
                 usersList(response.data.result);
             },(error) => {
                 console.log(error);
             });  
-    });
+    },[]);
 
     let myLoggedInUser = [];
     myLoggedInUser = users.filter((user) => user.email === userEmail);

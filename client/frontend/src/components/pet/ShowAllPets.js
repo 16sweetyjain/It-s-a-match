@@ -11,7 +11,6 @@ export default function ShowAllPets(){
     const history = useHistory();
     const notificationStatus = 'pending';
     const [senderEmail, senderEmailChangeHandler] = useState('');
-    const [receiverEmail, receiverEmailChangeHandler] = useState('');
     const [ users, usersList ] = useState([]);
     const userEmail = useSelector( state => state.userEmail.email);
  
@@ -19,23 +18,18 @@ export default function ShowAllPets(){
         senderEmailChangeHandler(userEmail);
         axios.get('api/getAllUsers')
             .then((response) => {
+                console.log(response);
                 usersList(response.data.result);
             },(error) => {
                 console.log(error);
             });  
-    });
+    },[]);
 
-    const onSendRequestHandler = (e, receiverEmail, senderPetName, senderPetImage) => {
+    const onSendRequestHandler = (e, userEmail, senderPetName, senderPetImage) => {
         e.preventDefault();
-        //console.log(userEmail);
-        receiverEmailChangeHandler(receiverEmail);
-        sendRequest(senderPetName, senderPetImage);   
-    };
-
-    const sendRequest = (senderPetName, senderPetImage) => {
         const request = {
             senderEmail: senderEmail,
-            receiverEmail: receiverEmail,
+            receiverEmail: userEmail,
             notificationStatus: notificationStatus,
             pet_name:senderPetName, 
             image:senderPetImage
@@ -46,8 +40,7 @@ export default function ShowAllPets(){
                 console.log(response);
             },(error) => {
                 console.log(error);
-            });
-        //toast.success('Request sent', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 } );
+            });  
     };
 
     const viewProfileHandler = (e, email, petName, interests, dislikes, shortInfo, image) => {

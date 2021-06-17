@@ -6,7 +6,7 @@ export default function Signout() {
 
     useEffect(() => {
         auth.signout(() => {}); 
-    });
+    },[]);
 
     return(
         <div style={ { height:'75vh' } } className="container valign-wrapper">
