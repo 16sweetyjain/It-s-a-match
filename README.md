@@ -57,5 +57,10 @@ Send a meet request to a pet who is your friend.
 
 Specify location while arranging a meet.  
 Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).  
-Chat option for friends.  
+Chat option for friends. 
+
+## Additional Dependencies
+Materialize css  
+Bcrypt.js (for password hashing)  
+React-Materialize  
 
