@@ -52,6 +52,9 @@ Create a profile of your pet.
 Find appropriate matches for your pet.  
 Send friend requests to other pets to get in touch.  
 Send a meet request to a pet who is your friend.  
+Protected frontend routes.  
+Input validations.  
+Error Handling.  
 
 ## Future Enhancements
 
