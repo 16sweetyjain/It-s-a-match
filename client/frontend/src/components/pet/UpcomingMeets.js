@@ -1,13 +1,16 @@
 import React, { useState,useEffect }  from 'react';
 import {  useSelector  } from 'react-redux';
-import MainPage from './MainPage';
 import axios from 'axios';
 import NoMeets from './NoMeets';
+import Navbar from '../Navbar';
+import HomeNavbar from './HomeNavbar';
+import { useHistory } from 'react-router';
 
 export default function UpcomingMeets(){
+
+    const history = useHistory();
     const userEmail = useSelector( state => state.userEmail.email);
     const [ users, usersList ] = useState([]);
-
 
     useEffect(() => {
         axios.get('api/getAllUsers')
@@ -28,7 +31,9 @@ export default function UpcomingMeets(){
 
     return(
         <div>
-            <MainPage/>
+            <Navbar/>
+            <HomeNavbar/>
+            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className ='container'>
                 {acceptedRequests.length == 0 ? <NoMeets/> :
                     <div>

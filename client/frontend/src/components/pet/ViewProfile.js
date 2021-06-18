@@ -1,9 +1,11 @@
 import React from 'react';
-import MainPage from './MainPage';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import Navbar from '../Navbar';
+import HomeNavbar from './HomeNavbar';
 
 export default function ViewProfile (){
 
+    const history = useHistory();
     const location = useLocation();
     const petName = location.state.petName;
     const image = location.state.image;
@@ -13,7 +15,9 @@ export default function ViewProfile (){
 
     return (
         <div>
-            <MainPage/>
+            <Navbar/>
+            <HomeNavbar/>
+            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className='container'>
                 <div className ="row ">
                     <div className="col s6" style={ { display:'flex', justifyContent: 'center', alignItems: 'center', marginTop:'20px' } }>

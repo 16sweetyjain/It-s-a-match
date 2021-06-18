@@ -1,10 +1,11 @@
 import React, { useState,useEffect  } from 'react';
 import axios from 'axios';
-import MainPage from './MainPage';
 import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router';
+import Navbar from '../Navbar';
+import HomeNavbar from './HomeNavbar';
 toast.configure();
 
 export default function ShowAllPets(){
@@ -97,7 +98,9 @@ export default function ShowAllPets(){
     });
     return(
         <div>
-            <MainPage/>
+            <Navbar/>
+            <HomeNavbar/>
+            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className='container' >
                 <div className="row" >  
                     {showMatches.map((match) => {

@@ -30,7 +30,7 @@ export default function SignIn() {
                 dispatch(setUserEmail(user.email));
                 auth.signin(() => {
                     if(Object.prototype.hasOwnProperty.call(response.data.message,'profile')){
-                        history.push('/showAllPets');   
+                        history.push('/main');   
                     }
                     else{
                         history.push('/create');

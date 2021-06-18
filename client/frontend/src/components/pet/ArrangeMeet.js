@@ -1,11 +1,15 @@
 import React, { useRef,useState,useEffect }  from 'react';
-import { useLocation } from 'react-router-dom';
-import MainPage from './MainPage';
+import { useLocation, useHistory } from 'react-router-dom';
 import Materialize from 'materialize-css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import Navbar from '../Navbar';
+import HomeNavbar from './HomeNavbar';
+
 
 export default function ArrangeMeet() {
+
+    const history = useHistory();
     const location = useLocation();
     const [ meetDate, setmeetDate] = useState('');
     const [ meetTime, setmeetTime] = useState('');
@@ -70,7 +74,9 @@ export default function ArrangeMeet() {
 
     return(
         <div>
-            <MainPage/>
+            <Navbar/>
+            <HomeNavbar/>
+            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className='container'>
                 <div className ="row " >
                     <div className ='col' >

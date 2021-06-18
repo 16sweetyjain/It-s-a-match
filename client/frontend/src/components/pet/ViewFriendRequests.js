@@ -1,13 +1,16 @@
 import React, { useState,useEffect }  from 'react';
 import {  useSelector  } from 'react-redux';
 import axios from 'axios';
-import MainPage from './MainPage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoRequests from './NoRequests';
+import Navbar from '../Navbar';
+import HomeNavbar from './HomeNavbar';
+import { useHistory } from 'react-router';
 
 export default function ViewFriendRequests() {
 
+    const history = useHistory();
     const [senderOfAcceptEmail, onChangeSender] = useState('');
     const [ users, usersList ] = useState([]);
     const [ petName, getPetName] = useState('');
@@ -80,7 +83,9 @@ export default function ViewFriendRequests() {
 
     return(
         <div>
-            <MainPage/>
+            <Navbar/>
+            <HomeNavbar/>
+            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className ='container'>
                 {pendingRequestsForUser.length == 0 ? <NoRequests/> :
                     <div>

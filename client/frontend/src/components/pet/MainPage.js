@@ -1,39 +1,33 @@
-import React, { useState,useEffect  } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import React, { useEffect  } from 'react';
+import Materialize from 'materialize-css';
+import Navbar from '../Navbar';
+import HomeNavbar from './HomeNavbar';
+import friend_request from './helper_images/friend_request.png';
+import list_of_pets from './helper_images/list_of_pets.jpg';
+import meets from './helper_images/meets.png';
+import pets from './helper_images/pets.png';
 import { Link } from 'react-router-dom';
 
 export default function MainPage(){
-    const [ users, usersList ] = useState([]);
-    const userEmail = useSelector( state => state.userEmail.email);
 
     useEffect(() => {
-        axios.get('api/getAllUsers')
-            .then((response) => {
-                console.log(response);
-                usersList(response.data.result);
-            },(error) => {
-                console.log(error);
-            });  
+        var elems = document.querySelectorAll('.carousel');
+        Materialize.Carousel.init(elems,{ duration: 200, }); 
     },[]);
 
-    let myLoggedInUser = [];
-    myLoggedInUser = users.filter((user) => user.email === userEmail);
-    const name = myLoggedInUser.map(user => user.profile.pet_name);
-
     return(
-        <nav>
-            <div className="nav-wrapper"> 
-                <label className="brand-logo left">Welcome, {name}</label>
-                <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li  value="1"><Link to='/showAllPets'>Pets</Link></li>
-                    <li  value="3"><Link to='/viewFriends'>Friends</Link></li>
-                    <li  value="5"><Link to='/viewMeets'>Meets</Link></li>
-                    <li  value="4"><Link to='/viewMeetRequests'>Meet Requests</Link></li>
-                    <li  value="2" ><Link to='/viewRequests'>Friend Requests</Link></li>
-                    <li  value="6" ><Link to='/signout'>Logout</Link></li>
-                </ul>
+        <div>
+            <Navbar/>
+            <HomeNavbar/>
+            <div className = 'container' >
+                <div className="carousel"style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign:'center', fontFamily:'cursive' }} >
+                    <Link className="carousel-item" to='/showAllPets'><b>Find a match</b> <img src = {pets}/></Link>
+                    <Link className="carousel-item" to="/viewFriends"><b>Your Matches</b><img src={list_of_pets}/></Link>
+                    <Link className="carousel-item" to="/viewMeets"><b>Meets</b><img src={meets}/></Link>
+                    <Link className="carousel-item" to="/viewRequests"><b>Friend Requests</b><img src= {friend_request}/></Link>
+                    <Link className="carousel-item" to="/viewMeetRequests"><b>Meet Requests</b><img src= {friend_request}/></Link>
+                </div>
             </div>
-        </nav>
+        </div>
     );
 }
