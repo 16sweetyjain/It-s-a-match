@@ -24,8 +24,8 @@ export default function HomeNavbar(){
 
     return(
         <nav>
-            <div className="nav-wrapper"> 
-                <label className="brand-logo center">Welcome, {name}</label>
+            <div className="nav-wrapper black"> 
+                <label className="brand-logo left">Welcome, {name}</label>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li  value="1" ><Link to='/signout'><b>Logout</b></Link></li>
                 </ul>

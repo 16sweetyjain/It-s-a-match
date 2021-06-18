@@ -77,11 +77,11 @@ export default function ArrangeMeet() {
             <Navbar/>
             <HomeNavbar/>
             <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
-            <div className='container'>
+            <div className='container'  style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                 <div className ="row " >
-                    <div className ='col' >
+                    <div className ='col'>
                         <div className='row' >
-                            <div className='col s12' style = { { textAlign:'center' }}>
+                            <div className='col s12'>
                                 <h3>Arrange a Meet with {pet_name}</h3>
                             </div>
                         </div>
