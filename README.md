@@ -8,7 +8,7 @@ This is a MERN stack application which aims at finding perfect match for your pe
 
 MongoDB  
 Node  
-npm  
+npm
 
 ### Cloning the Repo
 
@@ -25,23 +25,27 @@ Move to client/frontend directory
 ```bash
 #Install client side dependencies
  npm install
- ```
+```
+
 Move to client/frontend/backend
+
 ```bash
 #Install server side dependencies
 npm install
 ```
+
 ### .env file
 
 Create a .env file under client/frontend/backend and specify the following values-
 
 <strong>PORT</strong> - port at which server runs  
 <strong>token</strong> - secret token used for password encryption  
-<strong>DATABASE</strong> - URL of the Mongodb Database created using MongoDB Atlas  
+<strong>DATABASE</strong> - URL of the Mongodb Database created using MongoDB Atlas
 
 ## Running the application
 
 Move to client/frontend/
+
 ```bash
 npm start
 ```
@@ -55,15 +59,16 @@ Send a meet request to a pet who is your friend.
 Protected frontend routes.  
 Input validations.  
 Error Handling.  
+Token based Authentication.
 
 ## Future Enhancements
 
 Specify location while arranging a meet.  
 Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).  
-Chat option for friends. 
+Chat option for friends.
 
 ## Additional Dependencies
+
 Materialize css  
 Bcrypt.js (for password hashing)  
-React-Materialize  
-
+React-Materialize
