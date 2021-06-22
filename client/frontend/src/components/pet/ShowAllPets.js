@@ -39,6 +39,7 @@ export default function ShowAllPets(){
         axios.put('api/sendNotifications', request)
             .then((response) => {
                 console.log(response);
+                toast.success('Request sent', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 });
             },(error) => {
                 console.log(error);
             });  

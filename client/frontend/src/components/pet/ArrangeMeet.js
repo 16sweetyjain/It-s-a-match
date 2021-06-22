@@ -47,12 +47,12 @@ export default function ArrangeMeet() {
 
     const arrangeMeetHandler = (e) => {
         e.preventDefault();
-        const { senderEmail, receiverEmail, meetRequestStatus, pet_name, image } = location.state;
+        const { senderEmail, receiverEmail, meetRequestStatus, image, name } = location.state;
         const request = {
             senderEmail:senderEmail,
             receiverEmail:receiverEmail,
             meetRequestStatus:meetRequestStatus,
-            pet_name:pet_name,
+            pet_name:name,
             image:image,
             meetDate:meetDate,
             meetTime:meetTime
