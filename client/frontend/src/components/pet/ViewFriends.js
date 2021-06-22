@@ -71,9 +71,9 @@ export default function ViewFriends(){
                                 const image = friend.image;
                                 return(
                                     <div  key={ petName } className = "col s6" style={ { textAlign:'center' } }>
-                                        <div className="card" >
+                                        <div className="card" style={ { textAlign:'center' } } >
                                             <div >
-                                                <img  style = { { height : '350px', width: '350px' } } className="activator" src={ `${ image.substr(8) }` }/>
+                                                <img  style = { { height : '350px', width: '350px', paddingTop:'10px' } } className="activator circle" src={ `${ image.substr(8) }` }/>
                                             </div>
                                             <div className="card-content">                                            <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()} </b></h5>
                                                 <div style = {{  textAlign:'center' }}>

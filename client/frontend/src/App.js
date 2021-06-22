@@ -19,7 +19,7 @@ import UpcomingMeets from './components/pet/UpcomingMeets';
 export default function App () {
    
     return (
-        <div className='green lighten-4'>
+        <div className='background'>
             <Switch>
                 <Route  path='/signin' component={() => <SignIn />}/>
                 <Route  path='/signup' component={() => <Signup />}/>

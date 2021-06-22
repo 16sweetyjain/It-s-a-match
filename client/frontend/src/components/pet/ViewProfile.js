@@ -21,9 +21,9 @@ export default function ViewProfile (){
             <div className='container'>
                 <div className ="row ">
                     <div className="col s6" style={ { display:'flex', justifyContent: 'center', alignItems: 'center', marginTop:'20px' } }>
-                        <img className="responsive-img" src={ `${ image.substr(8) }` }/>
+                        <img className="responsive-img circle" src={ `${ image.substr(8) }` }/>
                     </div>
-                    <div className="col s6 ">
+                    <div className="col s6 " style = { { textAlign:'center' }}>
                         <div className="row">
                             <div className="col s12">
                                 <h2>
@@ -33,7 +33,7 @@ export default function ViewProfile (){
                         </div>
                         <div className="row">
                             <div className=" col s12">
-                                <h5>{shortInfo}</h5>
+                                <h5>Bio:- {shortInfo}</h5>
                             </div>
                         </div>
                         <div className="row"> 
