@@ -16,6 +16,7 @@ export default function ArrangeMeet() {
     const meetdate = useRef();
     const meettime = useRef();
     const { pet_name } = location.state;
+    const [meetPlace, selectMeetPlace] = useState('');
 
     useEffect(() => {
         //var context = this;
@@ -26,6 +27,10 @@ export default function ArrangeMeet() {
         var elemTime = document.querySelectorAll('.timepicker');
         Materialize.Timepicker.init(elemTime,{
             onCloseEnd:handleTime
+        });
+        var elemPlace = document.querySelectorAll('select');
+        Materialize.FormSelect.init(elemPlace, {
+
         });
     },[]);
 
@@ -55,7 +60,8 @@ export default function ArrangeMeet() {
             pet_name:name,
             image:image,
             meetDate:meetDate,
-            meetTime:meetTime
+            meetTime:meetTime,
+            meetPlace:meetPlace
         };
         console.log(request);
         axios.put('api/sendMeetRequest',request)
@@ -71,6 +77,12 @@ export default function ArrangeMeet() {
                 });
             });
     };
+
+    const meetPlaceChange = (e) => {
+        selectMeetPlace(e.target.value);
+    };
+
+    console.log(meetPlace);
 
     return(
         <div>
@@ -99,6 +111,17 @@ export default function ArrangeMeet() {
                                     <input id ="meetTime" type='text' className='timepicker' value = {meetTime} onChange={handleChangeTime} ref={meettime} />
                                     <label>Pick a time</label>
                                 </div>
+                            </div>
+                            <div className='row'>
+                                <dic className='col s12'>
+                                    <select onChange = {meetPlaceChange} value = {meetPlace}>
+                                        <option value ='' disabled selected>Pick a place</option>
+                                        <option value='PMC Park'>PMC Park</option>
+                                        <option value ='Ronnie Pethouse'>Ronnie Pethouse</option>
+                                        <option value = 'Govind Raja Park'>Govind Raja Park</option>
+                                        <label>Pick a place</label>
+                                    </select>
+                                </dic>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12" style = { { textAlign:'center' }}>

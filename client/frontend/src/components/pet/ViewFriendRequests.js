@@ -112,11 +112,11 @@ export default function ViewFriendRequests() {
                                                 </div>
                                                 <div>
                                                     <div className="col s12" style={{ marginBottom :'5px' }}>
-                                                        <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => onAcceptRequestHandler(e,userEmail) }>Accept</button>
+                                                        <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large btn-dark" onClick={ (e) => onAcceptRequestHandler(e,userEmail) }>Accept</button>
                                                         <ToastContainer />
                                                     </div>
                                                     <div className="col s12">
-                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => handleReject(e,userEmail) }>Reject</button>
+                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large btn-dark" onClick={ (e) => handleReject(e,userEmail) }>Reject</button>
                                                         <ToastContainer />
                                                     </div>
                                                 </div>

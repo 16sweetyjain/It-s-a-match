@@ -15,6 +15,7 @@ export default function ViewFriends(){
     const userEmail = useSelector( state => state.userEmail.email);
     const [isLoading,setLoading] = useState(true);
     const [name, setName] = useState('');
+    
     useEffect(() => {
         axios.get('api/getAllUsers')
             .then((response) => {

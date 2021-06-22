@@ -1,7 +1,7 @@
 const User = require('../models/User');
 
 exports.sendMeetRequest = (req,res) => {
-    let { senderEmail, receiverEmail, meetRequestStatus, pet_name, image, meetDate, meetTime } = req.body;  //notif_status = 'pending'
+    let { senderEmail, receiverEmail, meetRequestStatus, pet_name, image, meetDate, meetTime, meetPlace } = req.body;  //notif_status = 'pending'
     console.log(req.body);
     let errors = [];
     if(!meetDate){
@@ -21,7 +21,8 @@ exports.sendMeetRequest = (req,res) => {
         pet_name:pet_name,
         image:image,
         meetDate:meetDate,
-        meetTime:meetTime
+        meetTime:meetTime,
+        meetPlace:meetPlace
     };
 
     User.findOneAndUpdate({ email: receiverEmail }, { $addToSet:{ meets: meetNotification } }, { new: true })

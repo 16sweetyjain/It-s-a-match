@@ -1,14 +1,15 @@
 const User = require('../models/User');
 
 exports.acceptMeetRequest = (req,res) => {
-    let { senderOfAcceptEmail, receiverOfAcceptEmail, meetRequestStatus, pet_name, image, meetDate, meetTime  } = req.body;  
+    let { senderOfAcceptEmail, receiverOfAcceptEmail, meetRequestStatus, pet_name, image, meetDate, meetTime, meetPlace } = req.body;  
     const notification_for_receiver_of_accept_request = {
         user_email: senderOfAcceptEmail,
         meetRequestStatus: meetRequestStatus,
         pet_name:pet_name,
         image:image,
         meetDate:meetDate,
-        meetTime:meetTime
+        meetTime:meetTime,
+        meetPlace:meetPlace
     };
     User.findOneAndUpdate({ email:senderOfAcceptEmail, 'meets.user_email': receiverOfAcceptEmail }, { $set:{ 'meets.$.meetRequestStatus': meetRequestStatus } }, { new:true })
         .then(response => {

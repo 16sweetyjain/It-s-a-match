@@ -47,6 +47,7 @@ export default function UpcomingMeets(){
                                 const image = meet.image;
                                 const meetDate = meet.meetDate;
                                 const meetTime = meet.meetTime;
+                                const meetPlace = meet.meetPlace;
                                 return(
                                     <div  key={ petName } className="col s12 m8 offset-m2 l6 offset-l3">
                                         <div className="card-panel grey lighten-5 z-depth-1">
@@ -56,7 +57,7 @@ export default function UpcomingMeets(){
                                                 </div>
                                                 <div className="col s12">
                                                     <span className="black-text">
-                                                        <h4>You have an upcoming meet with {petName} on {meetDate} at {meetTime} </h4>
+                                                        <h4>You have an upcoming meet with {petName} on {meetDate} at {meetTime}. Place - {meetPlace} </h4>
                                                     </span>
                                                 </div>
                                             </div>

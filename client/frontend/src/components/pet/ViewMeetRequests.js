@@ -60,7 +60,7 @@ export default function ViewMeetRequests(){
         toast.success('Request rejected', { position: toast.POSITION.BOTTOM_RIGHT , autoClose: 1000 });
     };
 
-    const onAcceptRequestHandler = (e,user_email, meetDate, meetTime) => {
+    const onAcceptRequestHandler = (e,user_email, meetDate, meetTime, meetPlace) => {
         e.preventDefault();
         const request = {
             senderOfAcceptEmail:senderOfAcceptEmail,
@@ -69,7 +69,8 @@ export default function ViewMeetRequests(){
             pet_name:petName,
             image:petImage,
             meetDate:meetDate,
-            meetTime:meetTime
+            meetTime:meetTime,
+            meetPlace : meetPlace
         };
         axios.put('api/acceptMeetRequest', request)
             .then((response) => {
@@ -98,6 +99,7 @@ export default function ViewMeetRequests(){
                                 const userEmail = request.user_email;
                                 const meetDate = request.meetDate;
                                 const meetTime = request.meetTime;
+                                const meetPlace = request.meetPlace;
                                 return(
                                     <div  key={ petName } className="col s12 m8 offset-m2 l6 offset-l3">
                                         <div className="card-panel grey lighten-5 z-depth-1">
@@ -107,16 +109,16 @@ export default function ViewMeetRequests(){
                                                 </div>
                                                 <div className="col s12">
                                                     <span className="black-text">
-                                                        <h4>{pet_Name} arranged a meet on {meetDate} at {meetTime} </h4>
+                                                        <h4>{pet_Name} arranged a meet on {meetDate} at {meetTime}. Place - {meetPlace} </h4>
                                                     </span>
                                                 </div>
                                                 <div >
                                                     <div className="col s12" style={{ marginBottom :'5px' }}>
-                                                        <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => onAcceptRequestHandler(e,userEmail, meetDate, meetTime) }>Accept</button>
+                                                        <button  style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginBottom:'100' } } className="btn btn-large btn-dark" onClick={ (e) => onAcceptRequestHandler(e,userEmail, meetDate, meetTime,meetPlace) }>Accept</button>
                                                         <ToastContainer />
                                                     </div>
                                                     <div className="col s12">
-                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => handleReject(e, userEmail) }>Reject</button>
+                                                        <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px', marginTop:'100' } } className="btn btn-large btn-dark" onClick={ (e) => handleReject(e, userEmail) }>Reject</button>
                                                         <ToastContainer />
                                                     </div>
                                                 </div>

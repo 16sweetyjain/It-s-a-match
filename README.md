@@ -50,6 +50,8 @@ Move to client/frontend/
 npm start
 ```
 
+The application will run in the browser at localhost:3000
+
 ## Features
 
 Create a profile of your pet.  
@@ -63,9 +65,8 @@ Token based Authentication.
 
 ## Future Enhancements
 
-Specify location while arranging a meet.  
-Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).  
-Chat option for friends.
+Optimize location specification for meet(e.g., locations within a particular radius to be available for meet).  
+Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).
 
 ## Additional Dependencies
 
