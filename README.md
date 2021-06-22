@@ -61,7 +61,8 @@ Send a meet request to a pet who is your friend.
 Protected frontend routes.  
 Input validations.  
 Error Handling.  
-Token based Authentication.
+Token based Authentication.  
+Filtering out matches on the basis of % match.
 
 ## Future Enhancements
 

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function CreateProfile() {
+
     const history = useHistory();
     const userEmail = useSelector( state => state.userEmail.email);
     const [ petProfile, setPetProfile] = useState({
@@ -41,7 +42,7 @@ export default function CreateProfile() {
             .then((response) => {
                 console.log(response);
                 console.log('profile created');
-                history.push('/showAllPets');
+                history.push('/main');
             })
             .catch(( error ) => {
                 console.log(error.response.data.errors);
@@ -85,7 +86,7 @@ export default function CreateProfile() {
                     <div className="row">
                         <div className="input-field col s12 black-text">
                             <i className="material-icons prefix">mode_edit</i>
-                            <textarea id="shortDescription" className="materialize-textarea" onChange={this.handleChange}></textarea>
+                            <textarea id="shortDescription" className="materialize-textarea" value = {petProfile.shortDescription} onChange={handleChange}></textarea>
                             <label >Write short info of your pet</label>
                         </div>
                     </div>

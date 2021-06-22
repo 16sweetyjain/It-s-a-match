@@ -74,7 +74,7 @@ export default function Signup() {
                         <div className="row">
                             <div className="input-field col s12 black-text">
                                 <i className="material-icons prefix">lock</i>
-                                <input id="password" type="password" className="validate" value={ user.passwordConfirmation } onChange={onChangeHandler}/>
+                                <input id="passwordConfirmation" type="password" className="validate" value={ user.passwordConfirmation } onChange={onChangeHandler}/>
                                 <label>Confirm Password</label>
                             </div>
                         </div>
