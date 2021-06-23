@@ -21,11 +21,11 @@ export default function MainPage(){
             <HomeNavbar/>
             <div className = 'container' >
                 <div className="carousel"style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign:'center', fontFamily:'cursive' }} >
-                    <Link className="carousel-item" to='/showAllPets'><b>Find a match</b> <img src = {pets}/></Link>
-                    <Link className="carousel-item" to="/viewFriends"><b>Your Matches</b><img src={list_of_pets}/></Link>
-                    <Link className="carousel-item" to="/viewMeets"><b>Meets</b><img src={meets}/></Link>
-                    <Link className="carousel-item" to="/viewRequests"><b>Friend Requests</b><img src= {friend_request}/></Link>
-                    <Link className="carousel-item" to="/viewMeetRequests"><b>Meet Requests</b><img src= {friend_request}/></Link>
+                    <Link className="carousel-item white" to='/showAllPets'><b>Find a match</b> <img src = {pets}/></Link>
+                    <Link className="carousel-item  white" to="/viewFriends"><b>Your Matches</b><img src={list_of_pets}/></Link>
+                    <Link className="carousel-item  white" to="/viewMeets"><b>Meets</b><img src={meets}/></Link>
+                    <Link className="carousel-item  white" to="/viewRequests"><b>Friend Requests</b><img src= {friend_request}/></Link>
+                    <Link className="carousel-item  white" to="/viewMeetRequests"><b>Meet Requests</b><img src= {friend_request}/></Link>
                 </div>
             </div>
         </div>
