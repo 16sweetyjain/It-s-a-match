@@ -6,7 +6,7 @@ const Loader = () => {
             <div className ='row'>
                 <div className='col s12'>
                     <div className="preloader-wrapper big active">
-                        <div className="spinner-layer spinner-blue-only">
+                        <div className="spinner-layer spinner-white-only">
                             <div className="circle-clipper center">
                                 <div className="circle"></div>
                             </div>

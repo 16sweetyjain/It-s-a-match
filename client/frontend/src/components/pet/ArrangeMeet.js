@@ -88,13 +88,13 @@ export default function ArrangeMeet() {
         <div>
             <Navbar/>
             <HomeNavbar/>
-            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
-            <div className='container'  style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+            <i className="white small material-icons" onClick={() => history.goBack()}>arrow_back</i>
+            <div className=' pink lighten-5 container'  style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                 <div className ="row " >
                     <div className ='col'>
                         <div className='row' >
                             <div className='col s12'>
-                                <h3>Arrange a Meet with {pet_name}</h3>
+                                <h3>Arrange Meet with {pet_name}</h3>
                             </div>
                         </div>
                     </div>
@@ -102,18 +102,21 @@ export default function ArrangeMeet() {
                         <form className="col s12" autoComplete='off'>
                             <div className='row'>
                                 <div className="input-field col s12">
+                                    <i className="small material-icons prefix">date_range</i>
                                     <input  id ="meetDate" type='text' className='datepicker' value={meetDate} onChange={handleChangeDate} ref={meetdate}/>
                                     <label>Pick a date</label>
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className="input-field col s12">
+                                    <i className="small material-icons prefix">timer</i>
                                     <input id ="meetTime" type='text' className='timepicker' value = {meetTime} onChange={handleChangeTime} ref={meettime} />
                                     <label>Pick a time</label>
                                 </div>
                             </div>
                             <div className='row'>
-                                <dic className='col s12'>
+                                <div className='input-field col s12'>
+                                    <i className="small material-icons prefix">location_on</i>
                                     <select onChange = {meetPlaceChange} value = {meetPlace}>
                                         <option value ='' disabled selected>Pick a place</option>
                                         <option value='PMC Park'>PMC Park</option>
@@ -121,10 +124,10 @@ export default function ArrangeMeet() {
                                         <option value = 'Govind Raja Park'>Govind Raja Park</option>
                                         <label>Pick a place</label>
                                     </select>
-                                </dic>
+                                </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12" style = { { textAlign:'center' }}>
+                                <div className="col s12" style = { { textAlign:'center' }}>
                                     <button  className="btn btn-large btn-dark" onClick={ (e) => arrangeMeetHandler(e) }>Arrange a meet</button>
                                     <ToastContainer/>
                                 </div>

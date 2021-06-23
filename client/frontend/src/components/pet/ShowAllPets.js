@@ -101,7 +101,7 @@ export default function ShowAllPets(){
         <div>
             <Navbar/>
             <HomeNavbar/>
-            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
+            <i className="white small material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className='container' >
                 <div className="row" >  
                     {showMatches.map((match) => {

@@ -4,7 +4,7 @@ import Navbar from '../Navbar';
 import HomeNavbar from './HomeNavbar';
 import friend_request from './helper_images/friend_request.png';
 import list_of_pets from './helper_images/list_of_pets.jpg';
-import meets from './helper_images/meets.png';
+import meets from './helper_images/meets.jpg';
 import pets from './helper_images/pets.png';
 import { Link } from 'react-router-dom';
 

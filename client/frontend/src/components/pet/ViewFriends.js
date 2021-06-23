@@ -61,7 +61,7 @@ export default function ViewFriends(){
                 <div>
                     <Navbar/>
                     <HomeNavbar/>
-                    <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
+                    <i className=" white small material-icons" onClick={() => history.goBack()}>arrow_back</i>
                     <div className ='container'>
                         {!acceptedRequests.length  && <NoFriends/> }
                         <div className="row">
@@ -77,7 +77,7 @@ export default function ViewFriends(){
                                             </div>
                                             <div className="card-content">                                            <span className="card-title activator grey-text text-darken-4"><h5><b>{petName.toUpperCase()} </b></h5>
                                                 <div style = {{  textAlign:'center' }}>
-                                                    <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3" onClick={ (e) => arrangeMeetHandler( e,userEmail, petName, image ) }>
+                                                    <button style={ { width: '200', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large btn-dark" onClick={ (e) => arrangeMeetHandler( e,userEmail, petName, image ) }>
                                                 Arrange a Meet
                                                     </button>
                                                 </div>

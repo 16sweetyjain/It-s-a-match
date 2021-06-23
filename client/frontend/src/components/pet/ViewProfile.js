@@ -17,7 +17,7 @@ export default function ViewProfile (){
         <div>
             <Navbar/>
             <HomeNavbar/>
-            <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
+            <i className=" white small material-icons" onClick={() => history.goBack()}>arrow_back</i>
             <div className='container'>
                 <div className ="row ">
                     <div className="col s6" style={ { display:'flex', justifyContent: 'center', alignItems: 'center', marginTop:'20px' } }>

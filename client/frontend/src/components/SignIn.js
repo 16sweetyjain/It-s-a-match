@@ -55,7 +55,7 @@ export default function SignIn() {
             <Navbar/>
             <div  style={ { height: '90vh' } } className='container'>
                 <div className="row " >
-                    <form className="col s12" style  = {{ marginTop:'100px' }}>
+                    <form className=" pink lighten-5 col s12" style  = {{ marginTop:'100px' }}>
                         <div className="row">
                             <div className="input-field col s12 black-text" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                                 <h3>Login</h3>

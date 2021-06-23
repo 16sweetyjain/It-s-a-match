@@ -11,12 +11,12 @@ export default function Signout() {
     return(
         <div style={ { height:'75vh' } } className="container valign-wrapper">
             <div className="row">
-                <div className="col s12 center-align">
+                <div className="col s12 center-align white-text">
                     <h4>
                         <b> You have successfully logged out </b> 
                     </h4>
                     <div className="col s6">
-                        <Link to='/' style={ { width: '500px', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large waves-effect waves-light hoverable blue accent-3">
+                        <Link to='/' style={ { width: '500px', borderRadius: '3px', letterSpacing: '1.5px' } } className="btn btn-large btn-dark">
                             Navigate to It&apos;s-a-match
                         </Link>
                     </div> 

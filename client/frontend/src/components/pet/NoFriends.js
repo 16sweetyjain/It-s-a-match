@@ -5,7 +5,7 @@ export default function NoFriends(){
     return(
         <div style={ { height: '75vh' } } className="container valign-wrapper">
             <div className="row">
-                <div className="col s12 center-align">
+                <div className="col s12 center-align white-text">
                     <h4>
                         <b> No friends found</b> 
                     </h4>

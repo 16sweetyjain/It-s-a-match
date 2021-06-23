@@ -38,7 +38,7 @@ export default function UpcomingMeets(){
                 <div>
                     <Navbar/>
                     <HomeNavbar/>
-                    <i className=" medium material-icons" onClick={() => history.goBack()}>arrow_back</i>
+                    <i className="white small material-icons" onClick={() => history.goBack()}>arrow_back</i>
                     <div className ='container'>
                         {!acceptedRequests.length  && <NoMeets/>}
                         <div>

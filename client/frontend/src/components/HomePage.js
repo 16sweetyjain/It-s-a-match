@@ -8,16 +8,16 @@ export default function HomePage(){
             <Navbar/>
             <div style={ { height: '90vh' } } className="container  valign-wrapper">
                 <div className="row">
-                    <div className="col s12 center-align black-text ">
+                    <div className="col s12 center-align white-text ">
                         <h4>
                             <b>Welcome to It&apos;s-a-match</b> 
                         </h4>
-                        <p className="flow-text black-text ">
+                        <p className="flow-text white-text ">
                             <h3>
                                We hope you find a perfect match for your pet.
                             </h3>
                         </p>
-                        <p className="flow-text black-text">
+                        <p className="flow-text white-text">
                             <h3>
                                Start Exploring!
                             </h3>

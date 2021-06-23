@@ -56,7 +56,7 @@ export default function CreateProfile() {
     return (
         <div className='container'>
             <div className="row"   style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
-                <form className="col">
+                <form className=" pink lighten-5  col">
                     <div className="row">
                         <div className="input-field col s12 black-text" style = { { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
                             <h3> Create your pet&apos;s profile </h3>
