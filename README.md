@@ -6,9 +6,9 @@ This is a MERN stack application which aims at finding perfect match for your pe
 
 ### Prerequisites
 
-MongoDB  
-Node  
-npm
+* MongoDB  
+* Node  
+* npm
 
 ### Cloning the Repo
 
@@ -54,23 +54,23 @@ The application will run in the browser at localhost:3000
 
 ## Features
 
-Create a profile of your pet.  
-Find appropriate matches for your pet.  
-Send friend requests to other pets to get in touch.  
-Send a meet request to a pet who is your friend.  
-Protected frontend routes.  
-Input validations.  
-Error Handling.  
-Token based Authentication.  
-Filtering out matches on the basis of % match.
+* Create a profile of your pet.  
+* Find appropriate matches for your pet.  
+* Send friend requests to other pets to get in touch.  
+* Send a meet request to a pet who is your friend.  
+* Protected frontend routes.  
+* Input validations.  
+* Error Handling.  
+* Token based Authentication.  
+* Filtering out matches on the basis of % match.
 
 ## Future Enhancements
 
-Optimize location specification for meet(e.g., locations within a particular radius to be available for meet).  
-Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).
+* Optimize location specification for meet(e.g., locations within a particular radius to be available for meet).  
+* Create filters for different pets (e.g., customized search of pets based on their breed, residence etc..).
 
 ## Additional Dependencies
 
-Materialize css  
-Bcrypt.js (for password hashing)  
-React-Materialize
+* Materialize css  
+* Bcrypt.js (for password hashing)  
+* React-Materialize
