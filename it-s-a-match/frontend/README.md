@@ -1,6 +1,6 @@
 # It-s-a-Match
 
-This is a MERN stack application which aims at finding perfect match for your pet.
+This is a MERN stack application which aims at finding appropriate match for your pet.
 
 ## Getting Started
 
@@ -20,14 +20,14 @@ git clone https://github.com/16sweetyjain/It-s-a-match.git
 
 ### Configuration
 
-Move to client/frontend directory
+Move to it-s-a-match/frontend directory
 
 ```bash
 #Install client side dependencies
  npm install
 ```
 
-Move to client/frontend/backend
+Move to it-s-a-match/frontend/backend
 
 ```bash
 #Install server side dependencies
@@ -36,7 +36,7 @@ npm install
 
 ### .env file
 
-Create a .env file under client/frontend/backend and specify the following values-
+Create a .env file under it-s-a-match/frontend/backend and specify the following values-
 
 <strong>PORT</strong> - port at which server runs  
 <strong>token</strong> - secret token used for password encryption  
@@ -44,7 +44,7 @@ Create a .env file under client/frontend/backend and specify the following value
 
 ## Running the application
 
-Move to client/frontend/
+Move to it-s-a-match/frontend/
 
 ```bash
 npm start
