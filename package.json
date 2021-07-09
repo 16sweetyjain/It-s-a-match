@@ -28,6 +28,10 @@
   },
   "scripts": {
     "start": "concurrently  \"cd backend && nodemon index\" \"react-scripts start\" ",
+    "server": "cd backend && npm install",
+    "client": "npm install",
+    "installc": "npm run server && npm run client",
+    "dev": "npm run installc && npm run start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

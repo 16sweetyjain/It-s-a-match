@@ -9,7 +9,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 // db
 mongoose
-    .connect(process.env.DATABASE,{
+    .connect(process.env.MONGODB_URI || 'mongodb+srv://new_user-24:likemebetter@cluster0.jmvyg.mongodb.net/its-a-match?retryWrites=true&w=majority&ssl=true',{
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true

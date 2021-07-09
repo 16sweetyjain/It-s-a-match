@@ -98,7 +98,7 @@ exports.signin = (req, res) => {
                     3600
                 );
        
-                jwt.verify(access_token,process.env.token, (err,decoded) => {
+                jwt.verify(access_token,process.env.token || 'secret', (err,decoded) => {
                     if (err) {
                         res.status(500).json({ erros: err });
                         console.log('not able to verify');
