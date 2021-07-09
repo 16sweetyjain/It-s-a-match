@@ -2,7 +2,7 @@ const initialState = {
     email:''
 };
 
-const setUserEmailReducer = (state = initialState , action) => {
+const setUserEmail = (state = initialState , action) => {
     switch (action.type) {
     case 'SET_USER_EMAIL':
         return {
@@ -13,4 +13,4 @@ const setUserEmailReducer = (state = initialState , action) => {
     }
 };
 
-module.exports = setUserEmailReducer;
+export default setUserEmail;

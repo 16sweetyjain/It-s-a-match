@@ -9,7 +9,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 // db
 mongoose
-    .connect(process.env.MONGODB_URI || 'mongodb+srv://new_user-24:likemebetter@cluster0.jmvyg.mongodb.net/its-a-match?retryWrites=true&w=majority&ssl=true',{
+    .connect(process.env.MONGODB_URI,{
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true
@@ -23,6 +23,10 @@ app.use(express.static('uploads'));
 //routes middleware
 app.use('/api', authRoutes);
 const port = process.env.PORT || 8000;
+
+if(process.end.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+}
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
 });

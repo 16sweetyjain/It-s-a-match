@@ -31,7 +31,8 @@
     "server": "cd backend && npm install",
     "client": "npm install",
     "installc": "npm run server && npm run client",
-    "dev": "npm run installc && npm run start",
+    "dev": "npm run installc",
+    "heroku-postbuild":"npm run installc && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -42,6 +43,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "engines":{
+    "node":"14.16.0",
+    "npm":"6.14.11"
   },
   "browserslist": {
     "production": [
