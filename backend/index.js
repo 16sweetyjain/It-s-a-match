@@ -24,7 +24,7 @@ app.use(express.static('uploads'));
 app.use('/api', authRoutes);
 const port = process.env.PORT || 8000;
 
-if(process.end.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {
     app.use(express.static('build'));
 }
 app.listen(port, () => {
